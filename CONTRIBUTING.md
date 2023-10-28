@@ -1,4 +1,4 @@
-# kitcens | CONTRIBUTING
+# kevin | CONTRIBUTING
 
 ## Commits
 
