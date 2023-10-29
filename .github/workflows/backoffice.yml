@@ -17,7 +17,8 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-
+    env:
+      working-directory: ./cms
     strategy:
       matrix:
         node-version: [16.x, 18.x]
