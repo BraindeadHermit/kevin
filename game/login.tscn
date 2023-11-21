@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7efk72xf0kpk"]
+
+[ext_resource type="PackedScene" uid="uid://cot4tcgrx8thu" path="res://components/login_field/login_field.tscn" id="1_tv46c"]
+
+[node name="login" type="Node2D"]
+scale = Vector2(6.92892, 0.412043)
+
+[node name="CanvasLayer" parent="." instance=ExtResource("1_tv46c")]
