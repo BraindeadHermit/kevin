@@ -10,9 +10,21 @@ config_version=5
 
 [application]
 
-config/name="kevin"
+config/name="kevin - the hack buster"
+run/main_scene="res://login.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
-config/icon="res://icon.svg"
+boot_splash/bg_color=Color(0.141176, 0.141176, 0.141176, 1)
+config/icon="res://assets/img/Logo.png"
+run/bg_color=Color(0.14, 0.14, 0.14, 1)
+run/icon="res://icon.svg"
+run/name="kevin"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/size/resizable=false
+window/stretch/mode="viewport"
 
 [rendering]
 
