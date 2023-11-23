@@ -19,7 +19,7 @@ func _on_start_pressed():
 		
 	if company_code == "ciao":
 		"""check the company code"""
-		get_tree().change_scene_to_file("res://main.tscn")
+		get_tree().change_scene_to_file("res://scenes/main/main.tscn")
 	else:
 		error_label.text = "Il codice inserito non esiste"
 		error_label.visible = true
