@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://ddfjxncois8hq"]
+
+[ext_resource type="Texture2D" uid="uid://fxxe2bruln2q" path="res://assets/graphic components/Login Page/login_button/button.png" id="1_imgfb"]
+[ext_resource type="Texture2D" uid="uid://vyhrscvjc72r" path="res://assets/graphic components/Login Page/login_button/button_pressed.png" id="2_nywfs"]
+[ext_resource type="Texture2D" uid="uid://d2xwy02mwlh81" path="res://assets/graphic components/Login Page/login_button/button_hovered.png" id="3_hdbhs"]
+[ext_resource type="Script" path="res://components/button/Button.gd" id="4_pphhm"]
+[ext_resource type="FontFile" uid="uid://duxn7udwyqnws" path="res://assets/Fonts/Pixelify_Sans/static/PixelifySans-SemiBold.ttf" id="5_e8gv3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7wkel"]
+font = ExtResource("5_e8gv3")
+font_size = 85
+font_color = Color(0, 0, 0, 1)
+
+[node name="TextureButton" type="TextureButton"]
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_default_cursor_shape = 2
+texture_normal = ExtResource("1_imgfb")
+texture_pressed = ExtResource("2_nywfs")
+texture_hover = ExtResource("3_hdbhs")
+script = ExtResource("4_pphhm")
+metadata/button_text = "ciao"
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CenterContainer"]
+layout_mode = 2
+label_settings = SubResource("LabelSettings_7wkel")
+horizontal_alignment = 1
+vertical_alignment = 1
