@@ -3,13 +3,13 @@ name: Backoffice 🗃️
 on:
   push:
     paths:
-      - "cms/**"
+      - "./cms/**"
     branches:
       - dev
       - main
   pull_request:
     paths:
-      - "cms/**"
+      - "./cms/**"
     branches:
       - "**/cms/**"
       - "**/cms/**"
