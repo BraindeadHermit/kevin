@@ -1,4 +1,125 @@
-[gd_scene format=3 uid="uid://b7efk72xf0kpk"]
+[gd_scene load_steps=8 format=3 uid="uid://b7efk72xf0kpk"]
 
-[node name="login" type="Node2D"]
-scale = Vector2(6.92892, 0.412043)
+[ext_resource type="Texture2D" uid="uid://ce4erm8068rvq" path="res://assets/img/login background.png" id="1_kc2ut"]
+[ext_resource type="FontFile" uid="uid://cd1fvb8wmg5mb" path="res://assets/fonts/pixelify-sans/static/PixelifySans-SemiBold.ttf" id="2_mufh8"]
+[ext_resource type="PackedScene" uid="uid://d00j8l2kr3pi4" path="res://components/button/button.tscn" id="4_vnwth"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qyopi"]
+font = ExtResource("2_mufh8")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_evaqn"]
+font_size = 26
+
+[sub_resource type="Theme" id="Theme_noheq"]
+default_font_size = 26
+
+[sub_resource type="Theme" id="Theme_3rd1s"]
+default_font_size = 26
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kc2ut")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 491.0
+offset_right = 1429.0
+offset_bottom = 100.0
+size_flags_vertical = 0
+text = "KEVIN - THE HACK BUSTER"
+label_settings = SubResource("LabelSettings_qyopi")
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -414.5
+offset_top = -145.0
+offset_right = 414.5
+offset_bottom = 145.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label2" type="Label" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Username:"
+label_settings = SubResource("LabelSettings_evaqn")
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_noheq")
+placeholder_text = "Username"
+
+[node name="Label3" type="Label" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Il nome utente inserito verrà utilizzato solo durante questa sessione, alla chiusura del gioco verrà eliminato"
+
+[node name="VSplitContainer2" type="VSplitContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="Label2" type="Label" parent="VBoxContainer2/VSplitContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Company Code:"
+label_settings = SubResource("LabelSettings_evaqn")
+
+[node name="LineEdit" type="LineEdit" parent="VBoxContainer2/VSplitContainer2"]
+layout_mode = 2
+size_flags_vertical = 4
+theme = SubResource("Theme_3rd1s")
+placeholder_text = "Company Code"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -107.0
+offset_right = 1916.0
+offset_bottom = 59.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+alignment = 1
+
+[node name="StartBtn" parent="HBoxContainer" instance=ExtResource("4_vnwth")]
+layout_mode = 2
+size_flags_vertical = 0
+metadata/button_text = "Start"
+
+[node name="QuitBtn" parent="HBoxContainer" instance=ExtResource("4_vnwth")]
+layout_mode = 2
+metadata/button_text = "Quit"
