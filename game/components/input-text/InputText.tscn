@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://jc5y7xy11h86"]
+[gd_scene load_steps=4 format=3 uid="uid://jc5y7xy11h86"]
 
 [ext_resource type="Texture2D" uid="uid://dklur2fwnvp7d" path="res://assets/graphic components/Login Page/input text/input-text.png" id="1_cibij"]
+[ext_resource type="Script" path="res://components/input-text/input-text.gd" id="2_3w2p1"]
 [ext_resource type="FontFile" uid="uid://dime1jlce70ux" path="res://assets/fonts/ubuntu/Ubuntu-Regular.ttf" id="2_nr6mt"]
 
 [node name="TextureRect" type="TextureRect"]
@@ -16,6 +17,7 @@ offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("1_cibij")
+script = ExtResource("2_3w2p1")
 
 [node name="LineEdit" type="LineEdit" parent="."]
 layout_mode = 1
@@ -29,3 +31,5 @@ theme_override_fonts/font = ExtResource("2_nr6mt")
 theme_override_font_sizes/font_size = 26
 clear_button_enabled = true
 flat = true
+
+[connection signal="text_changed" from="LineEdit" to="." method="_on_line_edit_text_changed"]

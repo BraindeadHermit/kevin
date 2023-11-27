@@ -6,35 +6,23 @@
 [ext_resource type="Script" path="res://components/button/button.gd" id="4_ubkm8"]
 [ext_resource type="FontFile" uid="uid://bf77mi083ksjk" path="res://assets/fonts/pixelify-sans/static/PixelifySans-Regular.ttf" id="5_mti1l"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_7cofb"]
+[sub_resource type="LabelSettings" id="LabelSettings_a8neb"]
 font = ExtResource("5_mti1l")
 font_size = 90
 font_color = Color(0, 0, 0, 1)
 
-[node name="CenterContainer" type="CenterContainer"]
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -258.0
-offset_top = -83.0
-offset_right = 258.0
-offset_bottom = 83.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_horizontal = 4
-size_flags_vertical = 4
-script = ExtResource("4_ubkm8")
-metadata/button_text = ""
-
-[node name="TextureButton" type="TextureButton" parent="."]
-layout_mode = 2
+[node name="TextureButton" type="TextureButton"]
 texture_normal = ExtResource("1_imgfb")
 texture_pressed = ExtResource("2_nywfs")
 texture_hover = ExtResource("3_hdbhs")
+script = ExtResource("4_ubkm8")
+metadata/button_text = ""
 
 [node name="ButtonText" type="Label" parent="."]
 layout_mode = 2
+offset_left = 134.0
+offset_top = 27.0
+offset_right = 381.0
+offset_bottom = 139.0
 text = "cgfrr"
-label_settings = SubResource("LabelSettings_7cofb")
+label_settings = SubResource("LabelSettings_a8neb")
