@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://b7efk72xf0kpk"]
+
+[node name="login" type="Node2D"]
+scale = Vector2(6.92892, 0.412043)
