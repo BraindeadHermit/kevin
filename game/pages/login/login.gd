@@ -33,7 +33,7 @@ func _on_start_btn_pressed():
 	if username != '':
 		"""Company code control block"""
 		if company_code == 'ciao':
-			get_tree().change_scene_to_file("")
+			get_tree().change_scene_to_file("res://pages/main-menu/main-menu.tscn")
 		elif company_code == '':
 			error_label.text = "il codice della compagnia è obbligatorio"
 			error_label.visible = true
