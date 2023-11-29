@@ -178,3 +178,4 @@ libraries = {
 
 [connection signal="ready" from="TextureRect" to="." method="_on_texture_rect_ready"]
 [connection signal="ready" from="VBoxContainer/Label" to="." method="_on_label_ready"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
