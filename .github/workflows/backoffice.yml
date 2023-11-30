@@ -14,12 +14,13 @@ on:
       - "**/cms/**"
       - "**/cms/**"
 
+defaults:
+    run:
+        working-directory: ./cms
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./cms/
     strategy:
       matrix:
         node-version: [16.x, 18.x]
@@ -31,6 +32,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
           cache: "npm"
+          cache-dependency-path: cms/package-lock.json
       - name: install dependencies
         run: npm ci
       - name: project build
