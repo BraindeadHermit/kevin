@@ -14,12 +14,13 @@ on:
       - "**/cms/**"
       - "**/cms/**"
 
+defaults:
+    run:
+        working-directory: ./cms
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: ./cms/
     strategy:
       matrix:
         node-version: [16.x, 18.x]

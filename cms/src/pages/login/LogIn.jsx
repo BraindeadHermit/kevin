@@ -7,17 +7,41 @@ import Checkbox from "@mui/material/Checkbox";
 import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
+import { alpha, createTheme, ThemeProvider } from "@mui/material/styles";
 
 const defaultTheme = createTheme({
   palette: {
     background: {
-      default: "#00695F;",
+      default: "#009688;",
+    },
+    primary: {
+      main: "#CD2222",
+    },
+    secondary: {
+      main: alpha("#FFFFFF", 0.7),
     },
   },
+  components: {
+    MuiInputBase: {
+      styleOverrides: {
+        root: {
+          borderRadius: "20px",
+          background: "#009688",
+          hover: alpha("#FFFFFF", 0.7),
+        },
+      }
+    },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: "20px",
+          hover: alpha("#FFFFFF", 0.7),
+        },
+      }
+    }
+  }
 });
 
 export default function LogIn() {
@@ -32,30 +56,31 @@ export default function LogIn() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="xs">
+      <Container component="main" maxWidth="sm">
         <CssBaseline />
         <Box
           sx={{
-            marginTop: 8,
+            marginTop: 30,
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
+            borderRadius: 4,
+            backgroundColor: "#00695F",
+            padding: "30px"
           }}
         >
-          <Avatar sx={{ m: 1, bgcolor: "secondary.main" }}>
-            <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+          <Typography component="h2" variant="h5" color="white">
             Sign in
           </Typography>
           <Box
             component="form"
             onSubmit={handleSubmit}
             noValidate
-            sx={{ mt: 1 }}
+            sx={{ mt: 1}}
           >
             <TextField
               margin="normal"
+              color="secondary"
               required
               fullWidth
               id="email"
@@ -66,6 +91,7 @@ export default function LogIn() {
             />
             <TextField
               margin="normal"
+              color="secondary"
               required
               fullWidth
               name="password"
@@ -79,22 +105,18 @@ export default function LogIn() {
               label="Remember me"
             />
             <Button
+              color="primary"
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2 }}
+              sx={{ mt: 3, mb: 2, borderRadius: 15, padding: "10px 18px"}}
             >
               Sign In
             </Button>
             <Grid container>
               <Grid item xs>
-                <Link href="#" variant="body2">
+                <Link href="#" variant="body2" sx={{color: "white"}}>
                   Forgot password?
-                </Link>
-              </Grid>
-              <Grid item>
-                <Link href="#" variant="body2">
-                  {"Don't have an account? Sign Up"}
                 </Link>
               </Grid>
             </Grid>
