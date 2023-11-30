@@ -2,7 +2,7 @@
 
 [ext_resource type="FontFile" uid="uid://b6t7hje1ft0kq" path="res://assets/fonts/pixelify-sans/static/PixelifySans-Bold.ttf" id="1_73inu"]
 [ext_resource type="Script" path="res://pages/main-menu/main-menu.gd" id="1_5585w"]
-[ext_resource type="Texture2D" path="res://assets/img/city.png" id="2_cfma4"]
+[ext_resource type="Texture2D" uid="uid://d4jls52h7t63t" path="res://assets/img/city.png" id="2_cfma4"]
 [ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="3_nsw1t"]
 [ext_resource type="AudioStream" uid="uid://bg7smvikndhds" path="res://assets/audio/battle-of-the-dragons-8037.mp3" id="5_1bs2j"]
 
@@ -182,6 +182,7 @@ stream = ExtResource("5_1bs2j")
 autoplay = true
 mix_target = 1
 
+[connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="ready" from="TextureRect" to="." method="_on_texture_rect_ready"]
 [connection signal="ready" from="VBoxContainer/Label" to="." method="_on_label_ready"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

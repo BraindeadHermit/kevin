@@ -8,6 +8,7 @@ extends Control
 @onready var spinner_text = get_node("VBoxContainer/spinner_text")
 
 var scene_load_thread: Thread
+var mutex = Mutex.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,7 +25,6 @@ func login(code):
 
 func _on_quit_btn_pressed():
 	get_tree().quit()
-
 
 func _on_start_btn_pressed():
 	error_label.visible = false
@@ -50,8 +50,10 @@ func _on_start_btn_pressed():
 		error_label_username.visible = true
 	
 func _async_load_main():
+	mutex.lock()
 	var main_menu = load("res://pages/main-menu/main-menu.tscn")
 	get_tree().call_deferred('change_scene_to_packed', main_menu)
+	mutex.unlock()
 	
 func _exit_tree():
 	scene_load_thread.wait_to_finish()
