@@ -12,5 +12,6 @@ func _on_texture_rect_ready():
 		await get_tree().create_timer(1).timeout
 
 
+
 func _on_quit_pressed():
 	get_tree().quit()
