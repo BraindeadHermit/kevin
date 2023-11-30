@@ -7,6 +7,7 @@ extends Control
 @onready var spinner = get_node("VBoxContainer/spinner")
 @onready var spinner_text = get_node("VBoxContainer/spinner_text")
 
+var thread: Thread
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -32,13 +33,14 @@ func _on_start_btn_pressed():
 	error_label.text = "Errore! Il codice inserito è inesistente"
 	var username = username_line_edit.text
 	var company_code = company_code_line_edit.text
+	thread = Thread.new()
 	
 	"""Username control block"""
 	if username != '':
 		"""Company code control block"""
 		if login(company_code):
 			spinner_text.text = "Caricamento..."
-			"""get_tree().change_scene_to_file("res://pages/main-menu/main-menu.tscn")"""
+			thread.start(_async_load_main.bind())
 		elif company_code == '':
 			error_label.text = "il codice della compagnia è obbligatorio"
 			error_label.visible = true
@@ -46,3 +48,10 @@ func _on_start_btn_pressed():
 			error_label.visible = true
 	else: 
 		error_label_username.visible = true
+	
+func _async_load_main():
+	var main_menu = load("res://pages/main-menu/main-menu.tscn")
+	get_tree().call_deferred('change_scene_to_packed', main_menu)
+	
+func _exit_tree():
+	thread.wait_to_finish()
