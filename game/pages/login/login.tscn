@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b7efk72xf0kpk"]
+[gd_scene load_steps=13 format=3 uid="uid://b7efk72xf0kpk"]
 
 [ext_resource type="Script" path="res://pages/login/login.gd" id="1_718aj"]
 [ext_resource type="Texture2D" uid="uid://ce4erm8068rvq" path="res://assets/img/login background.png" id="1_kc2ut"]
@@ -21,6 +21,10 @@ font_size = 26
 font = ExtResource("3_ryhma")
 font_color = Color(0.913725, 0, 0, 1)
 outline_color = Color(0.952941, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x7bq1"]
+font = ExtResource("3_ryhma")
+font_size = 20
 
 [node name="Control" type="Control"]
 layout_mode = 3
@@ -138,21 +142,33 @@ size_flags_horizontal = 10
 size_flags_vertical = 0
 metadata/button_text = "Start"
 
-[node name="spinner" parent="." instance=ExtResource("7_yckfq")]
-visible = false
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -72.0
-offset_top = -69.0
-offset_right = -24.0
-offset_bottom = -21.0
+offset_left = -281.0
+offset_top = -108.0
+offset_right = -35.0
+offset_bottom = -30.0
 grow_horizontal = 0
 grow_vertical = 0
+
+[node name="spinner" parent="VBoxContainer" instance=ExtResource("7_yckfq")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
 texture_under = ExtResource("8_p1qpd")
+
+[node name="spinner_text" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sto effettuando l'accesso..."
+label_settings = SubResource("LabelSettings_x7bq1")
 
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="pressed" from="HBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
