@@ -1,10 +1,10 @@
 [gd_scene load_steps=11 format=3 uid="uid://cvgyg8352vxmi"]
 
+[ext_resource type="Texture2D" uid="uid://88xep1webaxj" path="res://assets/graphic components/main-menu/button.png" id="1_0cjfl"]
 [ext_resource type="Script" path="res://components/main-menu-button/main-menu-button.gd" id="1_fmvui"]
-[ext_resource type="Texture2D" uid="uid://dy4cb8lq3aov" path="res://assets/graphic components/main-menu/main:_button.png" id="1_leg1c"]
-[ext_resource type="Texture2D" uid="uid://r267em8ubp00" path="res://assets/graphic components/main-menu/main_button_hover.png" id="2_2vmxk"]
-[ext_resource type="Texture2D" uid="uid://bruvk7dmah6i5" path="res://assets/graphic components/main-menu/main_button_pressed.png" id="2_j6qro"]
+[ext_resource type="Texture2D" uid="uid://bqfxq06x2nmcn" path="res://assets/graphic components/main-menu/button_pressed.png" id="2_8so7t"]
 [ext_resource type="FontFile" uid="uid://dime1jlce70ux" path="res://assets/fonts/ubuntu/Ubuntu-Regular.ttf" id="2_yq4q2"]
+[ext_resource type="Texture2D" uid="uid://d2tcvydaktx7g" path="res://assets/graphic components/main-menu/button_hover.png" id="3_wc0cf"]
 
 [sub_resource type="Theme" id="Theme_kpkad"]
 
@@ -27,6 +27,8 @@ font = ExtResource("2_yq4q2")
 font_size = 50
 
 [node name="TextureButton" type="TextureButton"]
+use_parent_material = true
+custom_minimum_size = Vector2(516, 166)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -38,31 +40,40 @@ offset_right = 258.0
 offset_bottom = 83.0
 grow_horizontal = 2
 grow_vertical = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 6
 size_flags_vertical = 4
+size_flags_stretch_ratio = 3.02
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_kpkad")
-texture_normal = ExtResource("1_leg1c")
-texture_pressed = ExtResource("2_j6qro")
-texture_hover = ExtResource("2_2vmxk")
+texture_normal = ExtResource("1_0cjfl")
+texture_pressed = ExtResource("2_8so7t")
+texture_hover = ExtResource("3_wc0cf")
+ignore_texture_size = true
+stretch_mode = 0
 script = ExtResource("1_fmvui")
 metadata/button_text = ""
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(516, 166)
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 24.0
-offset_top = -41.5
-offset_right = 234.0
-offset_bottom = 41.5
+offset_left = -258.0
+offset_top = -83.0
+offset_right = 258.0
+offset_bottom = 83.0
+grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
 
 [node name="root" type="Label" parent="HBoxContainer"]
+clip_contents = true
 layout_mode = 2
-text = "hermit"
+size_flags_horizontal = 0
+text = "kevin"
 label_settings = SubResource("LabelSettings_2mgn6")
 
 [node name="duble_dot" type="Label" parent="HBoxContainer"]
@@ -84,3 +95,7 @@ label_settings = SubResource("LabelSettings_ir3v2")
 [node name="text" type="Label" parent="HBoxContainer"]
 layout_mode = 2
 label_settings = SubResource("LabelSettings_bumfw")
+
+[connection signal="resized" from="." to="." method="_on_resized"]
+[connection signal="ready" from="HBoxContainer/root" to="." method="_on_root_ready"]
+[connection signal="resized" from="HBoxContainer/root" to="." method="_on_root_resized"]

@@ -39,6 +39,7 @@ func _on_start_btn_pressed():
 	if username != '':
 		"""Company code control block"""
 		if login(company_code):
+			Global.init(username, company_code)
 			spinner_text.text = "Caricamento..."
 			scene_load_thread.start(_async_load_main.bind())
 		elif company_code == '':

@@ -3,6 +3,7 @@ extends Control
 var images_url = ["res://assets/img/city.png", "res://assets/img/city2.png", "res://assets/img/hack.png", "res://assets/img/jet.png", "res://assets/img/motor.png", "res://assets/img/temple.png"]
 var images = []
 @onready var texture_rect = get_node("TextureRect")
+@onready var description = get_node("description")
 var thread = Thread.new()
 
 func _on_texture_rect_ready():
