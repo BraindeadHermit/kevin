@@ -19,6 +19,10 @@ run/bg_color=Color(0.14, 0.14, 0.14, 1)
 run/icon="res://icon.svg"
 run/name="kevin"
 
+[autoload]
+
+Global="*res://logic/global.gd"
+
 [display]
 
 window/size/viewport_width=1920

@@ -1,0 +1,193 @@
+[gd_scene load_steps=11 format=3 uid="uid://dc48463ktmjwx"]
+
+[ext_resource type="FontFile" uid="uid://b6t7hje1ft0kq" path="res://assets/fonts/pixelify-sans/static/PixelifySans-Bold.ttf" id="1_73inu"]
+[ext_resource type="Script" path="res://pages/main-menu/main-menu.gd" id="1_5585w"]
+[ext_resource type="Texture2D" uid="uid://d4jls52h7t63t" path="res://assets/img/city.png" id="2_cfma4"]
+[ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="3_nsw1t"]
+[ext_resource type="AudioStream" uid="uid://bg7smvikndhds" path="res://assets/audio/battle-of-the-dragons-8037.mp3" id="5_1bs2j"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_80ur6"]
+font = ExtResource("1_73inu")
+font_size = 90
+
+[sub_resource type="Animation" id="Animation_k61rk"]
+resource_name = "background_fade"
+length = 14.0
+loop_mode = 2
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TextureRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 13.3, 13.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -140), Vector2(-100, -140), Vector2(0, -140)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("TextureRect:self_modulate")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2.1, 11.5, 12.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1u5dt"]
+_data = {
+"background_fade": SubResource("Animation_k61rk")
+}
+
+[sub_resource type="Animation" id="Animation_wy35v"]
+resource_name = "main_menu"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("VBoxContainer/quit:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 4, 5),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("VBoxContainer/resume:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 3, 4),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("VBoxContainer/play:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("VBoxContainer/Label:self_modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_jq06b"]
+_data = {
+"main_menu": SubResource("Animation_wy35v")
+}
+
+[node name="main-menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5585w")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+offset_top = -140.0
+offset_right = 3840.0
+offset_bottom = 2020.0
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("2_cfma4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -6.0
+offset_right = 10.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "KEVIN - THE HACK BUSTER"
+label_settings = SubResource("LabelSettings_80ur6")
+
+[node name="play" parent="VBoxContainer" instance=ExtResource("3_nsw1t")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+ignore_texture_size = false
+metadata/button_text = "gioca"
+
+[node name="resume" parent="VBoxContainer" instance=ExtResource("3_nsw1t")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+ignore_texture_size = false
+metadata/button_text = "riprendi"
+
+[node name="quit" parent="VBoxContainer" instance=ExtResource("3_nsw1t")]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 6
+ignore_texture_size = false
+metadata/button_text = "esci"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "background_fade"
+libraries = {
+"": SubResource("AnimationLibrary_1u5dt")
+}
+
+[node name="MainMenuAnim" type="AnimationPlayer" parent="."]
+autoplay = "main_menu"
+libraries = {
+"": SubResource("AnimationLibrary_jq06b")
+}
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_1bs2j")
+autoplay = true
+mix_target = 1
+
+[connection signal="ready" from="." to="." method="_on_ready"]
+[connection signal="ready" from="TextureRect" to="." method="_on_texture_rect_ready"]
+[connection signal="ready" from="VBoxContainer/Label" to="." method="_on_label_ready"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
