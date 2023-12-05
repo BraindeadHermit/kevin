@@ -13,18 +13,14 @@ var __question: Dictionary
 var __answare: Dictionary
 var __terminal: Dictionary
 
+
+
 func _init():
 	db = SQLite.new()
 	db.path = db_name
 	db.foreign_keys = true
 	db.verbosity_level = SQLite.VERY_VERBOSE
 	
-	var thread = Thread.new()
-	
-	thread.start(__create_database)
-	
-	
-func __create_database():
 	var dir_access = DirAccess.open("user://")
 	if not dir_access.dir_exists_absolute("user://database"):
 		print("creating database folder...")
@@ -52,6 +48,7 @@ func __create_database():
 		
 	print("-----database ready-----")
 	db.close_db()
+	
 	
 func __tables_set_up():
 	__user = Dictionary()
@@ -101,4 +98,7 @@ func __tables_set_up():
 	__terminal["is_active"] = {"data_type": "bool", "default": "true", "not_null": true}
 	__terminal["question_id"] = {"data_type": "int", "foreign_key": __question.id, "not_null": true}
 
+func _exit_tree():
+	print("closing  database...")
+	db.close_db()
 
