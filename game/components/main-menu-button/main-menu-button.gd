@@ -11,5 +11,3 @@ func _ready():
 func _on_root_resized():
 	var x = $HBoxContainer/text.size.x + $HBoxContainer/root.size.x + $HBoxContainer/tilde.size.x + $HBoxContainer/dollar.size.x + 10
 	self.set_size(Vector2(x, self.size.y))
-	self.texture_normal.get_image().resize(x, self.size.y, Image.INTERPOLATE_BILINEAR)
-	print(self.size)
