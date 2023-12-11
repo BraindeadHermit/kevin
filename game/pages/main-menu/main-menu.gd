@@ -25,3 +25,7 @@ func _load_image():
 
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func _on_play_pressed():
+	get_tree().call_deferred("change_scene_to_file", "res://game/level_1/level_1.tscn")

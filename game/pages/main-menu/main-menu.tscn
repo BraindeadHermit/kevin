@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://dc48463ktmjwx"]
+[gd_scene load_steps=13 format=3 uid="uid://dc48463ktmjwx"]
 
 [ext_resource type="FontFile" uid="uid://b6t7hje1ft0kq" path="res://assets/fonts/pixelify-sans/static/PixelifySans-Bold.ttf" id="1_73inu"]
 [ext_resource type="Script" path="res://pages/main-menu/main-menu.gd" id="1_5585w"]
 [ext_resource type="Texture2D" uid="uid://d4jls52h7t63t" path="res://assets/img/city.png" id="2_cfma4"]
 [ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="3_nsw1t"]
 [ext_resource type="AudioStream" uid="uid://bg7smvikndhds" path="res://assets/audio/battle-of-the-dragons-8037.mp3" id="5_1bs2j"]
+[ext_resource type="Texture2D" uid="uid://bifsqbfcalq4k" path="res://assets/img/kevin.png" id="6_lwfwj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_80ur6"]
 font = ExtResource("1_73inu")
@@ -38,9 +39,37 @@ tracks/1/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Kevin:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 2, 4, 6, 8, 10, 12, 14),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1218, 651), Vector2(1218, 671), Vector2(1218, 651), Vector2(1218, 671), Vector2(1218, 651), Vector2(1218, 671), Vector2(1218, 651), Vector2(1218, 671)]
+}
+
+[sub_resource type="Animation" id="Animation_ujg3k"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Kevin:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1137, 651)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_1u5dt"]
 _data = {
+"RESET": SubResource("Animation_ujg3k"),
 "background_fade": SubResource("Animation_k61rk")
 }
 
@@ -187,7 +216,14 @@ stream = ExtResource("5_1bs2j")
 autoplay = true
 mix_target = 1
 
+[node name="Kevin" type="Sprite2D" parent="."]
+position = Vector2(1137, 651)
+scale = Vector2(0.662946, 0.662946)
+texture = ExtResource("6_lwfwj")
+flip_h = true
+
 [connection signal="ready" from="." to="." method="_on_ready"]
 [connection signal="ready" from="TextureRect" to="." method="_on_texture_rect_ready"]
 [connection signal="ready" from="VBoxContainer/Label" to="." method="_on_label_ready"]
+[connection signal="pressed" from="VBoxContainer/play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
