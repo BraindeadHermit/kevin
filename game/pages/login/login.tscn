@@ -1,0 +1,175 @@
+[gd_scene load_steps=13 format=3 uid="uid://b7efk72xf0kpk"]
+
+[ext_resource type="Script" path="res://pages/login/login.gd" id="1_718aj"]
+[ext_resource type="Texture2D" uid="uid://ce4erm8068rvq" path="res://assets/img/login background.png" id="1_kc2ut"]
+[ext_resource type="FontFile" uid="uid://cd1fvb8wmg5mb" path="res://assets/fonts/pixelify-sans/static/PixelifySans-SemiBold.ttf" id="2_mufh8"]
+[ext_resource type="FontFile" uid="uid://dime1jlce70ux" path="res://assets/fonts/ubuntu/Ubuntu-Regular.ttf" id="3_ryhma"]
+[ext_resource type="PackedScene" uid="uid://jc5y7xy11h86" path="res://components/input-text/InputText.tscn" id="4_26inv"]
+[ext_resource type="PackedScene" uid="uid://d00j8l2kr3pi4" path="res://components/button/button.tscn" id="4_vnwth"]
+[ext_resource type="PackedScene" uid="uid://becmidtnpiwbm" path="res://components/spinner/spinner.tscn" id="7_yckfq"]
+[ext_resource type="Texture2D" uid="uid://bfcv0il4druov" path="res://assets/graphic components/spinner/spinner-background.png" id="8_p1qpd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_qyopi"]
+font = ExtResource("2_mufh8")
+font_size = 80
+
+[sub_resource type="LabelSettings" id="LabelSettings_evaqn"]
+font = ExtResource("3_ryhma")
+font_size = 26
+
+[sub_resource type="LabelSettings" id="LabelSettings_rfnji"]
+font = ExtResource("3_ryhma")
+font_color = Color(0.913725, 0, 0, 1)
+outline_color = Color(0.952941, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_x7bq1"]
+font = ExtResource("3_ryhma")
+font_size = 20
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+script = ExtResource("1_718aj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_kc2ut")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+offset_left = 491.0
+offset_right = 1429.0
+offset_bottom = 100.0
+size_flags_vertical = 0
+text = "KEVIN - THE HACK BUSTER"
+label_settings = SubResource("LabelSettings_qyopi")
+horizontal_alignment = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -414.5
+offset_top = -190.5
+offset_right = 414.5
+offset_bottom = 190.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+
+[node name="Label2" type="Label" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Username:"
+label_settings = SubResource("LabelSettings_evaqn")
+
+[node name="UsernameLineEdit" parent="VBoxContainer2/VBoxContainer" instance=ExtResource("4_26inv")]
+layout_mode = 2
+size_flags_vertical = 4
+
+[node name="Label3" type="Label" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 8
+text = "Il nome utente inserito verrà utilizzato solo durante questa sessione, alla chiusura del gioco verrà eliminato"
+
+[node name="error_label_username" type="Label" parent="VBoxContainer2/VBoxContainer"]
+layout_mode = 2
+text = "Errore! Il nome utente non può essere vuoto"
+label_settings = SubResource("LabelSettings_rfnji")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 10
+alignment = 2
+
+[node name="Label2" type="Label" parent="VBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Company Code:"
+label_settings = SubResource("LabelSettings_evaqn")
+
+[node name="CompanyCodeLineEdit" parent="VBoxContainer2/VBoxContainer2" instance=ExtResource("4_26inv")]
+layout_mode = 2
+
+[node name="error_label" type="Label" parent="VBoxContainer2/VBoxContainer2"]
+layout_mode = 2
+text = "Errore! Il codice inserito è inesistente"
+label_settings = SubResource("LabelSettings_rfnji")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -418.0
+offset_top = -166.0
+offset_right = 1250.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+alignment = 1
+
+[node name="QuitBtn" parent="HBoxContainer" instance=ExtResource("4_vnwth")]
+layout_mode = 2
+metadata/button_text = "Quit"
+
+[node name="StartBtn" parent="HBoxContainer" instance=ExtResource("4_vnwth")]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+metadata/button_text = "Start"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -281.0
+offset_top = -108.0
+offset_right = -35.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="spinner" parent="VBoxContainer" instance=ExtResource("7_yckfq")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_under = ExtResource("8_p1qpd")
+
+[node name="spinner_text" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sto effettuando l'accesso..."
+label_settings = SubResource("LabelSettings_x7bq1")
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="pressed" from="HBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="HBoxContainer/StartBtn" to="." method="_on_start_btn_pressed"]

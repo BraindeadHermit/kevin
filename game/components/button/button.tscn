@@ -1,0 +1,28 @@
+[gd_scene load_steps=7 format=3 uid="uid://d00j8l2kr3pi4"]
+
+[ext_resource type="Texture2D" uid="uid://fxxe2bruln2q" path="res://assets/graphic components/Login Page/login_button/button.png" id="1_imgfb"]
+[ext_resource type="Texture2D" uid="uid://vyhrscvjc72r" path="res://assets/graphic components/Login Page/login_button/button_pressed.png" id="2_nywfs"]
+[ext_resource type="Texture2D" uid="uid://d2xwy02mwlh81" path="res://assets/graphic components/Login Page/login_button/button_hovered.png" id="3_hdbhs"]
+[ext_resource type="Script" path="res://components/button/button.gd" id="4_ubkm8"]
+[ext_resource type="FontFile" uid="uid://bf77mi083ksjk" path="res://assets/fonts/pixelify-sans/static/PixelifySans-Regular.ttf" id="5_mti1l"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_a8neb"]
+font = ExtResource("5_mti1l")
+font_size = 90
+font_color = Color(0, 0, 0, 1)
+
+[node name="TextureButton" type="TextureButton"]
+texture_normal = ExtResource("1_imgfb")
+texture_pressed = ExtResource("2_nywfs")
+texture_hover = ExtResource("3_hdbhs")
+script = ExtResource("4_ubkm8")
+metadata/button_text = ""
+
+[node name="ButtonText" type="Label" parent="."]
+layout_mode = 2
+offset_left = 134.0
+offset_top = 27.0
+offset_right = 381.0
+offset_bottom = 139.0
+text = "cgfrr"
+label_settings = SubResource("LabelSettings_a8neb")
