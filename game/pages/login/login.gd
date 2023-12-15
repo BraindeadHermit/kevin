@@ -18,7 +18,7 @@ func _ready():
 func login(code):
 	spinner.visible = true
 	spinner_text.visible = true
-	if code == 'ciao':
+	if code == 'CODE_01':
 		return true
 	else: 
 		return false

@@ -13,7 +13,7 @@ func _physics_process(delta):
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
+	
 	# Handle Jump.
 	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
@@ -33,10 +33,18 @@ func _physics_process(delta):
 	if direction:
 		velocity.x = direction * SPEED
 		if velocity.y == 0:
-			anim.play("run")
+			if Input.is_action_pressed("ui_shoot"):
+				anim.play("run_shot")
+			else:
+				anim.play("run")
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if velocity.y == 0:
-			anim.play("idle")
+			if Input.is_action_pressed("ui_down"):
+				anim.play("duck")
+			elif Input.is_action_pressed("ui_shoot"):
+				anim.play("shoot")
+			else:	
+				anim.play("idle")
 
 	move_and_slide()

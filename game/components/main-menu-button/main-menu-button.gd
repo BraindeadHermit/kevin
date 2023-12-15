@@ -5,7 +5,11 @@ func _ready():
 	var label = get_node("HBoxContainer/text")
 	label.text = get_meta("button_text")
 	var root = get_node("HBoxContainer/root")
-	root.text = Global.get_username()
+	var username = Global.get_username()
+	if len(username) > 9:
+		username = username.substr(0, 9) + "..."
+	
+	root.text = username
 	
 
 func _on_root_resized():

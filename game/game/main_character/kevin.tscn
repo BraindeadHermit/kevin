@@ -1,8 +1,11 @@
-[gd_scene load_steps=44 format=3 uid="uid://crme7c848bua7"]
+[gd_scene load_steps=49 format=3 uid="uid://crme7c848bua7"]
 
 [ext_resource type="Script" path="res://game/main_character/kevin.gd" id="1_ctal3"]
+[ext_resource type="Texture2D" uid="uid://bxnljkusab7vt" path="res://assets/levels/level_1/Characters/Player/sprites/Player-duck/player-duck1.png" id="2_hlxyv"]
 [ext_resource type="Texture2D" uid="uid://cu2kqaecx5w1" path="res://assets/levels/level_1/Characters/Player/sprites/Player-Hurt/player-hurt1.png" id="2_nfsuu"]
+[ext_resource type="Texture2D" uid="uid://cg5s31qysh6xe" path="res://assets/levels/level_1/Characters/Player/sprites/Player-duck/player-duck2.png" id="3_kps1e"]
 [ext_resource type="Texture2D" uid="uid://bfgoi6aksxy4h" path="res://assets/levels/level_1/Characters/Player/sprites/Player-Hurt/player-hurt2.png" id="3_y7bav"]
+[ext_resource type="Texture2D" uid="uid://c01efuy11gxay" path="res://assets/levels/level_1/Characters/Player/sprites/Player-duck/player-duck3.png" id="4_jy1mm"]
 [ext_resource type="Texture2D" uid="uid://hmwg7ci4oql1" path="res://assets/levels/level_1/Characters/Player/sprites/Player-idle/player-idle1.png" id="4_k533m"]
 [ext_resource type="Texture2D" uid="uid://fhblmekehdyh" path="res://assets/levels/level_1/Characters/Player/sprites/Player-idle/player-idle2.png" id="5_vubgn"]
 [ext_resource type="Texture2D" uid="uid://c1u1s0pamtgb8" path="res://assets/levels/level_1/Characters/Player/sprites/Player-idle/player-idle3.png" id="6_snnr0"]
@@ -37,6 +40,20 @@ height = 28.0
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s2wnr"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_hlxyv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kps1e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_jy1mm")
+}],
+"loop": true,
+"name": &"duck",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("2_nfsuu")
@@ -185,6 +202,34 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_akbv1"]
+resource_name = "duck"
+length = 300.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"duck"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
 }
 
 [sub_resource type="Animation" id="Animation_j5dpo"]
@@ -355,6 +400,59 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_rqqmh"]
 resource_name = "run_shot"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"run_shot"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="Animation_mxgpr"]
+resource_name = "shoot"
+length = 15.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = false
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"shot"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = false
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [0, 1, 2]
+}
 
 [sub_resource type="Animation" id="Animation_y71n4"]
 resource_name = "shot"
@@ -362,6 +460,7 @@ resource_name = "shot"
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lb0na"]
 _data = {
 "RESET": SubResource("Animation_8rsvp"),
+"duck": SubResource("Animation_akbv1"),
 "fall": SubResource("Animation_j5dpo"),
 "hurt": SubResource("Animation_gtgha"),
 "idle": SubResource("Animation_ehycg"),
@@ -369,6 +468,7 @@ _data = {
 "ladder": SubResource("Animation_b06vd"),
 "run": SubResource("Animation_ur7ui"),
 "run_shot": SubResource("Animation_rqqmh"),
+"shoot": SubResource("Animation_mxgpr"),
 "shot": SubResource("Animation_y71n4")
 }
 
@@ -377,6 +477,7 @@ size = Vector2(6, 29)
 
 [node name="kevin" type="CharacterBody2D"]
 script = ExtResource("1_ctal3")
+metadata/_edit_group_ = true
 
 [node name="player" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_fv4np")
@@ -389,6 +490,10 @@ animation = &"idle"
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, -55)
 zoom = Vector2(4, 4)
+limit_left = 0
+limit_right = 10080
+limit_bottom = 1238
+editor_draw_limits = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"

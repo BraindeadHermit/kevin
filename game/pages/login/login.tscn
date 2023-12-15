@@ -1,7 +1,7 @@
 [gd_scene load_steps=13 format=3 uid="uid://b7efk72xf0kpk"]
 
 [ext_resource type="Script" path="res://pages/login/login.gd" id="1_718aj"]
-[ext_resource type="Texture2D" uid="uid://ce4erm8068rvq" path="res://assets/img/login background.png" id="1_kc2ut"]
+[ext_resource type="Texture2D" uid="uid://baootxsflyqqk" path="res://assets/img/login_background.jpg" id="2_jo507"]
 [ext_resource type="FontFile" uid="uid://cd1fvb8wmg5mb" path="res://assets/fonts/pixelify-sans/static/PixelifySans-SemiBold.ttf" id="2_mufh8"]
 [ext_resource type="FontFile" uid="uid://dime1jlce70ux" path="res://assets/fonts/ubuntu/Ubuntu-Regular.ttf" id="3_ryhma"]
 [ext_resource type="PackedScene" uid="uid://jc5y7xy11h86" path="res://components/input-text/InputText.tscn" id="4_26inv"]
@@ -43,7 +43,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_kc2ut")
+texture = ExtResource("2_jo507")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2

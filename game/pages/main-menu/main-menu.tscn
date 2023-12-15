@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dc48463ktmjwx"]
+[gd_scene load_steps=14 format=3 uid="uid://dc48463ktmjwx"]
 
 [ext_resource type="FontFile" uid="uid://b6t7hje1ft0kq" path="res://assets/fonts/pixelify-sans/static/PixelifySans-Bold.ttf" id="1_73inu"]
 [ext_resource type="Script" path="res://pages/main-menu/main-menu.gd" id="1_5585w"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="3_nsw1t"]
 [ext_resource type="AudioStream" uid="uid://bg7smvikndhds" path="res://assets/audio/battle-of-the-dragons-8037.mp3" id="5_1bs2j"]
 [ext_resource type="Texture2D" uid="uid://bifsqbfcalq4k" path="res://assets/img/kevin.png" id="6_lwfwj"]
+[ext_resource type="Texture2D" uid="uid://bdgvi3sucxldl" path="res://assets/img/shade.png" id="7_f4tlj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_80ur6"]
 font = ExtResource("1_73inu")
@@ -79,11 +80,11 @@ length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
-tracks/0/path = NodePath("VBoxContainer/quit:modulate")
+tracks/0/path = NodePath("VBoxContainer/Label:self_modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 4, 5),
+"times": PackedFloat32Array(0, 1, 2),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -91,11 +92,11 @@ tracks/0/keys = {
 tracks/1/type = "value"
 tracks/1/imported = false
 tracks/1/enabled = true
-tracks/1/path = NodePath("VBoxContainer/resume:modulate")
+tracks/1/path = NodePath("VBoxContainer/play:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 3, 4),
+"times": PackedFloat32Array(0, 2, 3),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -103,11 +104,11 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("VBoxContainer/play:modulate")
+tracks/2/path = NodePath("VBoxContainer/resume:modulate")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 2, 3),
+"times": PackedFloat32Array(0, 3, 4),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -115,11 +116,11 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("VBoxContainer/Label:self_modulate")
+tracks/3/path = NodePath("VBoxContainer/quit:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 1, 2),
+"times": PackedFloat32Array(0, 4, 5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
@@ -157,21 +158,29 @@ offset_bottom = 2020.0
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("2_cfma4")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-self_modulate = Color(1, 1, 1, 0)
+[node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -6.0
-offset_right = 10.0
+offset_right = 316.0
 grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("7_f4tlj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 65.0
+offset_right = 2001.0
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-size_flags_horizontal = 4
+size_flags_horizontal = 0
 text = "KEVIN - THE HACK BUSTER"
 label_settings = SubResource("LabelSettings_80ur6")
 
@@ -180,7 +189,6 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
-ignore_texture_size = false
 metadata/button_text = "gioca"
 
 [node name="resume" parent="VBoxContainer" instance=ExtResource("3_nsw1t")]
@@ -188,7 +196,6 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
-ignore_texture_size = false
 metadata/button_text = "riprendi"
 
 [node name="quit" parent="VBoxContainer" instance=ExtResource("3_nsw1t")]
@@ -196,7 +203,6 @@ modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 6
-ignore_texture_size = false
 metadata/button_text = "esci"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
