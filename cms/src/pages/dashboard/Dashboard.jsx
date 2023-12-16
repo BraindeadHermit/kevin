@@ -9,11 +9,10 @@ import List from '@mui/material/List';
 import Typography from '@mui/material/Typography';
 import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
-import Badge from '@mui/material/Badge';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
-import NotificationsIcon from '@mui/icons-material/Notifications';
+import AccountMenu from '../../components/AccountMenu';
 import { mainListItems, secondaryListItems } from '../../components/listItems';
 
 const drawerWidth = 240;
@@ -75,7 +74,7 @@ export default function Dashboard() {
     <ThemeProvider theme={defaultTheme}>
       <Box sx={{ display: 'flex' }}>
         <CssBaseline />
-        <AppBar position="absolute" open={open}>
+        <AppBar position="absolute" open={open} sx={{background: '#009688'}}>
           <Toolbar
             sx={{
               pr: '24px', // keep right padding when drawer closed
@@ -100,13 +99,9 @@ export default function Dashboard() {
               noWrap
               sx={{ flexGrow: 1 }}
             >
-              Dashboard
+              Kevin - Backoffice
             </Typography>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            <AccountMenu/>
           </Toolbar>
         </AppBar>
         <Drawer variant="permanent" open={open}>
