@@ -6,14 +6,18 @@ import Box from '@mui/material/Box';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
+import { ListItemButton } from '@mui/material';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
-import Divider from '@mui/material/Divider';
 import IconButton from '@mui/material/IconButton';
 import Container from '@mui/material/Container';
 import MenuIcon from '@mui/icons-material/Menu';
 import ChevronLeftIcon from '@mui/icons-material/ChevronLeft';
+import DashboardIcon from '@mui/icons-material/Dashboard';
+import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
+import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import AccountMenu from '../../components/AccountMenu';
-import { mainListItems, secondaryListItems } from '../../components/listItems';
 
 const drawerWidth = 240;
 
@@ -61,13 +65,18 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-// TODO remove, this demo shouldn't need to reset the theme.
 const defaultTheme = createTheme();
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
   const toggleDrawer = () => {
     setOpen(!open);
+  };
+
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
+
+  const handleListItemClick = (event, index) => {
+    setSelectedIndex(index);
   };
 
   return (
@@ -117,11 +126,31 @@ export default function Dashboard() {
               <ChevronLeftIcon />
             </IconButton>
           </Toolbar>
-          <Divider />
           <List component="nav">
-            {mainListItems}
-            <Divider sx={{ my: 1 }} />
-            {secondaryListItems}
+            <ListItemButton selected={selectedIndex === 0} onClick={(event) => handleListItemClick(event, 0)}            
+             style={{backgroundColor: selectedIndex === 0 ? '#009688' : 'transparent', borderTopRightRadius: '24px', 
+             borderBottomRightRadius: '24px', marginRight: '15px'}}>
+              <ListItemIcon>
+                <DashboardIcon style={{color: selectedIndex === 0 ? 'white' : ''}}/>
+              </ListItemIcon>
+              <ListItemText primary="Dashboard" style={{color: selectedIndex === 0 ? 'white' : ''}}/>
+            </ListItemButton>
+            <ListItemButton selected={selectedIndex === 1} onClick={(event) => handleListItemClick(event, 1)}          
+             style={{backgroundColor: selectedIndex === 1 ? '#009688' : 'transparent', borderTopRightRadius: '24px', 
+             borderBottomRightRadius: '24px', marginRight: '15px' }}>
+              <ListItemIcon>
+                <SportsEsportsIcon style={{color: selectedIndex === 1 ? 'white' : ''}}/>
+              </ListItemIcon>
+              <ListItemText primary="Livello 1" style={{color: selectedIndex === 1 ? 'white' : ''}}/>
+            </ListItemButton>
+            <ListItemButton selected={selectedIndex === 2} onClick={(event) => handleListItemClick(event, 2)} 
+             style={{backgroundColor: selectedIndex === 2 ? '#009688' : 'transparent', borderTopRightRadius: '24px', 
+             borderBottomRightRadius: '24px', marginRight: '15px'}}>
+              <ListItemIcon>
+                <VideogameAssetIcon style={{color: selectedIndex === 2 ? 'white' : ''}}/>
+              </ListItemIcon>
+              <ListItemText primary="Livello 2" style={{color: selectedIndex === 2 ? 'white' : ''}} />
+            </ListItemButton>
           </List>
         </Drawer>
         <Box
@@ -138,7 +167,6 @@ export default function Dashboard() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-
           </Container>
         </Box>
       </Box>
