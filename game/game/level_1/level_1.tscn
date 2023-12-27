@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://4ytrq8x6mm2n"]
+[gd_scene load_steps=15 format=3 uid="uid://4ytrq8x6mm2n"]
 
 [ext_resource type="Texture2D" uid="uid://diwy28h4ilswd" path="res://assets/levels/level_1/Environment/Layers/back2.png" id="1_2gvn6"]
 [ext_resource type="Texture2D" uid="uid://d3yr5du01u4xe" path="res://assets/levels/level_1/Environment/Layers/back.png" id="1_kmmw5"]
@@ -7,7 +7,6 @@
 [ext_resource type="Texture2D" uid="uid://cdumt106wivv" path="res://assets/levels/level_1/Environment/Layers/tileset.png" id="4_7infc"]
 [ext_resource type="Texture2D" uid="uid://fxwmjode6f5h" path="res://assets/levels/level_1/Environment/Layers/tileset-2.png" id="5_7okqe"]
 [ext_resource type="Texture2D" uid="uid://b2lcw4yavywk" path="res://assets/levels/level_1/Environment/Layers/props/palm.png" id="6_nci2s"]
-[ext_resource type="PackedScene" uid="uid://crme7c848bua7" path="res://game/main_character/kevin.tscn" id="7_hijl4"]
 [ext_resource type="Texture2D" uid="uid://djb8y5wbiwekt" path="res://assets/levels/level_1/Props/Sprites/back-panels.png" id="8_brqya"]
 [ext_resource type="Texture2D" uid="uid://dbrumuay3yi68" path="res://assets/levels/level_1/Props/Sprites/console.png" id="10_erhrk"]
 [ext_resource type="Texture2D" uid="uid://b82ssxfndf0pm" path="res://assets/levels/level_1/Environment/Layers/props/plant.png" id="11_vx2rv"]
@@ -1453,6 +1452,3 @@ texture = ExtResource("6_nci2s")
 [node name="Plant-big16" type="Sprite2D" parent="."]
 position = Vector2(8366, -86)
 texture = ExtResource("12_43uwi")
-
-[node name="kevin" parent="." instance=ExtResource("7_hijl4")]
-position = Vector2(120, 987)

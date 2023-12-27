@@ -5,8 +5,8 @@
 [ext_resource type="Texture2D" uid="uid://d4jls52h7t63t" path="res://assets/img/city.png" id="2_cfma4"]
 [ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="3_nsw1t"]
 [ext_resource type="AudioStream" uid="uid://bg7smvikndhds" path="res://assets/audio/battle-of-the-dragons-8037.mp3" id="5_1bs2j"]
-[ext_resource type="Texture2D" path="res://assets/img/kevin.png" id="6_lwfwj"]
-[ext_resource type="Texture2D" path="res://assets/img/shade.png" id="7_f4tlj"]
+[ext_resource type="Texture2D" uid="uid://bifsqbfcalq4k" path="res://assets/img/kevin.png" id="6_lwfwj"]
+[ext_resource type="Texture2D" uid="uid://bdgvi3sucxldl" path="res://assets/img/shade.png" id="7_f4tlj"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_80ur6"]
 font = ExtResource("1_73inu")
