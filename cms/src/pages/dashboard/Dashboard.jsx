@@ -18,6 +18,7 @@ import DashboardIcon from '@mui/icons-material/Dashboard';
 import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import AccountMenu from '../../components/AccountMenu';
+import BarChart from '../../components/BarChart';
 
 const drawerWidth = 240;
 
@@ -167,6 +168,9 @@ export default function Dashboard() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+            <div style={{position: 'relative', margin: 'auto', width: '80%', height: '40vh'}}>
+              <BarChart/>
+            </div>
           </Container>
         </Box>
       </Box>
