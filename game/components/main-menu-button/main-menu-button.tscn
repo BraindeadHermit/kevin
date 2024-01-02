@@ -1,6 +1,5 @@
-[gd_scene load_steps=11 format=3 uid="uid://cvgyg8352vxmi"]
+[gd_scene load_steps=10 format=3 uid="uid://cvgyg8352vxmi"]
 
-[ext_resource type="Texture2D" uid="uid://88xep1webaxj" path="res://assets/graphic components/main-menu/button.png" id="1_0cjfl"]
 [ext_resource type="Script" path="res://components/main-menu-button/main-menu-button.gd" id="1_fmvui"]
 [ext_resource type="Texture2D" uid="uid://bqfxq06x2nmcn" path="res://assets/graphic components/main-menu/button_pressed.png" id="2_8so7t"]
 [ext_resource type="FontFile" uid="uid://dime1jlce70ux" path="res://assets/fonts/ubuntu/Ubuntu-Regular.ttf" id="2_yq4q2"]
@@ -45,7 +44,6 @@ size_flags_vertical = 4
 size_flags_stretch_ratio = 3.02
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_kpkad")
-texture_normal = ExtResource("1_0cjfl")
 texture_pressed = ExtResource("2_8so7t")
 texture_hover = ExtResource("3_wc0cf")
 ignore_texture_size = true
@@ -56,28 +54,26 @@ metadata/button_text = ""
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 custom_minimum_size = Vector2(516, 166)
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
+anchors_preset = 4
 anchor_top = 0.5
-anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -258.0
+offset_left = 26.0
 offset_top = -83.0
-offset_right = 258.0
+offset_right = 542.0
 offset_bottom = 83.0
-grow_horizontal = 2
 grow_vertical = 2
 mouse_default_cursor_shape = 2
 
 [node name="root" type="Label" parent="HBoxContainer"]
 clip_contents = true
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 4
 text = "kevin"
 label_settings = SubResource("LabelSettings_2mgn6")
 
 [node name="duble_dot" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = ":"
 label_settings = SubResource("LabelSettings_ir3v2")
 
@@ -89,11 +85,13 @@ label_settings = SubResource("LabelSettings_v7var")
 
 [node name="dollar" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 text = "$ "
 label_settings = SubResource("LabelSettings_ir3v2")
 
 [node name="text" type="Label" parent="HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 4
 label_settings = SubResource("LabelSettings_bumfw")
 
 [connection signal="resized" from="." to="." method="_on_resized"]
