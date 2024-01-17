@@ -3,10 +3,11 @@ import { styled, createTheme, ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
 import MuiDrawer from '@mui/material/Drawer';
 import Box from '@mui/material/Box';
+import Grid from '@mui/material/Grid';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import { ListItemButton } from '@mui/material';
+import { Divider, ListItemButton } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
@@ -19,6 +20,7 @@ import SportsEsportsIcon from '@mui/icons-material/SportsEsports';
 import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import AccountMenu from '../../components/AccountMenu';
 import BarChart from '../../components/BarChart';
+import QuestionCard from '../../components/QuestionCard';
 
 const drawerWidth = 240;
 
@@ -168,9 +170,46 @@ export default function Dashboard() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
-            <div style={{position: 'relative', margin: 'auto', width: '80%', height: '40vh'}}>
+            <Box style={{margin: 'auto', width: '80%', height: '40vh'}}>
               <BarChart/>
-            </div>
+            </Box>
+            <Box>
+              <Box sx={{marginBottom: 5, marginTop: 2}}>
+                <Typography variant='h6' fontWeight={900}>LIVELLO 1</Typography>
+                <Divider style={{stroke: 3}}  sx={{ borderWidth: 1, borderColor: '#616161'}}/>
+              </Box>
+              <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid item xs={6}>
+                  <QuestionCard/>
+                </Grid>
+                <Grid item xs={6}>
+                  <QuestionCard/>
+                </Grid>
+                <Grid item xs={6}>
+                  <QuestionCard/>
+                </Grid>
+              </Grid>
+            </Box>
+            <Box>
+              <Box sx={{marginBottom: 5, marginTop: 2}}>
+                <Typography variant='h6' fontWeight={900}>LIVELLO 2</Typography>
+                <Divider style={{marginBottom: 20, stroke: 3}}  sx={{ borderWidth: 1, borderColor: '#616161'}}/>
+              </Box>
+              <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+                <Grid item xs={6}>
+                  <QuestionCard/>
+                </Grid>
+                <Grid item xs={6}>
+                  <QuestionCard/>
+                </Grid>
+                <Grid item xs={6}>
+                  <QuestionCard/>
+                </Grid>
+                <Grid item xs={6}>
+                  <QuestionCard/>
+                </Grid>
+              </Grid>
+            </Box>
           </Container>
         </Box>
       </Box>
