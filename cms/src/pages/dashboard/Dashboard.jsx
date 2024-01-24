@@ -7,7 +7,7 @@ import Grid from '@mui/material/Grid';
 import MuiAppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
 import List from '@mui/material/List';
-import { Divider, ListItemButton } from '@mui/material';
+import { Button, Divider, ListItemButton } from '@mui/material';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import ListItemText from '@mui/material/ListItemText';
 import Typography from '@mui/material/Typography';
@@ -21,6 +21,7 @@ import VideogameAssetIcon from '@mui/icons-material/VideogameAsset';
 import AccountMenu from '../../components/AccountMenu';
 import BarChart from '../../components/BarChart';
 import QuestionCard from '../../components/QuestionCard';
+import AddQuestionButton from '../../components/AddQuestionButton';
 
 const drawerWidth = 240;
 
@@ -68,7 +69,13 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== 'open' 
   }),
 );
 
-const defaultTheme = createTheme();
+const defaultTheme = createTheme({
+  palette: {
+    primary: {
+      main: '#05ad05',
+    } 
+  }
+});
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
@@ -89,7 +96,7 @@ export default function Dashboard() {
         <AppBar position="absolute" open={open} sx={{background: '#009688'}}>
           <Toolbar
             sx={{
-              pr: '24px', // keep right padding when drawer closed
+              pr: '24px', 
             }}
           >
             <IconButton
@@ -189,6 +196,9 @@ export default function Dashboard() {
                   <QuestionCard/>
                 </Grid>
               </Grid>
+              <Box width='100%' display='flex' justifyContent='center' margin={3}>
+                <AddQuestionButton/>
+              </Box>
             </Box>
             <Box>
               <Box sx={{marginBottom: 5, marginTop: 2}}>
@@ -209,6 +219,9 @@ export default function Dashboard() {
                   <QuestionCard/>
                 </Grid>
               </Grid>
+              <Box width='100%' display='flex' justifyContent='center' margin={3}>
+                <AddQuestionButton/>
+              </Box>
             </Box>
           </Container>
         </Box>

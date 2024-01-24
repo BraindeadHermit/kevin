@@ -1,5 +1,6 @@
 import { Box, Divider, LinearProgress, Tooltip, Typography, styled } from "@mui/material";
 import ModalEditQuestion from "./ModalEditQuestion";
+import DeleteButton from "./DeleteButton";
 
 const Progress = styled(LinearProgress)(({ theme }) => ({
   height: 20,
@@ -14,7 +15,10 @@ export default function QuestionCard() {
         <Typography variant="subtitle1" fontWeight={800}>Quale tipo di protocollo viene utilizzato per effettuare una richiesta al server?</Typography>
         <Typography color={'#616161'}>risposte totali: 36</Typography>
       </Box>
-      <ModalEditQuestion/>
+      <Box>
+        <ModalEditQuestion/>
+        <DeleteButton/>
+      </Box>
     </Box>
     <Divider variant="middle" sx={{borderWidth: 1, margin: 1}}></Divider>
     <Box sx={{display: 'flex', flexDirection: 'column'}}>

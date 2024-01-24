@@ -29,16 +29,22 @@ const defaultTheme = createTheme({
         root: {
           borderRadius: "20px",
           background: "#009688",
-          hover: alpha("#FFFFFF", 0.7),
         },
       }
     },
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
+          color: "white",
           borderRadius: "20px",
-          hover: alpha("#FFFFFF", 0.7),
         },
+      }
+    },
+    MuiCheckbox: {
+      styleOverrides: {
+        root: {
+          color: 'white'
+        }
       }
     }
   }
@@ -56,7 +62,7 @@ export default function LogIn() {
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="sm">
+      <Container component="main" maxWidth="sm" sx={{color: "white"}}>
         <CssBaseline />
         <Box
           sx={{
@@ -69,7 +75,7 @@ export default function LogIn() {
             padding: "30px"
           }}
         >
-          <Typography component="h2" variant="h5" color="white">
+          <Typography component="h2" variant="h5">
             Sign in
           </Typography>
           <Box
@@ -78,7 +84,7 @@ export default function LogIn() {
             noValidate
             sx={{ mt: 1}}
           >
-            <TextField
+            <TextField 
               margin="normal"
               color="secondary"
               required
@@ -100,7 +106,7 @@ export default function LogIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel
+            <FormControlLabel color="white"
               control={<Checkbox value="remember" color="primary" />}
               label="Remember me"
             />
@@ -111,15 +117,8 @@ export default function LogIn() {
               variant="contained"
               sx={{ mt: 3, mb: 2, borderRadius: 15, padding: "10px 18px"}}
             >
-              Sign In
+             Accedi
             </Button>
-            <Grid container>
-              <Grid item xs>
-                <Link href="#" variant="body2" sx={{color: "white"}}>
-                  Forgot password?
-                </Link>
-              </Grid>
-            </Grid>
           </Box>
         </Box>
       </Container>
