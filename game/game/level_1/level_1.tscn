@@ -1475,6 +1475,9 @@ position = Vector2(3575.5, 97)
 shape = SubResource("RectangleShape2D_fii22")
 
 [node name="add_life" parent="." instance=ExtResource("13_obrtg")]
-position = Vector2(371, 1028)
+position = Vector2(9531, 708)
+
+[node name="add_life2" parent="." instance=ExtResource("13_obrtg")]
+position = Vector2(5031, 308)
 
 [connection signal="body_entered" from="dangerzone" to="kevin" method="_on_dangerzone_body_entered"]
