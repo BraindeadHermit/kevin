@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://6kyjkvc21jul"]
+
+[ext_resource type="Texture2D" uid="uid://df2atp4reh0t5" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-big/banner-big-1.png" id="1_rhnb6"]
+[ext_resource type="Texture2D" uid="uid://wqa8dmxuvj2o" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-big/banner-big-2.png" id="2_th474"]
+[ext_resource type="Texture2D" uid="uid://c7wcirvhxj3ys" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-big/banner-big-3.png" id="3_vg1ux"]
+[ext_resource type="Texture2D" uid="uid://wajre72pyypm" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-big/banner-big-4.png" id="4_0ajfu"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mamwx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_rhnb6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_th474")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vg1ux")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_0ajfu")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="banner_big" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_mamwx")
+autoplay = "default"
