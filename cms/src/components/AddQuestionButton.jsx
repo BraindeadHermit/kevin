@@ -20,7 +20,7 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   },
 }));
 
-export default function ModalEditQuestion() {
+export default function AddQuestionButton() {
   const [open, setOpen] = React.useState(false);
   const [defaultValue, setDefaultValue] = React.useState('UDP')
 
@@ -37,18 +37,20 @@ export default function ModalEditQuestion() {
 
   return (
     <React.Fragment>
-      <Tooltip title={'Modifica'} placement='top'>
-        <IconButton aria-label="edit-question" sx={{color: '#edc115'}} onClick={handleClickOpen}>
-          <Edit/>
-        </IconButton>
-      </Tooltip>
+      <Button variant='contained' disableElevation size='large' sx={{borderRadius: 14, backgroundColor: '#05ad05'}} onClick={handleClickOpen}>
+        Aggiungi Domanda
+      </Button>
       <BootstrapDialog
+        fullWidth='500px'
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
       >
         <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-             Quale tipo di protocollo viene utilizzato per effettuare una richiesta al server?
+          <Typography variant='subtitle2' padding={0.5} fontWeight={800}>
+              Domanda
+          </Typography>    
+          <InputBase sx={{ ml: 1, flex: 1, padding: 1 }}/>  
         </DialogTitle>
         <IconButton
           aria-label="close"
@@ -68,19 +70,19 @@ export default function ModalEditQuestion() {
                 Risposte
             </Typography>
             <Box display={'flex'} flexDirection={'column'} sx={{ border: '0.1px solid', borderRadius: 4, borderColor:'rgba(0, 0, 0, 0.12)' }}>
-                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }} defaultValue={defaultValue}/>
+                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }}/>
                 <Divider/>
-                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }} defaultValue={defaultValue}/>
+                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }}/>
                 <Divider/>
-                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }} defaultValue={defaultValue}/>
+                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }}/>
                 <Divider/>
-                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }} defaultValue={defaultValue}/>
+                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }}/>
             </Box>
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleChanges}>
-            Save changes
+          <Button sx={{color: '#edc115'}} autoFocus onClick={handleChanges}>
+            Aggiungi
           </Button>
         </DialogActions>
       </BootstrapDialog>
