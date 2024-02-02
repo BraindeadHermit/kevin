@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl414ag2e1aqn"]
+
+[ext_resource type="Texture2D" uid="uid://crs0cijbn06je" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-sushi/banner-sushi-1.png" id="1_d0pei"]
+[ext_resource type="Texture2D" uid="uid://buqqor0d8k7ex" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-sushi/banner-sushi-2.png" id="2_lj4d7"]
+[ext_resource type="Texture2D" uid="uid://cig1ahputygmv" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-sushi/banner-sushi-3.png" id="3_i25oq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hl5ys"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_d0pei")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lj4d7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_i25oq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="banner_sushi" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_hl5ys")
+autoplay = "default"
+frame = 1
+frame_progress = 0.945308

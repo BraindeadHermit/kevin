@@ -1,0 +1,32 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7dsjp0rudyww"]
+
+[ext_resource type="Texture2D" uid="uid://d01p0jkwvnba8" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/monitorface/monitor-face-1.png" id="1_jngpb"]
+[ext_resource type="Texture2D" uid="uid://v4540ixnh83r" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/monitorface/monitor-face-2.png" id="2_7lgy2"]
+[ext_resource type="Texture2D" uid="uid://b4tf1ocn422kg" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/monitorface/monitor-face-3.png" id="3_fm2o3"]
+[ext_resource type="Texture2D" uid="uid://tntpy0oq0ge5" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/monitorface/monitor-face-4.png" id="4_h241l"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qvx1j"]
+resource_local_to_scene = true
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jngpb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_7lgy2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_fm2o3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_h241l")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="monitorface" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_qvx1j")
+autoplay = "default"
+frame_progress = 0.126157
