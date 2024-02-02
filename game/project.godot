@@ -23,6 +23,7 @@ run/name="kevin"
 
 Global="*res://logic/global.gd"
 Database="*res://logic/database.gd"
+Kevin="*res://logic/player.gd"
 
 [display]
 
