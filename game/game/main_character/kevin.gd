@@ -52,4 +52,37 @@ func _physics_process(delta):
 
 
 func _on_dangerzone_body_entered(body):
+	Kevin.death()
 	get_tree().change_scene_to_file("res://game/level_1/level_1.tscn")
+
+
+
+
+func _on_add_life_life_added():
+	if Kevin.get_lifes() == 3:
+		$"CanvasLayer/life panel/life_1".visible = true
+		$"CanvasLayer/life panel/life_2".visible = true
+		$"CanvasLayer/life panel/life_3".visible = true
+	elif 	Kevin.get_lifes() == 2:
+		$"CanvasLayer/life panel/life_1".visible = true
+		$"CanvasLayer/life panel/life_2".visible = true
+		$"CanvasLayer/life panel/life_3".visible = false
+	elif 	Kevin.get_lifes() == 1:
+		$"CanvasLayer/life panel/life_1".visible = true
+		$"CanvasLayer/life panel/life_2".visible = false
+		$"CanvasLayer/life panel/life_3".visible = false
+
+
+func _on_add_life_2_life_added():
+	if Kevin.get_lifes() == 3:
+		$"CanvasLayer/life panel/life_1".visible = true
+		$"CanvasLayer/life panel/life_2".visible = true
+		$"CanvasLayer/life panel/life_3".visible = true
+	elif 	Kevin.get_lifes() == 2:
+		$"CanvasLayer/life panel/life_1".visible = true
+		$"CanvasLayer/life panel/life_2".visible = true
+		$"CanvasLayer/life panel/life_3".visible = false
+	elif 	Kevin.get_lifes() == 1:
+		$"CanvasLayer/life panel/life_1".visible = true
+		$"CanvasLayer/life panel/life_2".visible = false
+		$"CanvasLayer/life panel/life_3".visible = false

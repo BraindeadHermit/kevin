@@ -1481,3 +1481,5 @@ position = Vector2(9531, 708)
 position = Vector2(5031, 308)
 
 [connection signal="body_entered" from="dangerzone" to="kevin" method="_on_dangerzone_body_entered"]
+[connection signal="life_added" from="add_life" to="kevin" method="_on_add_life_life_added"]
+[connection signal="life_added" from="add_life2" to="kevin" method="_on_add_life_2_life_added"]

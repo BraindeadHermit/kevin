@@ -1,4 +1,4 @@
-[gd_scene load_steps=57 format=3 uid="uid://crme7c848bua7"]
+[gd_scene load_steps=58 format=3 uid="uid://crme7c848bua7"]
 
 [ext_resource type="Script" path="res://game/main_character/kevin.gd" id="1_ctal3"]
 [ext_resource type="Texture2D" uid="uid://bxnljkusab7vt" path="res://assets/levels/level_1/Characters/Player/sprites/Player-duck/player-duck1.png" id="2_hlxyv"]
@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://bbk2kdj88vr5e" path="res://assets/levels/level_1/Characters/Player/sprites/Player-shoot/player-shoot1.png" id="28_q8kfw"]
 [ext_resource type="Texture2D" uid="uid://qxhqgy4panam" path="res://assets/levels/level_1/Characters/Player/sprites/Player-shoot/player-shoot2.png" id="29_20rod"]
 [ext_resource type="Texture2D" uid="uid://bu0q45buor6k" path="res://assets/levels/level_1/Characters/Player/sprites/Player-shoot/player-shoot3.png" id="30_ey6gh"]
+[ext_resource type="Script" path="res://game/main_character/player_hud.gd" id="34_4qqqk"]
 [ext_resource type="Texture2D" uid="uid://ce6eydrd1bvvi" path="res://assets/graphic components/hud/heart.png" id="34_jkhah"]
 [ext_resource type="Texture2D" uid="uid://bt3vjyfv30j3a" path="res://assets/graphic components/hud/no_answered.png" id="35_vxgig"]
 [ext_resource type="FontFile" uid="uid://kokeirhurbxw" path="res://assets/fonts/ubuntu/Ubuntu-Bold.ttf" id="36_kkvnt"]
@@ -531,6 +532,7 @@ position = Vector2(1, 0.5)
 shape = SubResource("RectangleShape2D_5uh7a")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("34_4qqqk")
 
 [node name="life panel" type="Panel" parent="CanvasLayer"]
 offset_left = 21.0
