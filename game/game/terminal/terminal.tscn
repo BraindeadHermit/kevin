@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://cisdb2ci5px5i"]
+
+[ext_resource type="Texture2D" uid="uid://dbrumuay3yi68" path="res://assets/levels/level_1/Props/Sprites/console.png" id="1_0vey0"]
+[ext_resource type="Script" path="res://game/terminal/terminal.gd" id="1_iivxx"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwtki"]
+size = Vector2(29, 29)
+
+[node name="terminal" type="Area2D"]
+collision_layer = 128
+script = ExtResource("1_iivxx")
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 3.5)
+shape = SubResource("RectangleShape2D_qwtki")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0vey0")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
