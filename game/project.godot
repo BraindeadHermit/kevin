@@ -48,6 +48,7 @@ ui_shoot={
 2d_physics/layer_5="enemy"
 2d_physics/layer_6="shot"
 2d_physics/layer_7="ladders"
+2d_physics/layer_8="console"
 
 [rendering]
 

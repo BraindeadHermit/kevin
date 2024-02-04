@@ -52,4 +52,49 @@ func _physics_process(delta):
 
 
 func _on_dangerzone_body_entered(body):
+	Kevin.death()
 	get_tree().change_scene_to_file("res://game/level_1/level_1.tscn")
+
+
+
+
+func _on_add_life_life_added():
+	self.life_visual_setup()
+
+func _on_add_life_2_life_added():
+	self.life_visual_setup()
+
+func life_visual_setup():
+	if Kevin.get_lifes() == 3:
+		$"CanvasLayer/life panel/life_1".visible = true
+		$"CanvasLayer/life panel/life_2".visible = true
+		$"CanvasLayer/life panel/life_3".visible = true
+	elif 	Kevin.get_lifes() == 2:
+		$"CanvasLayer/life panel/life_1".visible = true
+		$"CanvasLayer/life panel/life_2".visible = true
+		$"CanvasLayer/life panel/life_3".visible = false
+	elif 	Kevin.get_lifes() == 1:
+		$"CanvasLayer/life panel/life_1".visible = true
+		$"CanvasLayer/life panel/life_2".visible = false
+		$"CanvasLayer/life panel/life_3".visible = false
+
+func _on_terminal_1_completed():
+	completed_answer()
+
+func _on_terminal_2_completed():
+	completed_answer()
+
+func _on_terminal_3_completed():
+	completed_answer()
+
+func _on_terminal_4_completed():
+	completed_answer()
+
+func _on_terminal_5_completed():
+	completed_answer()
+	
+func completed_answer():
+	var given_ans = Kevin.get_level1_answared_questions()
+	$CanvasLayer/given_ans.text = "Risposte Date: " + str(given_ans) + "/5"
+	$CanvasLayer/terminals/terminal_number.text = str(given_ans)
+	
