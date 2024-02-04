@@ -56,17 +56,17 @@ func __tables_set_up():
 	__user["name"] = {"data_type": "string"}
 	__user["company_code"] = {"data_type": "string"} 
 
-	__player = Dictionary()
-	__player["id"] = {"data_type": "int", "primary_key": true, "auto_increment": true, "not_null": true}
-	__player["life"] = {"data_type": "int", "default": "3"}
-	__player["damage_amount"] = {"data_type": "int", "default": "10"}
-
 	__game = Dictionary()
 	__game["id"] = {"data_type": "int", "primary_key": true, "auto_increment": true, "not_null": true}
-	__game["palyer_id"] = {"data_type": "int", "foreign_key": __player.id, "not_null": true}
 	__game["user_id"] = {"data_type": "int", "foreign_key": __user.id, "not_null": true}
 	__game["last_completed_level"] = {"data_type": "int", "default": "0", "not_null": true}
 	__game["playng_level"] = {"data_type": "int", "default": "0", "not_null": true}
+	
+	__player = Dictionary()
+	__player["id"] = {"data_type": "int", "primary_key": true, "auto_increment": true, "not_null": true}
+	__player["game_id"] = {"data_type": "int", "foreign_key": __game.id, "not_null": true}
+	__player["life"] = {"data_type": "int", "default": "3"}
+	__player["damage_amount"] = {"data_type": "int", "default": "10"}
 	
 	__level = Dictionary()
 	__level["id"] = {"data_type": "int", "primary_key": true, "auto_increment": true, "not_null": true}
@@ -102,3 +102,91 @@ func _exit_tree():
 	print("closing  database...")
 	db.close_db()
 
+func create_new_match(username, company_code):
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	
+	var table_name = "game"
+	var id = self.get_user_id(username, company_code)
+	
+	var new_game = Dictionary()
+	new_game["user_id"] = id
+	new_game["last_completed_level"] = 0
+	new_game["playng_level"] = 1
+	db.insert_row(table_name, new_game)
+	
+	var game_id = get_last_game_id(id)
+	
+	var new_player = Dictionary()
+	new_player["game_id"] = get_last_game_id(id)
+	new_player["life"] = 3
+	new_player["damage_amount"] = 10
+	db.insert_row("player", new_player)
+	
+	create_level(game_id)
+	
+	db.close_db()
+	
+	return game_id
+	
+	
+	
+func create_user(username, company_code):
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	
+	var table_name = "user"
+	var new_user = Dictionary()
+	new_user["name"] = username
+	new_user["company_code"] = company_code 
+	db.insert_row(table_name, new_user)
+	
+	db.close_db()
+	
+func get_user_id(username, company_code):
+	var res = db.query("SELECT id FROM user WHERE user.name = '" + username + "' AND user.company_code = '" + company_code + "'")
+	if res:
+		return db.query_result[0]["id"]
+		
+	return null
+	
+func get_last_game_id(user_id):
+	var res = db.query("SELECT id FROM game WHERE game.user_id = " + str(user_id) + " ORDER BY id DESC LIMIT 1")
+	if res:
+		return db.query_result[0]["id"]
+		
+	return null
+	
+func create_level(game_id):
+	var table_name = "level"
+	var new_level = Dictionary()
+	new_level["game_id"] = game_id
+	new_level["is_completed"] = false
+	db.insert_row(table_name, new_level)
+	
+func get_player_by_match_id(match_id):
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	
+	var res = db.query("SELECT * FROM player WHERE player.game_id = " + str(match_id) + ";")
+	if res:
+		db.close_db()
+		return db.query_result[0]
+		
+	db.close_db()
+	return null
+	
+func set_player_lifes(lifes, game_id):
+	db = SQLite.new()
+	db.path = db_name
+	db.open_db()
+	
+	var res = db.query("UPDATE player SET life = " + str(lifes) + " WHERE game_id = " + str(game_id) + ";")
+	
+	if res:
+		print("updated")
+		
+	db.close_db()
