@@ -1478,3 +1478,8 @@ collision_mask = 30
 [connection signal="body_entered" from="dangerzone" to="kevin" method="_on_dangerzone_body_entered"]
 [connection signal="life_added" from="add_life" to="kevin" method="_on_add_life_life_added"]
 [connection signal="life_added" from="add_life2" to="kevin" method="_on_add_life_2_life_added"]
+[connection signal="completed" from="terminal" to="kevin" method="_on_terminal_1_completed"]
+[connection signal="completed" from="terminal2" to="kevin" method="_on_terminal_2_completed"]
+[connection signal="completed" from="terminal3" to="kevin" method="_on_terminal_3_completed"]
+[connection signal="completed" from="terminal4" to="kevin" method="_on_terminal_4_completed"]
+[connection signal="completed" from="terminal5" to="kevin" method="_on_terminal_5_completed"]

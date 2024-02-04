@@ -86,3 +86,25 @@ func _on_add_life_2_life_added():
 		$"CanvasLayer/life panel/life_1".visible = true
 		$"CanvasLayer/life panel/life_2".visible = false
 		$"CanvasLayer/life panel/life_3".visible = false
+
+
+func _on_terminal_1_completed():
+	completed_answer()
+
+func _on_terminal_2_completed():
+	completed_answer()
+
+func _on_terminal_3_completed():
+	completed_answer()
+
+func _on_terminal_4_completed():
+	completed_answer()
+
+func _on_terminal_5_completed():
+	completed_answer()
+	
+func completed_answer():
+	var given_ans = Kevin.get_level1_answared_questions()
+	$CanvasLayer/given_ans.text = "Risposte Date: " + str(given_ans) + "/5"
+	$CanvasLayer/terminals/terminal_number.text = str(given_ans)
+	
