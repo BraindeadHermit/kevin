@@ -8,10 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://fxwmjode6f5h" path="res://assets/levels/level_1/Environment/Layers/tileset-2.png" id="5_7okqe"]
 [ext_resource type="Texture2D" uid="uid://b2lcw4yavywk" path="res://assets/levels/level_1/Environment/Layers/props/palm.png" id="6_nci2s"]
 [ext_resource type="Texture2D" uid="uid://djb8y5wbiwekt" path="res://assets/levels/level_1/Props/Sprites/back-panels.png" id="8_brqya"]
-[ext_resource type="Texture2D" uid="uid://dbrumuay3yi68" path="res://assets/levels/level_1/Props/Sprites/console.png" id="10_erhrk"]
 [ext_resource type="Texture2D" uid="uid://b82ssxfndf0pm" path="res://assets/levels/level_1/Environment/Layers/props/plant.png" id="11_vx2rv"]
 [ext_resource type="Texture2D" uid="uid://c1wkbxoi3e4ak" path="res://assets/levels/level_1/Environment/Layers/props/plant-big.png" id="12_43uwi"]
 [ext_resource type="PackedScene" uid="uid://crme7c848bua7" path="res://game/main_character/kevin.tscn" id="12_h6ws0"]
+[ext_resource type="PackedScene" uid="uid://cisdb2ci5px5i" path="res://game/terminal/terminal.tscn" id="13_an3nt"]
 [ext_resource type="PackedScene" uid="uid://v2dow6lyyyll" path="res://game/add_life_collectable/add_life.tscn" id="13_obrtg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jx4ui"]
@@ -1317,10 +1317,6 @@ texture = ExtResource("8_brqya")
 position = Vector2(7585, 961)
 texture = ExtResource("8_brqya")
 
-[node name="Console" type="Sprite2D" parent="."]
-position = Vector2(609, 1021)
-texture = ExtResource("10_erhrk")
-
 [node name="Plant" type="Sprite2D" parent="."]
 position = Vector2(1363, 911)
 texture = ExtResource("11_vx2rv")
@@ -1353,17 +1349,9 @@ texture = ExtResource("12_43uwi")
 position = Vector2(4052, 1039)
 texture = ExtResource("12_43uwi")
 
-[node name="Console2" type="Sprite2D" parent="."]
-position = Vector2(2613, 910)
-texture = ExtResource("10_erhrk")
-
 [node name="Plant-big7" type="Sprite2D" parent="."]
 position = Vector2(4517, 1034)
 texture = ExtResource("12_43uwi")
-
-[node name="Console3" type="Sprite2D" parent="."]
-position = Vector2(4807, 1021)
-texture = ExtResource("10_erhrk")
 
 [node name="Plant-big8" type="Sprite2D" parent="."]
 position = Vector2(5009, 936)
@@ -1413,10 +1401,6 @@ texture = ExtResource("11_vx2rv")
 position = Vector2(9594, 527)
 texture = ExtResource("11_vx2rv")
 
-[node name="Console4" type="Sprite2D" parent="."]
-position = Vector2(9456, 702)
-texture = ExtResource("10_erhrk")
-
 [node name="Palm5" type="Sprite2D" parent="."]
 position = Vector2(7384, 470)
 texture = ExtResource("6_nci2s")
@@ -1432,10 +1416,6 @@ texture = ExtResource("12_43uwi")
 [node name="Palm6" type="Sprite2D" parent="."]
 position = Vector2(4832, 295)
 texture = ExtResource("6_nci2s")
-
-[node name="Console5" type="Sprite2D" parent="."]
-position = Vector2(4775, 302)
-texture = ExtResource("10_erhrk")
 
 [node name="Palm7" type="Sprite2D" parent="."]
 position = Vector2(7446, 198)
@@ -1461,10 +1441,6 @@ texture = ExtResource("6_nci2s")
 position = Vector2(8366, -86)
 texture = ExtResource("12_43uwi")
 
-[node name="kevin" parent="." instance=ExtResource("12_h6ws0")]
-position = Vector2(246, 978)
-collision_mask = 30
-
 [node name="dangerzone" type="Area2D" parent="."]
 position = Vector2(1580, 1214)
 collision_layer = 4
@@ -1480,6 +1456,30 @@ position = Vector2(9531, 708)
 [node name="add_life2" parent="." instance=ExtResource("13_obrtg")]
 position = Vector2(5031, 308)
 
+[node name="terminal" parent="." instance=ExtResource("13_an3nt")]
+position = Vector2(608, 1020)
+
+[node name="terminal2" parent="." instance=ExtResource("13_an3nt")]
+position = Vector2(2592, 910)
+
+[node name="terminal3" parent="." instance=ExtResource("13_an3nt")]
+position = Vector2(4808, 1021)
+
+[node name="terminal4" parent="." instance=ExtResource("13_an3nt")]
+position = Vector2(9479, 702)
+
+[node name="terminal5" parent="." instance=ExtResource("13_an3nt")]
+position = Vector2(4776, 301)
+
+[node name="kevin" parent="." instance=ExtResource("12_h6ws0")]
+position = Vector2(246, 978)
+collision_mask = 30
+
 [connection signal="body_entered" from="dangerzone" to="kevin" method="_on_dangerzone_body_entered"]
 [connection signal="life_added" from="add_life" to="kevin" method="_on_add_life_life_added"]
 [connection signal="life_added" from="add_life2" to="kevin" method="_on_add_life_2_life_added"]
+[connection signal="completed" from="terminal" to="kevin" method="_on_terminal_1_completed"]
+[connection signal="completed" from="terminal2" to="kevin" method="_on_terminal_2_completed"]
+[connection signal="completed" from="terminal3" to="kevin" method="_on_terminal_3_completed"]
+[connection signal="completed" from="terminal4" to="kevin" method="_on_terminal_4_completed"]
+[connection signal="completed" from="terminal5" to="kevin" method="_on_terminal_5_completed"]
