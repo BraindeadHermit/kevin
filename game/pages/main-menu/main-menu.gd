@@ -6,6 +6,8 @@ var images = []
 @onready var description = get_node("description")
 var thread = Thread.new()
 
+var match_access = match_dao.new()
+
 func _on_texture_rect_ready():
 	thread.start(_load_image)
 	images = thread.wait_to_finish()
@@ -28,6 +30,6 @@ func _on_quit_pressed():
 
 
 func _on_play_pressed():
-	var game_id = Database.create_new_match(Global.get_username(), Global.get_company_code())
+	var game_id = match_access.create_new_match(Global.get_username(), Global.get_company_code())
 	Global.set_current_match_id(game_id)
 	get_tree().call_deferred("change_scene_to_file", "res://game/level_1/level_1.tscn")

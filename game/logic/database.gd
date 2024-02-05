@@ -42,12 +42,13 @@ func _init():
 		db.create_table("question", __question)
 		db.create_table("answare", __answare)
 		db.create_table("terminal", __terminal)
+		
+		self.create_questions()
 	else:
 		print("database already exist")
 		db.open_db()
 		
 	print("-----database ready-----")
-	db.close_db()
 	
 	
 func __tables_set_up():
@@ -70,6 +71,7 @@ func __tables_set_up():
 	
 	__level = Dictionary()
 	__level["id"] = {"data_type": "int", "primary_key": true, "auto_increment": true, "not_null": true}
+	__level["name"] = {"data_type": "string", "not_null": true}
 	__level["game_id"] = {"data_type": "int", "foreign_key": __game.id, "not_null": true}
 	__level["is_completed"] = {"data_type": "bool", "defalut": "false", "not_null": true}
 	
@@ -81,6 +83,7 @@ func __tables_set_up():
 	
 	__question = Dictionary()
 	__question["id"] = {"data_type": "int", "primary_key": true, "auto_increment": true, "not_null": true}
+	__question["category"] = {"data_type": "string"}
 	__question["type"] = {"data_type": "string"}
 	__question["text"] = {"data_type": "string"}
 	__question["company_code"] = {"data_type": "int", "foreign_key": __user.company_code, "not_null": true}
@@ -90,103 +93,251 @@ func __tables_set_up():
 	__answare["question_id"] = {"data_type": "int", "foreign_key": __question.id, "not_null": true}
 	__answare["text"] = {"data_type": "string"}
 	__answare["is_correct"] = {"data_type": "bool", "default": "false", "not_null": true}
-	__answare["is_given"] = {"data_type": "bool", "default": "false", "not_null": true}
 	
 	__terminal = Dictionary()
 	__terminal["id"] = {"data_type": "int", "primary_key": true, "auto_increment": true, "not_null": true}
 	__terminal["level_id"] = {"data_type": "int", "foreign_key": __level.id, "not_null": true}
 	__terminal["is_active"] = {"data_type": "bool", "default": "true", "not_null": true}
 	__terminal["question_id"] = {"data_type": "int", "foreign_key": __question.id, "not_null": true}
+	__terminal["is_given"] = {"data_type": "bool", "default": "false", "not_null": true}
 
 func _exit_tree():
 	print("closing  database...")
 	db.close_db()
+	
+func get_db():
+	return self.db
 
-func create_new_match(username, company_code):
-	db = SQLite.new()
-	db.path = db_name
-	db.open_db()
+func create_questions():
 	
-	var table_name = "game"
-	var id = self.get_user_id(username, company_code)
+	var question1 = Dictionary()
+	question1["category"] = "malware"
+	question1["type"] = "rm"
+	question1["text"] = "domanda numero 1"
+	question1["company_code"] = "CODE_01"
+
+	var question2 = Dictionary()
+	question2["category"] = "malware"
+	question2["type"] = "rm"
+	question2["text"] = "domanda numero 2"
+	question2["company_code"] = "CODE_01"
 	
-	var new_game = Dictionary()
-	new_game["user_id"] = id
-	new_game["last_completed_level"] = 0
-	new_game["playng_level"] = 1
-	db.insert_row(table_name, new_game)
+	var question3 = Dictionary()
+	question3["category"] = "malware"
+	question3["type"] = "rm"
+	question3["text"] = "domanda numero 3"
+	question3["company_code"] = "CODE_01"
 	
-	var game_id = get_last_game_id(id)
+	var question4 = Dictionary()
+	question4["category"] = "malware"
+	question4["type"] = "rm"
+	question4["text"] = "domanda numero 4"
+	question4["company_code"] = "CODE_01"
 	
-	var new_player = Dictionary()
-	new_player["game_id"] = get_last_game_id(id)
-	new_player["life"] = 3
-	new_player["damage_amount"] = 10
-	db.insert_row("player", new_player)
+	var question5 = Dictionary()
+	question5["category"] = "malware"
+	question5["type"] = "rm"
+	question5["text"] = "domanda numero 5"
+	question5["company_code"] = "CODE_01"
 	
-	create_level(game_id)
+	var question6 = Dictionary()
+	question6["category"] = "malware"
+	question6["type"] = "rm"
+	question6["text"] = "domanda numero 6"
+	question6["company_code"] = "CODE_01"
 	
-	db.close_db()
+	var question7 = Dictionary()
+	question7["category"] = "malware"
+	question7["type"] = "rm"
+	question7["text"] = "domanda numero 7"
+	question7["company_code"] = "CODE_01"
 	
-	return game_id
+	"""RISPOTE DOMANDA 1"""
+	var answare1_question1 = Dictionary()
+	answare1_question1["question_id"] = 0
+	answare1_question1["text"] = "risposta 1 domanda 1"
+	answare1_question1["is_correct"] = false
 	
+	var answare2_question1 = Dictionary()
+	answare2_question1["question_id"] = 0
+	answare2_question1["text"] = "risposta 2 domanda 1"
+	answare2_question1["is_correct"] = false
 	
+	var answare3_question1 = Dictionary()
+	answare3_question1["question_id"] = 0
+	answare3_question1["text"] = "risposta 3 domanda 1"
+	answare3_question1["is_correct"] = true
 	
-func create_user(username, company_code):
-	db = SQLite.new()
-	db.path = db_name
-	db.open_db()
+	var answare4_question1 = Dictionary()
+	answare4_question1["question_id"] = 0
+	answare4_question1["text"] = "risposta 4 domanda 1"
+	answare4_question1["is_correct"] = false
 	
-	var table_name = "user"
-	var new_user = Dictionary()
-	new_user["name"] = username
-	new_user["company_code"] = company_code 
-	db.insert_row(table_name, new_user)
+	"""RISPOTE DOMANDA 2"""
+	var answare1_question2 = Dictionary()
+	answare1_question2["question_id"] = 1
+	answare1_question2["text"] = "risposta 1 domanda 2"
+	answare1_question2["is_correct"] = false
 	
-	db.close_db()
+	var answare2_question2 = Dictionary()
+	answare2_question2["question_id"] = 1
+	answare2_question2["text"] = "risposta 2 domanda 2"
+	answare2_question2["is_correct"] = false
 	
-func get_user_id(username, company_code):
-	var res = db.query("SELECT id FROM user WHERE user.name = '" + username + "' AND user.company_code = '" + company_code + "'")
-	if res:
-		return db.query_result[0]["id"]
-		
-	return null
+	var answare3_question2 = Dictionary()
+	answare3_question2["question_id"] = 1
+	answare3_question2["text"] = "risposta 3 domanda 2"
+	answare3_question2["is_correct"] = true
 	
-func get_last_game_id(user_id):
-	var res = db.query("SELECT id FROM game WHERE game.user_id = " + str(user_id) + " ORDER BY id DESC LIMIT 1")
-	if res:
-		return db.query_result[0]["id"]
-		
-	return null
+	var answare4_question2 = Dictionary()
+	answare4_question2["question_id"] = 1
+	answare4_question2["text"] = "risposta 4 domanda 2"
+	answare4_question2["is_correct"] = false
 	
-func create_level(game_id):
-	var table_name = "level"
-	var new_level = Dictionary()
-	new_level["game_id"] = game_id
-	new_level["is_completed"] = false
-	db.insert_row(table_name, new_level)
+	"""RISPOTE DOMANDA 3"""
+	var answare1_question3 = Dictionary()
+	answare1_question3["question_id"] = 2
+	answare1_question3["text"] = "risposta 1 domanda 3"
+	answare1_question3["is_correct"] = false
 	
-func get_player_by_match_id(match_id):
-	db = SQLite.new()
-	db.path = db_name
-	db.open_db()
+	var answare2_question3 = Dictionary()
+	answare2_question3["question_id"] = 2
+	answare2_question3["text"] = "risposta 2 domanda 3"
+	answare2_question3["is_correct"] = false
 	
-	var res = db.query("SELECT * FROM player WHERE player.game_id = " + str(match_id) + ";")
-	if res:
-		db.close_db()
-		return db.query_result[0]
-		
-	db.close_db()
-	return null
+	var answare3_question3 = Dictionary()
+	answare3_question3["question_id"] = 2
+	answare3_question3["text"] = "risposta 3 domanda 3"
+	answare3_question3["is_correct"] = true
 	
-func set_player_lifes(lifes, game_id):
-	db = SQLite.new()
-	db.path = db_name
-	db.open_db()
+	var answare4_question3 = Dictionary()
+	answare4_question3["question_id"] = 2
+	answare4_question3["text"] = "risposta 4 domanda 3"
+	answare4_question3["is_correct"] = false
+
+	"""RISPOTE DOMANDA 4"""
+	var answare1_question4 = Dictionary()
+	answare1_question4["question_id"] = 3
+	answare1_question4["text"] = "risposta 1 domanda 4"
+	answare1_question4["is_correct"] = false
 	
-	var res = db.query("UPDATE player SET life = " + str(lifes) + " WHERE game_id = " + str(game_id) + ";")
+	var answare2_question4 = Dictionary()
+	answare2_question4["question_id"] = 3
+	answare2_question4["text"] = "risposta 2 domanda 4"
+	answare2_question4["is_correct"] = false
 	
-	if res:
-		print("updated")
-		
-	db.close_db()
+	var answare3_question4 = Dictionary()
+	answare3_question4["question_id"] = 3
+	answare3_question4["text"] = "risposta 3 domanda 4"
+	answare3_question4["is_correct"] = true
+	
+	var answare4_question4 = Dictionary()
+	answare4_question4["question_id"] = 3
+	answare4_question4["text"] = "risposta 4 domanda 4"
+	answare4_question4["is_correct"] = false
+	
+	"""RISPOTE DOMANDA 5"""
+	var answare1_question5 = Dictionary()
+	answare1_question5["question_id"] = 4
+	answare1_question5["text"] = "risposta 1 domanda 5"
+	answare1_question5["is_correct"] = false
+	
+	var answare2_question5 = Dictionary()
+	answare2_question5["question_id"] = 4
+	answare2_question5["text"] = "risposta 2 domanda 5"
+	answare2_question5["is_correct"] = false
+	
+	var answare3_question5 = Dictionary()
+	answare3_question5["question_id"] = 4
+	answare3_question5["text"] = "risposta 3 domanda 5"
+	answare3_question5["is_correct"] = true
+	
+	var answare4_question5 = Dictionary()
+	answare4_question5["question_id"] = 4
+	answare4_question5["text"] = "risposta 4 domanda 5"
+	answare4_question5["is_correct"] = false
+	
+	"""RISPOTE DOMANDA 6"""
+	var answare1_question6 = Dictionary()
+	answare1_question6["question_id"] = 5
+	answare1_question6["text"] = "risposta 1 domanda 6"
+	answare1_question6["is_correct"] = false
+	
+	var answare2_question6 = Dictionary()
+	answare2_question6["question_id"] = 5
+	answare2_question6["text"] = "risposta 2 domanda 6"
+	answare2_question6["is_correct"] = false
+	
+	var answare3_question6 = Dictionary()
+	answare3_question6["question_id"] = 5
+	answare3_question6["text"] = "risposta 3 domanda 6"
+	answare3_question6["is_correct"] = true
+	
+	var answare4_question6 = Dictionary()
+	answare4_question6["question_id"] = 5
+	answare4_question6["text"] = "risposta 4 domanda 6"
+	answare4_question6["is_correct"] = false
+	
+	"""RISPOTE DOMANDA 7"""
+	var answare1_question7 = Dictionary()
+	answare1_question7["question_id"] = 6
+	answare1_question7["text"] = "risposta 1 domanda 7"
+	answare1_question7["is_correct"] = false
+	
+	var answare2_question7 = Dictionary()
+	answare2_question7["question_id"] = 6
+	answare2_question7["text"] = "risposta 2 domanda 7"
+	answare2_question7["is_correct"] = false
+	
+	var answare3_question7 = Dictionary()
+	answare3_question7["question_id"] = 6
+	answare3_question7["text"] = "risposta 3 domanda 7"
+	answare3_question7["is_correct"] = true
+	
+	var answare4_question7 = Dictionary()
+	answare4_question7["question_id"] = 6
+	answare4_question7["text"] = "risposta 4 domanda 7"
+	answare4_question7["is_correct"] = false
+	
+	db.insert_row("question", question1)
+	db.insert_row("question", question2)
+	db.insert_row("question", question3)
+	db.insert_row("question", question4)
+	db.insert_row("question", question5)
+	db.insert_row("question", question6)
+	db.insert_row("question", question7)
+	
+	db.insert_row("answare", answare1_question1)
+	db.insert_row("answare", answare2_question1)
+	db.insert_row("answare", answare3_question1)
+	db.insert_row("answare", answare4_question1)
+
+	db.insert_row("answare", answare1_question2)
+	db.insert_row("answare", answare2_question2)
+	db.insert_row("answare", answare3_question2)
+	db.insert_row("answare", answare4_question2)
+	
+	db.insert_row("answare", answare1_question3)
+	db.insert_row("answare", answare2_question3)
+	db.insert_row("answare", answare3_question3)
+	db.insert_row("answare", answare4_question3)
+	
+	db.insert_row("answare", answare1_question4)
+	db.insert_row("answare", answare2_question4)
+	db.insert_row("answare", answare3_question4)
+	db.insert_row("answare", answare4_question4)
+	
+	db.insert_row("answare", answare1_question5)
+	db.insert_row("answare", answare2_question5)
+	db.insert_row("answare", answare3_question5)
+	db.insert_row("answare", answare4_question5)
+	
+	db.insert_row("answare", answare1_question6)
+	db.insert_row("answare", answare2_question6)
+	db.insert_row("answare", answare3_question6)
+	db.insert_row("answare", answare4_question6)
+	
+	db.insert_row("answare", answare1_question7)
+	db.insert_row("answare", answare2_question7)
+	db.insert_row("answare", answare3_question7)
+	db.insert_row("answare", answare4_question7)
