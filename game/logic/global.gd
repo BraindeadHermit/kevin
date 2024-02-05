@@ -6,9 +6,10 @@ var _company_code: String = ""
 var _current_match_id: int
 var user_access
 
+func _init():
+	user_access = user_dao.new()
 
 func set_current_user(username: String, company_code: String):
-	user_access = user_dao.new()
 	_username = username
 	_company_code = company_code
 	user_access.create_user(self._username, self._company_code)

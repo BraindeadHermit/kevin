@@ -1,5 +1,8 @@
 extends Node
 
+var mutex = Mutex.new()
+var load_db: Thread
+
 var db: SQLite
 var db_name = "user://database/database"
 
@@ -16,6 +19,12 @@ var __terminal: Dictionary
 
 
 func _init():
+	load_db = Thread.new()
+	load_db.start(_async_create_db.bind())
+	
+func _async_create_db():
+	mutex.lock()
+	
 	db = SQLite.new()
 	db.path = db_name
 	db.foreign_keys = true
@@ -49,6 +58,8 @@ func _init():
 		db.open_db()
 		
 	print("-----database ready-----")
+	
+	mutex.unlock()
 	
 	
 func __tables_set_up():
@@ -102,6 +113,7 @@ func __tables_set_up():
 	__terminal["is_given"] = {"data_type": "bool", "default": "false", "not_null": true}
 
 func _exit_tree():
+	self.load_db.wait_to_finish()
 	print("closing  database...")
 	db.close_db()
 	
