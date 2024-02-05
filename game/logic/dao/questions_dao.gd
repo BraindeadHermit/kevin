@@ -1,7 +1,10 @@
 extends Node
 class_name questions_dao
 
-var db = Database.get_db()
+var db
+
+func _init():
+	self.db = Database.get_db()
 
 func get_questions_numer_by_category(category):
 	var respone = db.query("SELECT COUNT(id) FROM question WHERE category = '" + category + "';")
@@ -13,7 +16,6 @@ func get_questions_numer_by_category(category):
 
 func get_questions_by_category(category):
 	var result = db.query("SELECT * FROM question WHERE category = '" + category + "';")
-	print(result)
 	if result:
 		return db.query_result
 		
@@ -36,3 +38,11 @@ func select_random_questions(category):
 		selected_questions.append(questions[i])
 		
 	return selected_questions
+	
+func get_question_by_id(id):
+	var result = db.query("SELECT * FROM question WHERE id = " + str(id) + ";")
+	
+	if result:
+		return db.query_result[0]
+		
+	return null

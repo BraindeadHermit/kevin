@@ -23,18 +23,18 @@ func create_new_level(game_id, level_name, topic):
 	var result = db.insert_row(table_name, new_level)
 	
 	if not result:
-		return false
+		return -1
 	
 	var level_id = self.get_level_id_by_name(level_name, game_id)
 	
 	var questions = question_access.select_random_questions(topic)
 	
 	for i in questions.size():
-		print(level_id)
-		print(questions[i]["id"])
 		terminal_access.create_new_terminal(level_id, questions[i]["id"])
 	
 	collectable_access.create_new_collectable(level_id, "add_life")
 	collectable_access.create_new_collectable(level_id, "add_life")	
+	
+	return level_id
 	
 	

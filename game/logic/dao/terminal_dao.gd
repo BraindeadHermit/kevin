@@ -1,7 +1,10 @@
 extends Node
 class_name  terminal_dao
 
-var db = Database.get_db()
+var db
+
+func _init():
+	db = Database.get_db()
 
 func create_new_terminal(level_id: int, question_id: int):
 	var terminal = Dictionary()
@@ -13,3 +16,10 @@ func create_new_terminal(level_id: int, question_id: int):
 	var result = db.insert_row("terminal", terminal)
 	
 	return result
+	
+func get_terminals_by_level_id(level_id):
+	var result = db.query("SELECT * FROM terminal WHERE level_id = " + str(level_id) + ";")
+	
+	if result:
+		return db.query_result
+	
