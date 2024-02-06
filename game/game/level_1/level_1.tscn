@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://4ytrq8x6mm2n"]
+[gd_scene load_steps=20 format=3 uid="uid://4ytrq8x6mm2n"]
 
 [ext_resource type="Texture2D" uid="uid://diwy28h4ilswd" path="res://assets/levels/level_1/Environment/Layers/back2.png" id="1_2gvn6"]
 [ext_resource type="Texture2D" uid="uid://d3yr5du01u4xe" path="res://assets/levels/level_1/Environment/Layers/back.png" id="1_kmmw5"]
@@ -671,6 +671,9 @@ sources/1 = SubResource("TileSetAtlasSource_r43dc")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fii22"]
 size = Vector2(8059, 214)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc2dq"]
+size = Vector2(94, 90)
 
 [node name="level_1" type="Node2D"]
 position = Vector2(0, 167)
@@ -1482,6 +1485,15 @@ metadata/question = 4
 position = Vector2(246, 978)
 collision_mask = 30
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(9989, -160)
+collision_layer = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-15, 2)
+shape = SubResource("RectangleShape2D_qc2dq")
+
 [connection signal="collectables_setup" from="." to="add_life" method="_on_level_1_collectables_setup"]
 [connection signal="collectables_setup" from="." to="add_life2" method="_on_level_1_collectables_setup"]
 [connection signal="loaded" from="." to="terminal" method="_on_level_1_loaded"]
@@ -1497,3 +1509,4 @@ collision_mask = 30
 [connection signal="completed" from="terminal3" to="kevin" method="_on_terminal_3_completed"]
 [connection signal="completed" from="terminal4" to="kevin" method="_on_terminal_4_completed"]
 [connection signal="completed" from="terminal5" to="kevin" method="_on_terminal_5_completed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
