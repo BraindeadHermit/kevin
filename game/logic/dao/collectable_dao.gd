@@ -9,6 +9,6 @@ func create_new_collectable(level_id, type):
 	var collectable = Dictionary();
 	collectable["level_id"] = level_id
 	collectable["type"] = type
-	var result = db.insert_row("collectable", collectable)
+	var result = await db.insert_row("collectable", collectable)
 	
 	return result

@@ -111,6 +111,7 @@ func __tables_set_up():
 	__terminal["is_active"] = {"data_type": "bool", "default": "true", "not_null": true}
 	__terminal["question_id"] = {"data_type": "int", "foreign_key": __question.id, "not_null": true}
 	__terminal["is_given"] = {"data_type": "bool", "default": "false", "not_null": true}
+	__terminal["given_answer"] = {"data_type": "int", "default": "0", "not_null": true}
 
 func _exit_tree():
 	self.load_db.wait_to_finish()

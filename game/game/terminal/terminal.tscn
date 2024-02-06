@@ -23,6 +23,7 @@ font_color = Color(0, 0, 0, 1)
 [node name="terminal" type="Area2D"]
 collision_layer = 0
 script = ExtResource("1_iivxx")
+metadata/question = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(1.5, 3.5)

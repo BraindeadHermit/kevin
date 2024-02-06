@@ -1463,20 +1463,29 @@ position = Vector2(608, 1020)
 
 [node name="terminal2" parent="." instance=ExtResource("13_an3nt")]
 position = Vector2(2592, 910)
+metadata/question = 1
 
 [node name="terminal3" parent="." instance=ExtResource("13_an3nt")]
 position = Vector2(4808, 1021)
+metadata/question = 2
 
 [node name="terminal4" parent="." instance=ExtResource("13_an3nt")]
 position = Vector2(9479, 702)
+metadata/question = 3
 
 [node name="terminal5" parent="." instance=ExtResource("13_an3nt")]
 position = Vector2(4776, 301)
+metadata/question = 4
 
 [node name="kevin" parent="." instance=ExtResource("12_h6ws0")]
 position = Vector2(246, 978)
 collision_mask = 30
 
+[connection signal="loaded" from="." to="terminal" method="_on_level_1_loaded"]
+[connection signal="loaded" from="." to="terminal2" method="_on_level_1_loaded"]
+[connection signal="loaded" from="." to="terminal3" method="_on_level_1_loaded"]
+[connection signal="loaded" from="." to="terminal4" method="_on_level_1_loaded"]
+[connection signal="loaded" from="." to="terminal5" method="_on_level_1_loaded"]
 [connection signal="body_entered" from="dangerzone" to="kevin" method="_on_dangerzone_body_entered"]
 [connection signal="life_added" from="add_life" to="kevin" method="_on_add_life_life_added"]
 [connection signal="life_added" from="add_life2" to="kevin" method="_on_add_life_2_life_added"]

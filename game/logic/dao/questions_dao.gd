@@ -7,15 +7,15 @@ func _init():
 	self.db = Database.get_db()
 
 func get_questions_numer_by_category(category):
-	var respone = db.query("SELECT COUNT(id) FROM question WHERE category = '" + category + "';")
+	var respone = await db.query("SELECT COUNT(id) FROM question WHERE category = '" + category + "';")
 	
 	if respone:
-		return db.query_result[0]
+		return db.query_result[0]["COUNT(id)"]
 	
 	return 0
 
 func get_questions_by_category(category):
-	var result = db.query("SELECT * FROM question WHERE category = '" + category + "';")
+	var result = await db.query("SELECT * FROM question WHERE category = '" + category + "';")
 	if result:
 		return db.query_result
 		
@@ -23,7 +23,7 @@ func get_questions_by_category(category):
 	
 func select_random_questions(category):
 	var rng = RandomNumberGenerator.new()
-	var questions: Array = self.get_questions_by_category(category)
+	var questions: Array = await self.get_questions_by_category(category)
 	
 	var numbers = []
 	
@@ -40,7 +40,7 @@ func select_random_questions(category):
 	return selected_questions
 	
 func get_question_by_id(id):
-	var result = db.query("SELECT * FROM question WHERE id = " + str(id) + ";")
+	var result = await db.query("SELECT * FROM question WHERE id = " + str(id) + ";")
 	
 	if result:
 		return db.query_result[0]

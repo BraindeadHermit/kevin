@@ -8,10 +8,9 @@ var _level1_answared_questions = 0;
 var player_access = player_dao.new()
 
 func player_init():
-	var player = player_access.get_player_by_match_id(Global.get_current_match_id())
+	var player = await player_access.get_player_by_match_id(Global.get_current_match_id())
 	self._lifes = player["life"]
 	self._damage = player["damage_amount"]
-	print("current lifes: " + str(self._lifes))
 
 func add_life():
 	if self._lifes < 3:
@@ -30,6 +29,9 @@ func get_lifes():
 
 func add_question():
 	self._level1_answared_questions += 1
+	
+func set_level1_given_questions(given_questions):
+	self._level1_answared_questions = given_questions
 	
 func get_level1_answared_questions():
 	return self._level1_answared_questions
