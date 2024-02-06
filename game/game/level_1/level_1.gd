@@ -2,10 +2,13 @@ extends Node2D
 
 var level_access = level_dao.new()
 var terminal_access = terminal_dao.new()
+var collectable_access = collectable_dao.new()
 
 signal loaded(terminal_data)
+signal collectables_setup(collectables_data)
 
 var terminals
+var collectables
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -20,6 +23,10 @@ func _ready():
 	terminals = await terminal_access.get_terminals_by_level_id(level_id)
 	
 	await loaded.emit(terminals)
+	
+	collectables = await collectable_access.get_collectables_by_level_id(level_id)
+	
+	await collectables_setup.emit(collectables)
 	
 	
 	

@@ -1457,6 +1457,7 @@ position = Vector2(9531, 708)
 
 [node name="add_life2" parent="." instance=ExtResource("13_obrtg")]
 position = Vector2(5031, 308)
+metadata/colelctable_number = 1
 
 [node name="terminal" parent="." instance=ExtResource("13_an3nt")]
 position = Vector2(608, 1020)
@@ -1481,6 +1482,8 @@ metadata/question = 4
 position = Vector2(246, 978)
 collision_mask = 30
 
+[connection signal="collectables_setup" from="." to="add_life" method="_on_level_1_collectables_setup"]
+[connection signal="collectables_setup" from="." to="add_life2" method="_on_level_1_collectables_setup"]
 [connection signal="loaded" from="." to="terminal" method="_on_level_1_loaded"]
 [connection signal="loaded" from="." to="terminal2" method="_on_level_1_loaded"]
 [connection signal="loaded" from="." to="terminal3" method="_on_level_1_loaded"]
