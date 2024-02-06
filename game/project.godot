@@ -21,8 +21,8 @@ run/name="kevin"
 
 [autoload]
 
-Global="*res://logic/global.gd"
 Database="*res://logic/database.gd"
+Global="*res://logic/global.gd"
 Kevin="*res://logic/player.gd"
 
 [display]

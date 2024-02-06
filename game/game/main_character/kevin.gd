@@ -78,20 +78,40 @@ func life_visual_setup():
 		$"CanvasLayer/life panel/life_2".visible = false
 		$"CanvasLayer/life panel/life_3".visible = false
 
-func _on_terminal_1_completed():
+func _on_terminal_1_completed(terminal_number, is_correct):
 	completed_answer()
+	if is_correct:
+		$CanvasLayer/give_answares/answare_1.texture = load("res://assets/graphic components/hud/correct.png")
+	else:
+		$CanvasLayer/give_answares/answare_1.texture = load("res://assets/graphic components/hud/wrong.png")
 
-func _on_terminal_2_completed():
+func _on_terminal_2_completed(terminal_number, is_correct):
 	completed_answer()
+	if is_correct:
+		$CanvasLayer/give_answares/answare_2.texture = load("res://assets/graphic components/hud/correct.png")
+	else:
+		$CanvasLayer/give_answares/answare_2.texture = load("res://assets/graphic components/hud/wrong.png")
 
-func _on_terminal_3_completed():
+func _on_terminal_3_completed(terminal_number, is_correct):
 	completed_answer()
+	if is_correct:
+		$CanvasLayer/give_answares/answare_3.texture = load("res://assets/graphic components/hud/correct.png")
+	else:
+		$CanvasLayer/give_answares/answare_3.texture = load("res://assets/graphic components/hud/wrong.png")
 
-func _on_terminal_4_completed():
+func _on_terminal_4_completed(terminal_number, is_correct):
 	completed_answer()
+	if is_correct:
+		$CanvasLayer/give_answares/answare_4.texture = load("res://assets/graphic components/hud/correct.png")
+	else:
+		$CanvasLayer/give_answares/answare_4.texture = load("res://assets/graphic components/hud/wrong.png")
 
-func _on_terminal_5_completed():
+func _on_terminal_5_completed(terminal_number, is_correct):
 	completed_answer()
+	if is_correct:
+		$CanvasLayer/give_answares/answare_5.texture = load("res://assets/graphic components/hud/correct.png")
+	else:
+		$CanvasLayer/give_answares/answare_5.texture = load("res://assets/graphic components/hud/wrong.png")
 	
 func completed_answer():
 	var given_ans = Kevin.get_level1_answared_questions()

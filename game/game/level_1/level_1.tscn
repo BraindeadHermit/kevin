@@ -1,7 +1,8 @@
-[gd_scene load_steps=18 format=3 uid="uid://4ytrq8x6mm2n"]
+[gd_scene load_steps=20 format=3 uid="uid://4ytrq8x6mm2n"]
 
 [ext_resource type="Texture2D" uid="uid://diwy28h4ilswd" path="res://assets/levels/level_1/Environment/Layers/back2.png" id="1_2gvn6"]
 [ext_resource type="Texture2D" uid="uid://d3yr5du01u4xe" path="res://assets/levels/level_1/Environment/Layers/back.png" id="1_kmmw5"]
+[ext_resource type="Script" path="res://game/level_1/level_1.gd" id="1_qv8oe"]
 [ext_resource type="Texture2D" uid="uid://cmxw1nblx7axi" path="res://assets/levels/level_1/Environment/Layers/far.png" id="2_k4aku"]
 [ext_resource type="Texture2D" uid="uid://dcatyn55fj5qk" path="res://assets/levels/level_1/Environment/Layers/middle.png" id="3_tpo3f"]
 [ext_resource type="Texture2D" uid="uid://cdumt106wivv" path="res://assets/levels/level_1/Environment/Layers/tileset.png" id="4_7infc"]
@@ -671,8 +672,12 @@ sources/1 = SubResource("TileSetAtlasSource_r43dc")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fii22"]
 size = Vector2(8059, 214)
 
-[node name="level_1" type="Node2D" groups=["plants"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qc2dq"]
+size = Vector2(94, 90)
+
+[node name="level_1" type="Node2D"]
 position = Vector2(0, 167)
+script = ExtResource("1_qv8oe")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
 
@@ -1455,26 +1460,47 @@ position = Vector2(9531, 708)
 
 [node name="add_life2" parent="." instance=ExtResource("13_obrtg")]
 position = Vector2(5031, 308)
+metadata/colelctable_number = 1
 
 [node name="terminal" parent="." instance=ExtResource("13_an3nt")]
 position = Vector2(608, 1020)
 
 [node name="terminal2" parent="." instance=ExtResource("13_an3nt")]
 position = Vector2(2592, 910)
+metadata/question = 1
 
 [node name="terminal3" parent="." instance=ExtResource("13_an3nt")]
 position = Vector2(4808, 1021)
+metadata/question = 2
 
 [node name="terminal4" parent="." instance=ExtResource("13_an3nt")]
 position = Vector2(9479, 702)
+metadata/question = 3
 
 [node name="terminal5" parent="." instance=ExtResource("13_an3nt")]
 position = Vector2(4776, 301)
+metadata/question = 4
 
 [node name="kevin" parent="." instance=ExtResource("12_h6ws0")]
 position = Vector2(246, 978)
 collision_mask = 30
 
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(9989, -160)
+collision_layer = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-15, 2)
+shape = SubResource("RectangleShape2D_qc2dq")
+
+[connection signal="collectables_setup" from="." to="add_life" method="_on_level_1_collectables_setup"]
+[connection signal="collectables_setup" from="." to="add_life2" method="_on_level_1_collectables_setup"]
+[connection signal="loaded" from="." to="terminal" method="_on_level_1_loaded"]
+[connection signal="loaded" from="." to="terminal2" method="_on_level_1_loaded"]
+[connection signal="loaded" from="." to="terminal3" method="_on_level_1_loaded"]
+[connection signal="loaded" from="." to="terminal4" method="_on_level_1_loaded"]
+[connection signal="loaded" from="." to="terminal5" method="_on_level_1_loaded"]
 [connection signal="body_entered" from="dangerzone" to="kevin" method="_on_dangerzone_body_entered"]
 [connection signal="life_added" from="add_life" to="kevin" method="_on_add_life_life_added"]
 [connection signal="life_added" from="add_life2" to="kevin" method="_on_add_life_2_life_added"]
@@ -1483,3 +1509,4 @@ collision_mask = 30
 [connection signal="completed" from="terminal3" to="kevin" method="_on_terminal_3_completed"]
 [connection signal="completed" from="terminal4" to="kevin" method="_on_terminal_4_completed"]
 [connection signal="completed" from="terminal5" to="kevin" method="_on_terminal_5_completed"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

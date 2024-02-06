@@ -109,6 +109,7 @@ _data = {
 [node name="add_life" type="Area2D"]
 collision_layer = 0
 script = ExtResource("1_rbeud")
+metadata/colelctable_number = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_b0ctb")
