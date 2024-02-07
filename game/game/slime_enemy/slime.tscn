@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=3 uid="uid://c8khcrr3ahyao"]
+
+[ext_resource type="Script" path="res://game/slime_enemy/slime.gd" id="1_dfk5a"]
+[ext_resource type="Texture2D" uid="uid://cxko5636pteja" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime1.png" id="1_rdwbq"]
+[ext_resource type="Texture2D" uid="uid://eqod2tlwvkgb" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime2.png" id="2_1ttbo"]
+[ext_resource type="Texture2D" uid="uid://c82jp50anujpw" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime3.png" id="3_paeeu"]
+[ext_resource type="Texture2D" uid="uid://c61pmovk8wb4n" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime4.png" id="4_lw6la"]
+[ext_resource type="Texture2D" uid="uid://c2cqjsjwila0d" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime5.png" id="5_2r6oy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ldihb"]
+animations = [{
+"frames": [{
+"duration": 0.9,
+"texture": ExtResource("1_rdwbq")
+}, {
+"duration": 0.9,
+"texture": ExtResource("2_1ttbo")
+}, {
+"duration": 0.9,
+"texture": ExtResource("3_paeeu")
+}, {
+"duration": 0.9,
+"texture": ExtResource("4_lw6la")
+}, {
+"duration": 0.9,
+"texture": ExtResource("5_2r6oy")
+}],
+"loop": true,
+"name": &"crawl",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k37r1"]
+radius = 9.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ucopb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktkxr"]
+size = Vector2(284, 70)
+
+[node name="slime" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 35
+script = ExtResource("1_dfk5a")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ldihb")
+animation = &"crawl"
+autoplay = "crawl"
+frame_progress = 0.956764
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_k37r1")
+
+[node name="floor_detector" type="RayCast2D" parent="."]
+target_position = Vector2(0, 25)
+collision_mask = 2
+
+[node name="player_hurt" type="Area2D" parent="."]
+position = Vector2(1, 6)
+collision_layer = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hurt"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_ucopb")
+
+[node name="player_detector" type="Area2D" parent="."]
+collision_layer = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_ktkxr")
+
+[connection signal="body_entered" from="player_hurt" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_entered" from="player_detector" to="." method="_on_player_detected"]
+[connection signal="body_exited" from="player_detector" to="." method="_on_player_not_detected"]

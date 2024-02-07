@@ -118,3 +118,20 @@ func completed_answer():
 	$CanvasLayer/given_ans.text = "Risposte Date: " + str(given_ans) + "/5"
 	$CanvasLayer/terminals/terminal_number.text = str(given_ans)
 	
+func hurt(enemy_position):
+	Kevin.death()
+	self.life_visual_setup()
+	velocity.y = JUMP_VELOCITY * 0.5
+	if enemy_position > position.x:
+		velocity.x = -1000
+	elif enemy_position < position.x:
+		velocity.x = 1000
+		
+	Input.action_release("ui_accept")
+	Input.action_release("ui_left")
+	Input.action_release("ui_right")
+	Input.action_release("ui_shoot")
+	Input.action_release("ui_down")
+		
+	anim.play("hurt")
+	await  $AnimationPlayer.animation_finished
