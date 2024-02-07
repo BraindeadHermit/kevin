@@ -19,11 +19,7 @@ func _physics_process(delta):
 			if velocity.y > 0:
 				anim.play("fall")
 			
-			var direction = Input.get_axis("ui_left", "ui_right")
-			if direction == -1:
-				get_node("AnimatedSprite2D").flip_h = true
-			elif direction == 1:
-				get_node("AnimatedSprite2D").flip_h = false
+			var direction = direction_input()
 			
 			velocity.x = direction * SPEED
 			
@@ -33,11 +29,7 @@ func _physics_process(delta):
 			move_and_slide()
 			
 		States.FLOOR:
-			var direction = Input.get_axis("ui_left", "ui_right")
-			if direction == -1:
-				get_node("AnimatedSprite2D").flip_h = true
-			elif direction == 1:
-				get_node("AnimatedSprite2D").flip_h = false
+			var direction = direction_input()
 			
 			if direction:
 				velocity.x = direction * SPEED
@@ -73,7 +65,14 @@ func _on_dangerzone_body_entered(body):
 	Kevin.death()
 	get_tree().change_scene_to_file("res://game/level_1/level_1.tscn")
 
-
+func direction_input() -> int:
+	var direction = Input.get_axis("ui_left", "ui_right")
+	if direction == -1:
+		get_node("AnimatedSprite2D").flip_h = true
+	elif direction == 1:
+		get_node("AnimatedSprite2D").flip_h = false
+	
+	return direction
 
 
 func _on_add_life_life_added():
