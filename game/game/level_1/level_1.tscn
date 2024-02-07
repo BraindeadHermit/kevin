@@ -1496,7 +1496,7 @@ position = Vector2(-15, 2)
 shape = SubResource("RectangleShape2D_qc2dq")
 
 [node name="slime" parent="." instance=ExtResource("15_scamb")]
-position = Vector2(394, 981)
+position = Vector2(1329, 1023)
 
 [connection signal="collectables_setup" from="." to="add_life" method="_on_level_1_collectables_setup"]
 [connection signal="collectables_setup" from="." to="add_life2" method="_on_level_1_collectables_setup"]
