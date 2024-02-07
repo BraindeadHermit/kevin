@@ -4,6 +4,7 @@ enum States { AIR, FLOOR, LADDERS, SHOT }
 var state = States.AIR
 const SPEED = 300.0
 const JUMP_VELOCITY = -350.0
+const SHOT = preload("res://game/shot/shot.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -34,8 +35,10 @@ func _physics_process(delta):
 			if direction:
 				velocity.x = direction * SPEED
 				if velocity.y == 0:
-					if Input.is_action_pressed("ui_shoot"):
+					if Input.is_action_just_pressed("ui_shoot"):
+						shot()
 						anim.play("run_shot")
+						await  $AnimatedSprite2D.animation_finished
 					else:
 						anim.play("run")
 			else:
@@ -43,8 +46,10 @@ func _physics_process(delta):
 				if velocity.y == 0:
 					if Input.is_action_pressed("ui_down"):
 						anim.play("duck")
-					elif Input.is_action_pressed("ui_shoot"):
+					elif Input.is_action_just_pressed("ui_shoot"):
+						shot()
 						anim.play("shoot")
+						await  $AnimatedSprite2D.animation_finished
 					else:	
 						anim.play("idle")
 				
@@ -74,6 +79,13 @@ func direction_input() -> int:
 	
 	return direction
 
+func shot():
+	var shot_direction = 1 if not $AnimatedSprite2D.flip_h else -1
+	var shot_instance = SHOT.instantiate()
+	shot_instance.direction = shot_direction
+	get_parent().add_child(shot_instance)
+	shot_instance.position.x = position.x + 10 * shot_direction
+	shot_instance.position.y = position.y
 
 func _on_add_life_life_added():
 	self.life_visual_setup()
