@@ -35,7 +35,7 @@ radius = 9.0
 
 [node name="slime" type="CharacterBody2D"]
 collision_layer = 16
-collision_mask = 3
+collision_mask = 35
 script = ExtResource("1_dfk5a")
 metadata/_edit_group_ = true
 
@@ -48,3 +48,7 @@ frame_progress = 0.956764
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 7)
 shape = SubResource("CircleShape2D_k37r1")
+
+[node name="floor_detector" type="RayCast2D" parent="."]
+target_position = Vector2(0, 25)
+collision_mask = 2
