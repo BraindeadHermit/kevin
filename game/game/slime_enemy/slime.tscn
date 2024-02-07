@@ -36,12 +36,13 @@ radius = 9.0
 [sub_resource type="CircleShape2D" id="CircleShape2D_ucopb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ktkxr"]
-size = Vector2(215, 96)
+size = Vector2(284, 70)
 
 [node name="slime" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 35
 script = ExtResource("1_dfk5a")
+metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ldihb")
@@ -68,11 +69,11 @@ shape = SubResource("CircleShape2D_ucopb")
 
 [node name="player_detector" type="Area2D" parent="."]
 collision_layer = 0
+metadata/_edit_group_ = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
-position = Vector2(0.5, -15)
+position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_ktkxr")
-metadata/_edit_group_ = true
 
 [connection signal="body_entered" from="player_hurt" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_entered" from="player_detector" to="." method="_on_player_detected"]

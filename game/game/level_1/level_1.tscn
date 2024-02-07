@@ -1483,7 +1483,7 @@ position = Vector2(4776, 301)
 metadata/question = 4
 
 [node name="kevin" parent="." instance=ExtResource("12_h6ws0")]
-position = Vector2(246, 978)
+position = Vector2(477, 1004)
 collision_mask = 30
 
 [node name="Area2D" type="Area2D" parent="."]
@@ -1495,8 +1495,12 @@ metadata/_edit_group_ = true
 position = Vector2(-15, 2)
 shape = SubResource("RectangleShape2D_qc2dq")
 
+[node name="slime2" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(901, 1018)
+
 [node name="slime" parent="." instance=ExtResource("15_scamb")]
-position = Vector2(1329, 1023)
+position = Vector2(670, 1004)
+direction = 1
 
 [connection signal="collectables_setup" from="." to="add_life" method="_on_level_1_collectables_setup"]
 [connection signal="collectables_setup" from="." to="add_life2" method="_on_level_1_collectables_setup"]
