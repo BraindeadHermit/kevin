@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://c8khcrr3ahyao"]
+
+[ext_resource type="Script" path="res://game/slime_enemy/slime.gd" id="1_dfk5a"]
+[ext_resource type="Texture2D" uid="uid://cxko5636pteja" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime1.png" id="1_rdwbq"]
+[ext_resource type="Texture2D" uid="uid://eqod2tlwvkgb" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime2.png" id="2_1ttbo"]
+[ext_resource type="Texture2D" uid="uid://c82jp50anujpw" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime3.png" id="3_paeeu"]
+[ext_resource type="Texture2D" uid="uid://c61pmovk8wb4n" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime4.png" id="4_lw6la"]
+[ext_resource type="Texture2D" uid="uid://c2cqjsjwila0d" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime5.png" id="5_2r6oy"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ldihb"]
+animations = [{
+"frames": [{
+"duration": 0.9,
+"texture": ExtResource("1_rdwbq")
+}, {
+"duration": 0.9,
+"texture": ExtResource("2_1ttbo")
+}, {
+"duration": 0.9,
+"texture": ExtResource("3_paeeu")
+}, {
+"duration": 0.9,
+"texture": ExtResource("4_lw6la")
+}, {
+"duration": 0.9,
+"texture": ExtResource("5_2r6oy")
+}],
+"loop": true,
+"name": &"crawl",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k37r1"]
+radius = 9.0
+
+[node name="slime" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_dfk5a")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ldihb")
+animation = &"crawl"
+autoplay = "crawl"
+frame_progress = 0.956764
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CircleShape2D_k37r1")
