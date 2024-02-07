@@ -31,3 +31,7 @@ func _physics_process(delta):
 	velocity.x = direction * SPEED
 
 	move_and_slide()
+
+
+func _on_player_detector_body_entered(body):
+	body.hurt(position.x)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c8khcrr3ahyao"]
+[gd_scene load_steps=10 format=3 uid="uid://c8khcrr3ahyao"]
 
 [ext_resource type="Script" path="res://game/slime_enemy/slime.gd" id="1_dfk5a"]
 [ext_resource type="Texture2D" uid="uid://cxko5636pteja" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime1.png" id="1_rdwbq"]
@@ -33,11 +33,12 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_k37r1"]
 radius = 9.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_ucopb"]
+
 [node name="slime" type="CharacterBody2D"]
 collision_layer = 16
 collision_mask = 35
 script = ExtResource("1_dfk5a")
-metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_ldihb")
@@ -52,3 +53,14 @@ shape = SubResource("CircleShape2D_k37r1")
 [node name="floor_detector" type="RayCast2D" parent="."]
 target_position = Vector2(0, 25)
 collision_mask = 2
+
+[node name="player_detector" type="Area2D" parent="."]
+position = Vector2(1, 6)
+collision_layer = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_ucopb")
+
+[connection signal="body_entered" from="player_detector" to="." method="_on_player_detector_body_entered"]
