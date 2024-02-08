@@ -2,6 +2,7 @@ extends CharacterBody2D
 
 enum States { AIR, FLOOR, LADDERS, SHOT }
 var state = States.AIR
+var on_ladder := false
 const SPEED = 300.0
 const JUMP_VELOCITY = -350.0
 const SHOT = preload("res://game/shot/shot.tscn")
@@ -15,6 +16,13 @@ func _physics_process(delta):
 		
 	match state:
 		States.AIR:
+			if is_on_floor():
+				state = States.FLOOR
+				return
+			elif is_on_ladder():
+				state = States.LADDERS
+				return
+			
 			velocity.y += gravity * delta
 			
 			if velocity.y > 0:
@@ -23,13 +31,17 @@ func _physics_process(delta):
 			var direction = direction_input()
 			
 			velocity.x = direction * SPEED
-			
-			if is_on_floor():
-				state = States.FLOOR
 				
 			move_and_slide()
 			
 		States.FLOOR:
+			if not is_on_floor():
+				state = States.AIR
+				return
+			elif is_on_ladder():
+				state = States.LADDERS
+				return
+			
 			var direction = direction_input()
 			
 			if direction:
@@ -58,15 +70,25 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("ui_accept"):
 				velocity.y = JUMP_VELOCITY
 				anim.play("jump")
-			
-			if not is_on_floor():
-				state = States.AIR
 				
 			move_and_slide()
-
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
-
+		States.LADDERS:
+			if Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
+				anim.play("ladder")
+			else:
+				anim.stop()
+			
+			if Input.is_action_just_pressed("ui_up"):
+				velocity.y = -SPEED/6
+			elif Input.is_action_just_pressed("ui_down"):
+				velocity.y = SPEED/6
+				
+			if Input.is_action_just_pressed("ui_left"):
+				velocity.x = -SPEED/6
+			elif Input.is_action_just_pressed("ui_right"):
+				velocity.x = SPEED/6
+				
+			move_and_slide()
 
 func _on_dangerzone_body_entered(body):
 	Kevin.death()
@@ -169,3 +191,16 @@ func hurt(enemy_position):
 		
 	anim.play("hurt")
 	await  $AnimationPlayer.animation_finished
+
+func _on_ladder_entered(body):
+	on_ladder = true
+
+func _on_ladder_exited(body):
+	on_ladder = false
+
+func is_on_ladder() -> bool:
+	if on_ladder and (Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_up")):
+		return true
+	
+	return false
+		
