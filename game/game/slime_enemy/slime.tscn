@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://c8khcrr3ahyao"]
+[gd_scene load_steps=16 format=3 uid="uid://c8khcrr3ahyao"]
 
 [ext_resource type="Script" path="res://game/slime_enemy/slime.gd" id="1_dfk5a"]
 [ext_resource type="Texture2D" uid="uid://cxko5636pteja" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime1.png" id="1_rdwbq"]
@@ -10,6 +10,7 @@
 [ext_resource type="Texture2D" uid="uid://cafif022wtx2y" path="res://assets/levels/level_1/Fx/Sprites/Explosion/explosion2.png" id="8_u7yij"]
 [ext_resource type="Texture2D" uid="uid://dnofeu518cd65" path="res://assets/levels/level_1/Fx/Sprites/Explosion/explosion3.png" id="9_wjpvf"]
 [ext_resource type="Texture2D" uid="uid://cid67v8qhpsow" path="res://assets/levels/level_1/Fx/Sprites/Explosion/explosion4.png" id="10_u54do"]
+[ext_resource type="AudioStream" uid="uid://b4vk1p14g0dap" path="res://assets/audio/sfx/explosion/Retro Explosion Short 01.wav" id="11_k2cur"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_ldihb"]
 animations = [{
@@ -98,6 +99,14 @@ metadata/_edit_group_ = true
 position = Vector2(0, -2)
 shape = SubResource("RectangleShape2D_ktkxr")
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_k2cur")
+
 [connection signal="body_entered" from="player_hurt" to="." method="_on_player_detector_body_entered"]
 [connection signal="body_entered" from="player_detector" to="." method="_on_player_detected"]
 [connection signal="body_exited" from="player_detector" to="." method="_on_player_not_detected"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

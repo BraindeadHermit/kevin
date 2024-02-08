@@ -34,6 +34,7 @@ func _on_player_detector_body_entered(body):
 		body.hurt(position.x)
 	elif body.get_collision_layer() == 32:
 		body.destroy()
+		$Timer.start()
 		$player_hurt.set_collision_mask_value(1, false)
 		velocity.x = 0
 		$AnimatedSprite2D.play("die")
@@ -54,3 +55,7 @@ func turn(new_direction, flip_sprite):
 	direction = new_direction
 	$AnimatedSprite2D.flip_h = flip_sprite
 	$floor_detector.position.x = $CollisionShape2D.shape.radius * direction
+
+
+func _on_timer_timeout():
+	$AudioStreamPlayer2D.play()
