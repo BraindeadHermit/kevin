@@ -119,7 +119,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"ladder",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -478,7 +478,7 @@ _data = {
 }
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5uh7a"]
-size = Vector2(6, 29)
+size = Vector2(4, 29)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r7r17"]
 bg_color = Color(0, 0.0784314, 0.352941, 0.384314)
@@ -526,6 +526,8 @@ libraries = {
 }
 
 [node name="ladder_detector" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 64
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ladder_detector"]
 position = Vector2(1, 0.5)
@@ -704,3 +706,6 @@ grow_vertical = 2
 text = "0"
 label_settings = SubResource("LabelSettings_jthwe")
 horizontal_alignment = 1
+
+[connection signal="body_entered" from="ladder_detector" to="." method="_on_ladder_entered"]
+[connection signal="body_exited" from="ladder_detector" to="." method="_on_ladder_exited"]
