@@ -17,7 +17,7 @@ func _on_body_entered(body):
 	Kevin.add_life()
 	emit_signal("life_added")
 	$AnimationPlayer.play("bounce")
-	set_collision_mask_value(0, false)
+	set_collision_mask_value(1, false)
 	await collectable_access.set_is_reached(self.data["id"], self.data["level_id"])
 	
 
