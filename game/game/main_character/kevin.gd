@@ -1,8 +1,10 @@
 extends CharacterBody2D
 
-
+enum States { AIR, FLOOR, LADDERS, SHOT }
+var state = States.AIR
 const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const JUMP_VELOCITY = -350.0
+const SHOT = preload("res://game/shot/shot.tscn")
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
@@ -10,53 +12,85 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 @onready var anim = get_node("AnimationPlayer")
 
 func _physics_process(delta):
-	# Add the gravity.
-	if not is_on_floor():
-		velocity.y += gravity * delta
 		
-	
-	# Handle Jump.
-	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		anim.play("jump")
-		
-	if velocity.y > 0:
-		anim.play("fall")
+	match state:
+		States.AIR:
+			velocity.y += gravity * delta
+			
+			if velocity.y > 0:
+				anim.play("fall")
+			
+			var direction = direction_input()
+			
+			velocity.x = direction * SPEED
+			
+			if is_on_floor():
+				state = States.FLOOR
+				
+			move_and_slide()
+			
+		States.FLOOR:
+			var direction = direction_input()
+			
+			if direction:
+				velocity.x = direction * SPEED
+				if velocity.y == 0:
+					if Input.is_action_just_pressed("ui_shoot"):
+						shot(false)
+						anim.play("run_shot")
+						await  $AnimatedSprite2D.animation_finished
+					else:
+						anim.play("run")
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+				if velocity.y == 0:
+					if Input.is_action_pressed("ui_down"):
+						anim.play("duck")
+						if Input.is_action_just_pressed("ui_shoot"):
+							shot(true)
+					elif Input.is_action_just_pressed("ui_shoot"):
+						shot(false)
+						anim.play("shoot")
+						await  $AnimatedSprite2D.animation_finished
+					else:	
+						anim.play("idle")
+				
+			if Input.is_action_just_pressed("ui_accept"):
+				velocity.y = JUMP_VELOCITY
+				anim.play("jump")
+			
+			if not is_on_floor():
+				state = States.AIR
+				
+			move_and_slide()
 
 	# Get the input direction and handle the movement/deceleration.
 	# As good practice, you should replace UI actions with custom gameplay actions.
-	var direction = Input.get_axis("ui_left", "ui_right")
-	if direction == -1:
-		get_node("AnimatedSprite2D").flip_h = true
-	elif direction == 1:
-		get_node("AnimatedSprite2D").flip_h = false
-		
-	if direction:
-		velocity.x = direction * SPEED
-		if velocity.y == 0:
-			if Input.is_action_pressed("ui_shoot"):
-				anim.play("run_shot")
-			else:
-				anim.play("run")
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		if velocity.y == 0:
-			if Input.is_action_pressed("ui_down"):
-				anim.play("duck")
-			elif Input.is_action_pressed("ui_shoot"):
-				anim.play("shoot")
-			else:	
-				anim.play("idle")
-
-	move_and_slide()
 
 
 func _on_dangerzone_body_entered(body):
 	Kevin.death()
 	get_tree().change_scene_to_file("res://game/level_1/level_1.tscn")
 
+func direction_input() -> int:
+	var direction = Input.get_axis("ui_left", "ui_right")
+	if direction == -1:
+		get_node("AnimatedSprite2D").flip_h = true
+	elif direction == 1:
+		get_node("AnimatedSprite2D").flip_h = false
+	
+	return direction
 
-
+func shot(is_duck):
+	var shot_direction = 1 if not $AnimatedSprite2D.flip_h else -1
+	var shot_instance = SHOT.instantiate()
+	shot_instance.direction = shot_direction
+	get_parent().add_child(shot_instance)
+	shot_instance.position.x = position.x + 10 * shot_direction
+	if is_duck:
+		shot_instance.position.y = position.y + 3
+	else:
+		shot_instance.position.y = position.y
 
 func _on_add_life_life_added():
 	self.life_visual_setup()

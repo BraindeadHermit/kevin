@@ -23,15 +23,23 @@ func _physics_process(delta):
 		velocity.y += gravity * delta
 	elif is_on_wall() or (not $floor_detector.is_colliding() and should_detect_floor):
 		turn(direction * -1, not $AnimatedSprite2D.flip_h)
-	# Get the input direction and handle the movement/deceleration.
-	# As good practice, you should replace UI actions with custom gameplay actions.
+	
 	velocity.x = direction * SPEED
 
 	move_and_slide()
 
 
 func _on_player_detector_body_entered(body):
-	body.hurt(position.x)
+	if body.get_collision_layer() == 1:
+		body.hurt(position.x)
+	elif body.get_collision_layer() == 32:
+		body.destroy()
+		$Timer.start()
+		$player_hurt.set_collision_mask_value(1, false)
+		velocity.x = 0
+		$AnimatedSprite2D.play("die")
+		await $AnimatedSprite2D.animation_finished
+		queue_free()
 
 func _on_player_detected(body):
 	SPEED = 75.0
@@ -47,3 +55,7 @@ func turn(new_direction, flip_sprite):
 	direction = new_direction
 	$AnimatedSprite2D.flip_h = flip_sprite
 	$floor_detector.position.x = $CollisionShape2D.shape.radius * direction
+
+
+func _on_timer_timeout():
+	$AudioStreamPlayer2D.play()
