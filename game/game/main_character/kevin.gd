@@ -36,7 +36,7 @@ func _physics_process(delta):
 				velocity.x = direction * SPEED
 				if velocity.y == 0:
 					if Input.is_action_just_pressed("ui_shoot"):
-						shot()
+						shot(false)
 						anim.play("run_shot")
 						await  $AnimatedSprite2D.animation_finished
 					else:
@@ -46,8 +46,10 @@ func _physics_process(delta):
 				if velocity.y == 0:
 					if Input.is_action_pressed("ui_down"):
 						anim.play("duck")
+						if Input.is_action_just_pressed("ui_shoot"):
+							shot(true)
 					elif Input.is_action_just_pressed("ui_shoot"):
-						shot()
+						shot(false)
 						anim.play("shoot")
 						await  $AnimatedSprite2D.animation_finished
 					else:	
@@ -79,13 +81,16 @@ func direction_input() -> int:
 	
 	return direction
 
-func shot():
+func shot(is_duck):
 	var shot_direction = 1 if not $AnimatedSprite2D.flip_h else -1
 	var shot_instance = SHOT.instantiate()
 	shot_instance.direction = shot_direction
 	get_parent().add_child(shot_instance)
 	shot_instance.position.x = position.x + 10 * shot_direction
-	shot_instance.position.y = position.y
+	if is_duck:
+		shot_instance.position.y = position.y + 3
+	else:
+		shot_instance.position.y = position.y
 
 func _on_add_life_life_added():
 	self.life_visual_setup()
