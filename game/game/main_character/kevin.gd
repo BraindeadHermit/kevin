@@ -73,20 +73,42 @@ func _physics_process(delta):
 				
 			move_and_slide()
 		States.LADDERS:
+			if not on_ladder:
+				state = States.AIR
+				return
+			elif is_on_floor() and Input.is_action_pressed("ui_down"):
+				state = States.FLOOR
+				Input.action_release("ui_down")
+				Input.action_release("ui_up")
+				return
+			elif Input.is_action_pressed("ui_accept"):
+				Input.action_release("ui_down")
+				Input.action_release("ui_up")
+				velocity.y = JUMP_VELOCITY * 0.7
+				anim.play("jump")
+				state = States.AIR
+				return
+			
 			if Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_left") or Input.is_action_pressed("ui_right"):
 				anim.play("ladder")
 			else:
 				anim.stop()
 			
-			if Input.is_action_just_pressed("ui_up"):
+			if Input.is_action_pressed("ui_up"):
 				velocity.y = -SPEED/6
-			elif Input.is_action_just_pressed("ui_down"):
+			elif Input.is_action_pressed("ui_down"):
 				velocity.y = SPEED/6
 				
-			if Input.is_action_just_pressed("ui_left"):
+			if Input.is_action_pressed("ui_left"):
 				velocity.x = -SPEED/6
-			elif Input.is_action_just_pressed("ui_right"):
+			elif Input.is_action_pressed("ui_right"):
 				velocity.x = SPEED/6
+				
+			if Input.is_action_just_released("ui_down") or Input.is_action_just_released("ui_up"):
+				velocity.y = 0
+			
+			if Input.is_action_just_released("ui_left") or Input.is_action_just_released("ui_right"):
+				velocity.x = 0
 				
 			move_and_slide()
 
