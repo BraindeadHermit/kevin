@@ -25,3 +25,7 @@ func destroy():
 	
 func _on_shot_screen_exited():
 	queue_free()
+
+
+func _on_timer_timeout():
+	$AudioStreamPlayer2D.play()

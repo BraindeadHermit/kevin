@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://cda5vfn5wemh0"]
+[gd_scene load_steps=13 format=3 uid="uid://cda5vfn5wemh0"]
 
 [ext_resource type="Texture2D" uid="uid://dhlfryqj3p3aj" path="res://assets/levels/level_1/Fx/Sprites/Player-shoot-hit/player-shoot-hit1.png" id="1_62c5k"]
 [ext_resource type="Script" path="res://game/shot/shot.gd" id="1_x1isa"]
@@ -9,6 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://c1weu23quubeq" path="res://assets/levels/level_1/Fx/Sprites/Player-Shoot/player-shoot2.png" id="6_puexk"]
 [ext_resource type="Texture2D" uid="uid://bnxj4qjfhlouj" path="res://assets/levels/level_1/Fx/Sprites/Player-Shoot/player-shoot3.png" id="7_ni7jx"]
 [ext_resource type="Texture2D" uid="uid://ejrr2uakstvf" path="res://assets/levels/level_1/Fx/Sprites/Player-Shoot/player-shoot4.png" id="8_6d14s"]
+[ext_resource type="AudioStream" uid="uid://sxvl13x4fd6f" path="res://assets/audio/sfx/weapon/Retro Gun Laser SingleShot 01.wav" id="10_dlya5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_cdiub"]
 radius = 3.0
@@ -70,4 +71,13 @@ frame_progress = 1.0
 position = Vector2(1, 1)
 scale = Vector2(4.9, 1.8)
 
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+autostart = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_dlya5")
+
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_shot_screen_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
