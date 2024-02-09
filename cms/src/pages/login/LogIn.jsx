@@ -1,15 +1,11 @@
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { alpha, createTheme, ThemeProvider } from "@mui/material/styles";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const defaultTheme = createTheme({
   palette: {
@@ -50,14 +46,31 @@ const defaultTheme = createTheme({
   }
 });
 
+  async function loginUser(credentials) {
+
+    console.log(credentials)
+
+    return await fetch('https://tspr.ovh/api/company/auth/login', {
+      credentials: 'include',
+      method: 'POST',
+      body: JSON.stringify(credentials),
+    }).then(data => console.log(data))
+      .catch((error)=>{
+        console.log(error);
+      });
+   }
+
 export default function LogIn() {
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
     const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
+    const response = await loginUser({
+      login: data.get('login'),
+      password: data.get('password')
+    })
+
+    if (response.status == 200)
+      useNavigate('/home')
   };
 
   return (
@@ -89,11 +102,12 @@ export default function LogIn() {
               color="secondary"
               required
               fullWidth
-              id="email"
+              id="login"
               label="Email Address"
-              name="email"
+              name="login"
               autoComplete="email"
               autoFocus
+              
             />
             <TextField
               margin="normal"
@@ -105,10 +119,6 @@ export default function LogIn() {
               type="password"
               id="password"
               autoComplete="current-password"
-            />
-            <FormControlLabel color="white"
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
             />
             <Button
               color="primary"

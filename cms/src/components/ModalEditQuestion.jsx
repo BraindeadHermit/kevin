@@ -22,16 +22,27 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 export default function ModalEditQuestion() {
   const [open, setOpen] = React.useState(false);
-  const [defaultValue, setDefaultValue] = React.useState('UDP')
+  const [defaultValue, setDefaultValue] = React.useState('UDP');
+  const [title, setTitle] = React.useState('Quale tipo di protocollo viene utilizzato per effettuare una richiesta al server?');
+  const [flag, setFlag] = React.useState(true)
 
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
-  const handleChanges = (event) => {
-    setDefaultValue(event.target.value);
+
+  const handleAnswerChanges = (event) => {
+    if (event.target.value != '' && event.target.value != defaultValue) {
+      setFlag(false)
+      return event.target.value
+    }  
+  }
+
+  const handleChanges = () => {
+    setDefaultValue(handleAnswerChanges);
     handleClose();
   };
 
@@ -47,9 +58,7 @@ export default function ModalEditQuestion() {
         aria-labelledby="customized-dialog-title"
         open={open}
       >
-        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">
-             Quale tipo di protocollo viene utilizzato per effettuare una richiesta al server?
-        </DialogTitle>
+        <DialogTitle sx={{ m: 0, p: 2 }} id="customized-dialog-title">{title}</DialogTitle>
         <IconButton
           aria-label="close"
           onClick={handleClose}
@@ -68,7 +77,7 @@ export default function ModalEditQuestion() {
                 Risposte
             </Typography>
             <Box display={'flex'} flexDirection={'column'} sx={{ border: '0.1px solid', borderRadius: 4, borderColor:'rgba(0, 0, 0, 0.12)' }}>
-                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }} defaultValue={defaultValue}/>
+                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }} defaultValue={defaultValue} onChange={handleAnswerChanges} />
                 <Divider/>
                 <InputBase sx={{ ml: 1, flex: 1, padding: 1 }} defaultValue={defaultValue}/>
                 <Divider/>
@@ -79,8 +88,8 @@ export default function ModalEditQuestion() {
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button autoFocus onClick={handleChanges}>
-            Save changes
+          <Button disabled={flag} autoFocus sx={{color: '#edc115'}} onClick={handleChanges}>
+            Salva Modifiche
           </Button>
         </DialogActions>
       </BootstrapDialog>

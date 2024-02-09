@@ -39,9 +39,7 @@ export default function DeleteButton() {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Si</Button>
-          <Button onClick={handleClose} autoFocus>
-            No
-          </Button>
+          <Button onClick={handleClose} autoFocus>No</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>

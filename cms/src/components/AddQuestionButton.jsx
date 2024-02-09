@@ -6,10 +6,9 @@ import DialogTitle from '@mui/material/DialogTitle';
 import DialogContent from '@mui/material/DialogContent';
 import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
-import Edit from '@mui/icons-material/Edit'
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
-import { Box, Divider, InputBase, Tooltip } from '@mui/material';
+import { Box, Divider, InputBase } from '@mui/material';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -22,16 +21,24 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 
 export default function AddQuestionButton() {
   const [open, setOpen] = React.useState(false);
-  const [defaultValue, setDefaultValue] = React.useState('UDP')
+  const [flag, setFlag] = React.useState(true)
+
+  const handleTextChange = (event) => {
+    if (event.target.value != '')
+      setFlag(false)
+    else
+      setFlag(true)
+  };
 
   const handleClickOpen = () => {
     setOpen(true);
   };
+
   const handleClose = () => {
     setOpen(false);
   };
+
   const handleChanges = (event) => {
-    setDefaultValue(event.target.value);
     handleClose();
   };
 
@@ -50,7 +57,7 @@ export default function AddQuestionButton() {
           <Typography variant='subtitle2' padding={0.5} fontWeight={800}>
               Domanda
           </Typography>    
-          <InputBase sx={{ ml: 1, flex: 1, padding: 1 }}/>  
+          <InputBase onChange={handleTextChange} sx={{ ml: 1, flex: 1, padding: 1 }}/>  
         </DialogTitle>
         <IconButton
           aria-label="close"
@@ -70,18 +77,18 @@ export default function AddQuestionButton() {
                 Risposte
             </Typography>
             <Box display={'flex'} flexDirection={'column'} sx={{ border: '0.1px solid', borderRadius: 4, borderColor:'rgba(0, 0, 0, 0.12)' }}>
-                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }}/>
+                <InputBase onChange={handleTextChange} sx={{ ml: 1, flex: 1, padding: 1 }}/>
                 <Divider/>
-                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }}/>
+                <InputBase onChange={handleTextChange} sx={{ ml: 1, flex: 1, padding: 1 }}/>
                 <Divider/>
-                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }}/>
+                <InputBase onChange={handleTextChange} sx={{ ml: 1, flex: 1, padding: 1 }}/>
                 <Divider/>
-                <InputBase sx={{ ml: 1, flex: 1, padding: 1 }}/>
+                <InputBase onChange={handleTextChange} sx={{ ml: 1, flex: 1, padding: 1 }}/>
             </Box>
           </Box>
         </DialogContent>
         <DialogActions>
-          <Button sx={{color: '#edc115'}} autoFocus onClick={handleChanges}>
+          <Button disabled={flag} sx={{color: '#edc115'}} autoFocus onClick={handleChanges}>
             Aggiungi
           </Button>
         </DialogActions>
