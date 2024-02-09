@@ -1,0 +1,109 @@
+[gd_scene load_steps=10 format=3 uid="uid://c2vnfu4m85lgg"]
+
+[ext_resource type="VideoStream" path="res://assets/video/Hacker-Typer.ogv" id="1_g7slf"]
+[ext_resource type="Script" path="res://pages/game_over/game_over.gd" id="1_kr2hd"]
+[ext_resource type="FontFile" uid="uid://d16fe7j0t7esm" path="res://assets/fonts/Orbitron/Orbitron-Bold.ttf" id="1_vwqqf"]
+[ext_resource type="Texture2D" uid="uid://bdgvi3sucxldl" path="res://assets/img/shade.png" id="2_uxpw0"]
+[ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="2_w5sbe"]
+[ext_resource type="FontFile" uid="uid://c8iep7283gdgg" path="res://assets/fonts/Orbitron/Orbitron-Regular.ttf" id="5_betlr"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_15f7s"]
+font = ExtResource("1_vwqqf")
+font_size = 56
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjta2"]
+font = ExtResource("1_vwqqf")
+font_size = 45
+font_color = Color(0.0156863, 0.792157, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_p6i83"]
+font = ExtResource("5_betlr")
+font_size = 32
+font_color = Color(0.0156863, 0.792157, 0, 1)
+
+[node name="game_over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kr2hd")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_g7slf")
+autoplay = true
+expand = true
+
+[node name="Shade" type="Sprite2D" parent="."]
+position = Vector2(964, 545)
+scale = Vector2(1, 0.996296)
+texture = ExtResource("2_uxpw0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 135.0
+offset_top = 90.0
+offset_right = 530.0
+offset_bottom = 164.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_15f7s")
+
+[node name="riprova" parent="." instance=ExtResource("2_w5sbe")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 46.0
+offset_top = -222.5
+offset_right = 446.0
+offset_bottom = -147.5
+grow_horizontal = 1
+metadata/button_text = "RIPROVA"
+
+[node name="home page" parent="." instance=ExtResource("2_w5sbe")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 46.0
+offset_top = -128.5
+offset_right = 446.0
+offset_bottom = -53.5
+grow_horizontal = 1
+metadata/button_text = "home"
+
+[node name="Label2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -843.0
+offset_top = -53.0
+offset_right = -354.0
+offset_bottom = 7.0
+grow_horizontal = 0
+grow_vertical = 2
+text = "access granted"
+label_settings = SubResource("LabelSettings_vjta2")
+uppercase = true
+
+[node name="Label3" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1147.0
+offset_top = 544.0
+offset_right = 1506.0
+offset_bottom = 588.0
+text = "l'hacker ti ha battuto"
+label_settings = SubResource("LabelSettings_p6i83")
+
+[connection signal="pressed" from="riprova" to="." method="_on_riprova_pressed"]
+[connection signal="pressed" from="home page" to="." method="_on_home_page_pressed"]
