@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://exfx11pnjdvu"
-path="res://.godot/imported/button.png-2989c511a73403c0dbc02ec8ebc942ef.ctex"
+uid="uid://cq0d5vyiyvw38"
+path="res://.godot/imported/LINE_3.svg-e5151f1fe91005fb084ccd0572be79a7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/graphic components/main-menu/button.png"
-dest_files=["res://.godot/imported/button.png-2989c511a73403c0dbc02ec8ebc942ef.ctex"]
+source_file="res://assets/img/main_sfx/LINE_3.svg"
+dest_files=["res://.godot/imported/LINE_3.svg-e5151f1fe91005fb084ccd0572be79a7.ctex"]
 
 [params]
 
@@ -32,3 +32,6 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
+svg/scale=1.0
+editor/scale_with_editor_scale=false
+editor/convert_colors_with_editor_theme=false

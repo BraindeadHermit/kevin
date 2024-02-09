@@ -1,42 +1,28 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvgyg8352vxmi"]
+[gd_scene load_steps=7 format=3 uid="uid://cvgyg8352vxmi"]
 
 [ext_resource type="Script" path="res://components/main-menu-button/main-menu-button.gd" id="1_fmvui"]
-[ext_resource type="Texture2D" uid="uid://bqfxq06x2nmcn" path="res://assets/graphic components/main-menu/button_pressed.png" id="2_8so7t"]
-[ext_resource type="FontFile" uid="uid://dime1jlce70ux" path="res://assets/fonts/ubuntu/Ubuntu-Regular.ttf" id="2_yq4q2"]
-[ext_resource type="Texture2D" uid="uid://d2tcvydaktx7g" path="res://assets/graphic components/main-menu/button_hover.png" id="3_wc0cf"]
+[ext_resource type="Texture2D" uid="uid://exfx11pnjdvu" path="res://assets/graphic components/main-menu/button.png" id="1_im2lp"]
+[ext_resource type="Texture2D" uid="uid://bkph75hhgk1bc" path="res://assets/graphic components/main-menu/button_pressed.png" id="2_8so7t"]
+[ext_resource type="FontFile" uid="uid://c8iep7283gdgg" path="res://assets/fonts/Orbitron/Orbitron-Regular.ttf" id="4_iipoe"]
 
 [sub_resource type="Theme" id="Theme_kpkad"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_2mgn6"]
-font = ExtResource("2_yq4q2")
-font_size = 50
-font_color = Color(0, 0.878431, 0, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_ir3v2"]
-font = ExtResource("2_yq4q2")
-font_size = 50
-
-[sub_resource type="LabelSettings" id="LabelSettings_v7var"]
-font = ExtResource("2_yq4q2")
-font_size = 50
-font_color = Color(0, 1, 1, 1)
-
 [sub_resource type="LabelSettings" id="LabelSettings_bumfw"]
-font = ExtResource("2_yq4q2")
-font_size = 50
+font = ExtResource("4_iipoe")
+font_size = 40
 
 [node name="TextureButton" type="TextureButton"]
 use_parent_material = true
-custom_minimum_size = Vector2(516, 166)
+custom_minimum_size = Vector2(400, 75)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -258.0
-offset_top = -83.0
-offset_right = 258.0
-offset_bottom = 83.0
+offset_left = -200.0
+offset_top = -37.5
+offset_right = 200.0
+offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 6
@@ -45,55 +31,27 @@ size_flags_stretch_ratio = 3.02
 mouse_default_cursor_shape = 2
 theme = SubResource("Theme_kpkad")
 texture_pressed = ExtResource("2_8so7t")
-texture_hover = ExtResource("3_wc0cf")
+texture_hover = ExtResource("1_im2lp")
 ignore_texture_size = true
-stretch_mode = 0
 script = ExtResource("1_fmvui")
 metadata/button_text = ""
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-custom_minimum_size = Vector2(516, 166)
+[node name="text" type="Label" parent="."]
 layout_mode = 1
-anchors_preset = 4
+anchors_preset = 8
+anchor_left = 0.5
 anchor_top = 0.5
+anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = 26.0
-offset_top = -83.0
-offset_right = 542.0
-offset_bottom = 83.0
+offset_left = -105.5
+offset_top = -27.0
+offset_right = 105.5
+offset_bottom = 27.0
+grow_horizontal = 2
 grow_vertical = 2
-mouse_default_cursor_shape = 2
-
-[node name="root" type="Label" parent="HBoxContainer"]
-clip_contents = true
-layout_mode = 2
 size_flags_horizontal = 4
-text = "kevin"
-label_settings = SubResource("LabelSettings_2mgn6")
-
-[node name="duble_dot" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = ":"
-label_settings = SubResource("LabelSettings_ir3v2")
-
-[node name="tilde" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "~"
-label_settings = SubResource("LabelSettings_v7var")
-
-[node name="dollar" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "$ "
-label_settings = SubResource("LabelSettings_ir3v2")
-
-[node name="text" type="Label" parent="HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
+text = "prova"
 label_settings = SubResource("LabelSettings_bumfw")
+uppercase = true
 
 [connection signal="resized" from="." to="." method="_on_resized"]
-[connection signal="ready" from="HBoxContainer/root" to="." method="_on_root_ready"]
-[connection signal="resized" from="HBoxContainer/root" to="." method="_on_root_resized"]
