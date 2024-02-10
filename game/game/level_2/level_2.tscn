@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://cq71jo2u7htc"]
+[gd_scene load_steps=69 format=3 uid="uid://cq71jo2u7htc"]
 
 [ext_resource type="Texture2D" uid="uid://c4yieawp1pmt3" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/background/skyline-a.png" id="1_diwfe"]
 [ext_resource type="Texture2D" uid="uid://cujfdjgf6p425" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/background/Rectangle 191.png" id="1_ponlp"]
@@ -35,6 +35,7 @@
 [ext_resource type="Texture2D" uid="uid://bepmf4ba7djt5" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-side/banner-side-3.png" id="32_vwbf8"]
 [ext_resource type="Texture2D" uid="uid://crgvb6sarhg21" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-side/banner-side-4.png" id="33_fwhh0"]
 [ext_resource type="PackedScene" uid="uid://6kyjkvc21jul" path="res://game/banners_sprites/banner_big.tscn" id="34_mqg48"]
+[ext_resource type="PackedScene" uid="uid://cisdb2ci5px5i" path="res://game/terminal/terminal.tscn" id="36_od7jx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epvhu"]
 texture = ExtResource("4_js3mm")
@@ -2023,4 +2024,28 @@ metadata/_edit_group_ = true
 position = Vector2(4355.5, 63.5)
 shape = SubResource("RectangleShape2D_kdgnm")
 
+[node name="terminal" parent="." instance=ExtResource("36_od7jx")]
+position = Vector2(1434, 957)
+
+[node name="terminal2" parent="." instance=ExtResource("36_od7jx")]
+position = Vector2(2983, 797)
+metadata/question = 1
+
+[node name="terminal3" parent="." instance=ExtResource("36_od7jx")]
+position = Vector2(3539, 556)
+metadata/question = 2
+
+[node name="terminal4" parent="." instance=ExtResource("36_od7jx")]
+position = Vector2(4378, 1101)
+metadata/question = 3
+
+[node name="terminal5" parent="." instance=ExtResource("36_od7jx")]
+position = Vector2(74, 957)
+metadata/question = 4
+
+[connection signal="loaded" from="." to="terminal" method="_on_level_loaded"]
+[connection signal="loaded" from="." to="terminal2" method="_on_level_loaded"]
+[connection signal="loaded" from="." to="terminal3" method="_on_level_loaded"]
+[connection signal="loaded" from="." to="terminal4" method="_on_level_loaded"]
+[connection signal="loaded" from="." to="terminal5" method="_on_level_loaded"]
 [connection signal="body_entered" from="dangerzone_level_2" to="kevin" method="_on_dangerzone_level_2_body_entered"]

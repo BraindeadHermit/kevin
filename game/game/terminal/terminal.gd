@@ -52,7 +52,7 @@ func on_question_answered(answer_number):
 	$CanvasLayer.visible = false
 	completed.emit(terminal_number, answers[answer_number]["is_correct"])
 
-func _on_level_1_loaded(terminal_data):
+func _on_level_loaded(terminal_data):
 	self.data = terminal_data[terminal_number]
 	
 	question = await question_access.get_question_by_id(data["question_id"])
@@ -69,6 +69,4 @@ func _on_level_1_loaded(terminal_data):
 	$CanvasLayer/Panel/question2/Label.text = answers[1]["text"]
 	$CanvasLayer/Panel/question3/Label.text = answers[2]["text"]
 	$CanvasLayer/Panel/question4/Label.text = answers[3]["text"]
-	
-	
-	
+
