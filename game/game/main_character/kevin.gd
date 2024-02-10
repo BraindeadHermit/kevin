@@ -199,7 +199,7 @@ func _on_terminal_5_completed(terminal_number, is_correct):
 		$CanvasLayer/give_answares/answare_5.texture = load("res://assets/graphic components/hud/wrong.png")
 	
 func completed_answer():
-	var given_ans = Kevin.get_level1_answared_questions()
+	var given_ans = Kevin.get_answared_questions()
 	$CanvasLayer/given_ans.text = "Risposte Date: " + str(given_ans) + "/5"
 	$CanvasLayer/terminals/terminal_number.text = str(given_ans)
 	

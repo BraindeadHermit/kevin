@@ -4,6 +4,7 @@ extends Control
 
 
 func _on_next_level_pressed():
+	Kevin.reset_ans_questions()
 	get_tree().call_deferred("change_scene_to_file", "res://game/level_2/level_2.tscn")
 
 

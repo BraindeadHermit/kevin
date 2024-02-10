@@ -17,7 +17,7 @@ func _ready():
 		$"life panel/life_2".visible = false
 		$"life panel/life_3".visible = false
 	
-	var given_ans = Kevin.get_level1_answared_questions()
+	var given_ans = Kevin.get_answared_questions()
 	
 	$given_ans.text = "Risposte Date: " + str(given_ans) + "/5"
 	$terminals/terminal_number.text = str(given_ans)
