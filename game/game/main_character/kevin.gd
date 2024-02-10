@@ -118,6 +118,10 @@ func _physics_process(delta):
 func _on_dangerzone_body_entered(body):
 	Kevin.death()
 	get_tree().change_scene_to_file("res://game/level_1/level_1.tscn")
+	
+func _on_dangerzone_level_2_body_entered(body):
+	Kevin.death()
+	get_tree().change_scene_to_file("res://game/level_2/level_2.tscn")
 
 func direction_input() -> int:
 	var direction = Input.get_axis("ui_left", "ui_right")
@@ -228,4 +232,4 @@ func is_on_ladder() -> bool:
 		return true
 	
 	return false
-		
+
