@@ -17,7 +17,10 @@ func get_user_id(username, company_code):
 	var res = await db.query("SELECT id FROM user WHERE user.name = '" + username + "' AND user.company_code = '" + company_code + "'")
 	
 	if res:
-		return db.query_result[0]["id"]
+		if db.query_result == []:
+			return -1
+		else:
+			return db.query_result[0]["id"]
 		
 	return null
 	

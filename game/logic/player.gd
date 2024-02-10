@@ -18,11 +18,12 @@ func add_life():
 		player_access.set_player_lifes(self._lifes, Global.get_current_match_id())
 		
 func death():
-	if self._lifes >= 1:
+	if self._lifes > 1:
 		self._lifes -= 1
 		player_access.set_player_lifes(self._lifes, Global.get_current_match_id())
 	else:
-		"die --> put a game over screen"
+		var game_over = load("res://pages/game_over/game_over.tscn")
+		get_tree().call_deferred('change_scene_to_packed', game_over)
 
 func get_lifes():
 	return self._lifes
@@ -35,3 +36,7 @@ func set_level1_given_questions(given_questions):
 	
 func get_level1_answared_questions():
 	return self._level1_answared_questions
+	
+func restart_game():
+	self._lifes = 3
+	player_access.set_player_lifes(3, Global.get_current_match_id())
