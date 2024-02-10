@@ -53,3 +53,8 @@ func get_level_by_id(level_id):
 		return db.query_result[0]
 	
 	return null
+
+func set_level_is_completed(level_id):
+	var result = await db.query("UPDATE level SET is_completed = true WHERE id = " + str(level_id) + ";")
+	
+	return result
