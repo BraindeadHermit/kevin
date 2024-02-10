@@ -37,7 +37,10 @@ func _ready():
 func _on_area_2d_body_entered(body):
 	var ans_questions = await level_access.get_answered_questions_number(level_id)
 	if ans_questions == 5:
-		print("Level Passed")
+		var is_completed = await level_access.set_level_is_completed(level_id)
+		if is_completed:
+			get_tree().call_deferred("change_scene_to_file", "res://pages/level_win_page/level_win.tscn")
+			print("Level Passed")
 	else:
 		$level_blocked.show()
 		print("Non hai risposto a tutte le domande")
@@ -46,4 +49,4 @@ func _on_area_2d_body_entered(body):
 func _on_next_level_access_body_exited(body):
 	if $level_blocked.visible == true:
 		$level_blocked.hide()
-		
+
