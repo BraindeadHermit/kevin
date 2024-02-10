@@ -39,4 +39,11 @@ func _on_area_2d_body_entered(body):
 	if ans_questions == 5:
 		print("Level Passed")
 	else:
+		$level_blocked.show()
 		print("Non hai risposto a tutte le domande")
+
+
+func _on_next_level_access_body_exited(body):
+	if $level_blocked.visible == true:
+		$level_blocked.hide()
+		
