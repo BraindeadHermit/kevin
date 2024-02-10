@@ -4,6 +4,7 @@ class_name Player
 var _lifes: int
 var _damage: int
 var _level1_answared_questions = 0;
+var _level2_answared_questions = 0;
 
 var player_access = player_dao.new()
 

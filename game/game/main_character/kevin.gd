@@ -232,4 +232,3 @@ func is_on_ladder() -> bool:
 		return true
 	
 	return false
-
