@@ -13,9 +13,14 @@ var level_id
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	Kevin.player_init()
 	
-	level_id = await level_access.create_new_level(Global.get_current_match_id(), "livello 1", "malware")
+	level_id = await  level_access.get_level_id_by_name("livello 1", Global.get_current_match_id())
+	print(level_id)
+	
+	if level_id == -1:
+		level_id = await level_access.create_new_level(Global.get_current_match_id(), "livello 1", "malware")
+	
+	Kevin.player_init()
 	
 	var answered = await level_access.get_answered_questions_number(level_id)
 	

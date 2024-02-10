@@ -38,4 +38,5 @@ func get_level1_answared_questions():
 	return self._level1_answared_questions
 	
 func restart_game():
+	self._lifes = 3
 	player_access.set_player_lifes(3, Global.get_current_match_id())

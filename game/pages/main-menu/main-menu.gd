@@ -32,4 +32,5 @@ func _on_quit_pressed():
 func _on_play_pressed():
 	var game_id = await match_access.create_new_match(Global.get_username(), Global.get_company_code())
 	Global.set_current_match_id(game_id)
+	Kevin.restart_game()
 	get_tree().call_deferred("change_scene_to_file", "res://game/level_1/level_1.tscn")

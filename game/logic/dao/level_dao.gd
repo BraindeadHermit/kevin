@@ -10,7 +10,10 @@ var collectable_access = collectable_dao.new()
 func get_level_id_by_name(level_name, game_id):
 	var result = await db.query("SELECT id FROM level WHERE name = '" + level_name + "' AND game_id = " + str(game_id) + ";")
 	if result:
-		return db.query_result[0]["id"]
+		if db.query_result != []:
+			return db.query_result[0]["id"]
+		else:
+			return -1
 	
 	return null
 
@@ -33,7 +36,7 @@ func create_new_level(game_id, level_name, topic):
 		await terminal_access.create_new_terminal(level_id, questions[i]["id"])
 	
 	await collectable_access.create_new_collectable(level_id, "add_life")
-	await collectable_access.create_new_collectable(level_id, "add_life")	
+	await collectable_access.create_new_collectable(level_id, "add_life")
 	
 	return level_id
 	
@@ -42,3 +45,11 @@ func get_answered_questions_number(level_id):
 	
 	if result:
 		return db.query_result[0]["COUNT(id)"]
+		
+func get_level_by_id(level_id):
+	var result = await db.query("SELECT * FROM level WHERE id = " + str(level_id) + ";")
+	
+	if result:
+		return db.query_result[0]
+	
+	return null

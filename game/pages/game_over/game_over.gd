@@ -18,3 +18,11 @@ func _on_riprova_pressed():
 
 func _on_home_page_pressed():
 	get_tree().call_deferred("change_scene_to_file", "res://pages/main-menu/main-menu.tscn")
+
+
+func _on_video_stream_player_finished():
+	$VideoStreamPlayer.play()
+
+
+func _on_audio_stream_player_2d_finished():
+	$AudioStreamPlayer2D.play()
