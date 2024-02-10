@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=3 uid="uid://4ytrq8x6mm2n"]
+[gd_scene load_steps=24 format=3 uid="uid://4ytrq8x6mm2n"]
 
 [ext_resource type="Texture2D" uid="uid://diwy28h4ilswd" path="res://assets/levels/level_1/Environment/Layers/back2.png" id="1_2gvn6"]
 [ext_resource type="Texture2D" uid="uid://d3yr5du01u4xe" path="res://assets/levels/level_1/Environment/Layers/back.png" id="1_kmmw5"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://cisdb2ci5px5i" path="res://game/terminal/terminal.tscn" id="13_an3nt"]
 [ext_resource type="PackedScene" uid="uid://v2dow6lyyyll" path="res://game/add_life_collectable/add_life.tscn" id="13_obrtg"]
 [ext_resource type="PackedScene" uid="uid://c8khcrr3ahyao" path="res://game/slime_enemy/slime.tscn" id="15_scamb"]
+[ext_resource type="PackedScene" uid="uid://jb88463vepbu" path="res://game/cannot_pass_level/level_blocked.tscn" id="16_cpw0h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jx4ui"]
 texture = ExtResource("4_7infc")
@@ -1685,12 +1686,12 @@ metadata/question = 4
 position = Vector2(477, 1004)
 collision_mask = 30
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="next_level_access" type="Area2D" parent="."]
 position = Vector2(9989, -160)
 collision_layer = 0
 metadata/_edit_group_ = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="next_level_access"]
 position = Vector2(-15, 2)
 shape = SubResource("RectangleShape2D_qc2dq")
 
@@ -1700,6 +1701,8 @@ position = Vector2(901, 1018)
 [node name="slime" parent="." instance=ExtResource("15_scamb")]
 position = Vector2(670, 1004)
 direction = 1
+
+[node name="level_blocked" parent="." instance=ExtResource("16_cpw0h")]
 
 [connection signal="collectables_setup" from="." to="add_life" method="_on_level_1_collectables_setup"]
 [connection signal="collectables_setup" from="." to="add_life2" method="_on_level_1_collectables_setup"]
@@ -1716,4 +1719,5 @@ direction = 1
 [connection signal="completed" from="terminal3" to="kevin" method="_on_terminal_3_completed"]
 [connection signal="completed" from="terminal4" to="kevin" method="_on_terminal_4_completed"]
 [connection signal="completed" from="terminal5" to="kevin" method="_on_terminal_5_completed"]
-[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_entered" from="next_level_access" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="next_level_access" to="." method="_on_next_level_access_body_exited"]
