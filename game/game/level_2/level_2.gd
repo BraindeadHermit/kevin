@@ -33,3 +33,15 @@ func _ready():
 	collectables = await collectable_access.get_collectables_by_level_id(level_id)
 	
 	await collectables_setup.emit(collectables)
+
+
+func _on_win_zone_body_entered(body):
+	var ans_questions = await level_access.get_answered_questions_number(level_id)
+	if ans_questions == 5:
+		var is_completed = await level_access.set_level_is_completed(level_id)
+		if is_completed:
+			get_tree().call_deferred("change_scene_to_file", "res://pages/level_win_page/level_win.tscn")
+			print("Level Passed")
+	else:
+		$level_blocked.show()
+		print("Non hai risposto a tutte le domande")
