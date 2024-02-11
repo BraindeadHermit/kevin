@@ -188,6 +188,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 stream = ExtResource("2_5df4c")
+volume_db = -80.0
 autoplay = true
 expand = true
 
@@ -287,3 +288,4 @@ libraries = {
 }
 
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

@@ -40,7 +40,7 @@ func _on_win_zone_body_entered(body):
 	if ans_questions == 5:
 		var is_completed = await level_access.set_level_is_completed(level_id)
 		if is_completed:
-			get_tree().call_deferred("change_scene_to_file", "res://pages/level_win_page/level_win.tscn")
+			get_tree().call_deferred("change_scene_to_file", "res://pages/game_win/game_win.tscn")
 			print("Level Passed")
 	else:
 		$level_blocked.show()
