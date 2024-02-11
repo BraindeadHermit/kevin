@@ -69,7 +69,7 @@ const LogIn = () => {
           </Typography>
           <Box
             component="form"
-            onSubmit={async (e) => {
+            onSubmit={ async (e) => {
               e.preventDefault();
               const data = new FormData(e.currentTarget);
               await login("/api/company/auth/login", {

@@ -79,6 +79,7 @@ const defaultTheme = createTheme({
 
 export default function Dashboard() {
   const [open, setOpen] = React.useState(true);
+
   const toggleDrawer = () => {
     setOpen(!open);
   };
