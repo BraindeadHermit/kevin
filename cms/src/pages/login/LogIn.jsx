@@ -1,15 +1,11 @@
-import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import FormControlLabel from "@mui/material/FormControlLabel";
-import Checkbox from "@mui/material/Checkbox";
-import Link from "@mui/material/Link";
-import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { alpha, createTheme, ThemeProvider } from "@mui/material/styles";
+import { useAuth } from "../../hooks/useAuth";
 
 const defaultTheme = createTheme({
   palette: {
@@ -30,7 +26,7 @@ const defaultTheme = createTheme({
           borderRadius: "20px",
           background: "#009688",
         },
-      }
+      },
     },
     MuiOutlinedInput: {
       styleOverrides: {
@@ -38,31 +34,24 @@ const defaultTheme = createTheme({
           color: "white",
           borderRadius: "20px",
         },
-      }
+      },
     },
     MuiCheckbox: {
       styleOverrides: {
         root: {
-          color: 'white'
-        }
-      }
-    }
-  }
+          color: "white",
+        },
+      },
+    },
+  },
 });
 
-export default function LogIn() {
-  const handleSubmit = (event) => {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get("email"),
-      password: data.get("password"),
-    });
-  };
+const LogIn = () => {
+  const { login } = useAuth();
 
   return (
     <ThemeProvider theme={defaultTheme}>
-      <Container component="main" maxWidth="sm" sx={{color: "white"}}>
+      <Container component="main" maxWidth="sm" sx={{ color: "white" }}>
         <CssBaseline />
         <Box
           sx={{
@@ -72,7 +61,7 @@ export default function LogIn() {
             alignItems: "center",
             borderRadius: 4,
             backgroundColor: "#00695F",
-            padding: "30px"
+            padding: "30px",
           }}
         >
           <Typography component="h2" variant="h5">
@@ -80,18 +69,25 @@ export default function LogIn() {
           </Typography>
           <Box
             component="form"
-            onSubmit={handleSubmit}
+            onSubmit={ async (e) => {
+              e.preventDefault();
+              const data = new FormData(e.currentTarget);
+              await login("/api/company/auth/login", {
+                login: data.get("login"),
+                password: data.get("password"),
+              });
+            }}
             noValidate
-            sx={{ mt: 1}}
+            sx={{ mt: 1 }}
           >
-            <TextField 
+            <TextField
               margin="normal"
               color="secondary"
               required
               fullWidth
-              id="email"
+              id="login"
               label="Email Address"
-              name="email"
+              name="login"
               autoComplete="email"
               autoFocus
             />
@@ -106,22 +102,20 @@ export default function LogIn() {
               id="password"
               autoComplete="current-password"
             />
-            <FormControlLabel color="white"
-              control={<Checkbox value="remember" color="primary" />}
-              label="Remember me"
-            />
             <Button
               color="primary"
               type="submit"
               fullWidth
               variant="contained"
-              sx={{ mt: 3, mb: 2, borderRadius: 15, padding: "10px 18px"}}
+              sx={{ mt: 3, mb: 2, borderRadius: 15, padding: "10px 18px" }}
             >
-             Accedi
+              Accedi
             </Button>
           </Box>
         </Box>
       </Container>
     </ThemeProvider>
   );
-}
+};
+
+export default LogIn;
