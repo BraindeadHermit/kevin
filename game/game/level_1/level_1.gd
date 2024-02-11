@@ -20,11 +20,9 @@ func _ready():
 	if level_id == -1:
 		level_id = await level_access.create_new_level(Global.get_current_match_id(), "livello 1", "malware")
 	
-	Kevin.player_init()
+	var ans_questions = await level_access.get_answered_questions_number(level_id)
 	
-	var answered = await level_access.get_answered_questions_number(level_id)
-	
-	Kevin.set_level1_given_questions(answered)
+	Kevin.player_init(ans_questions)
 	
 	terminals = await terminal_access.get_terminals_by_level_id(level_id)
 	

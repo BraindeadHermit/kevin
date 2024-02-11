@@ -58,3 +58,12 @@ func set_level_is_completed(level_id):
 	var result = await db.query("UPDATE level SET is_completed = true WHERE id = " + str(level_id) + ";")
 	
 	return result
+	
+func is_level_completed(level_name, match_id):
+	var result = await db.query("SELECT is_completed FROM level WHERE name = '" + level_name + "' AND game_id = " + str(match_id) + ";")
+	
+	if result:
+		print(db.query_result)
+		return db.query_result[0]["is_completed"]
+		
+	return null

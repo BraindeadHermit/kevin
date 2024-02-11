@@ -500,6 +500,7 @@ font = ExtResource("36_kkvnt")
 font_size = 48
 
 [node name="kevin" type="CharacterBody2D"]
+collision_mask = 2
 script = ExtResource("1_ctal3")
 metadata/_edit_group_ = true
 

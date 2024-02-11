@@ -3,14 +3,15 @@ class_name Player
 
 var _lifes: int
 var _damage: int
-var _level1_answared_questions = 0;
+var _answared_questions: int;
 
 var player_access = player_dao.new()
 
-func player_init():
+func player_init(ans_questions):
 	var player = await player_access.get_player_by_match_id(Global.get_current_match_id())
 	self._lifes = player["life"]
 	self._damage = player["damage_amount"]
+	self._answared_questions = ans_questions
 
 func add_life():
 	if self._lifes < 3:
@@ -29,14 +30,17 @@ func get_lifes():
 	return self._lifes
 
 func add_question():
-	self._level1_answared_questions += 1
+	self._answared_questions += 1
 	
-func set_level1_given_questions(given_questions):
-	self._level1_answared_questions = given_questions
+func set_given_questions(given_questions):
+	self._answared_questions = given_questions
 	
-func get_level1_answared_questions():
-	return self._level1_answared_questions
+func get_answared_questions():
+	return self._answared_questions
 	
 func restart_game():
 	self._lifes = 3
 	player_access.set_player_lifes(3, Global.get_current_match_id())
+	
+func reset_ans_questions():
+	self._answared_questions = 0

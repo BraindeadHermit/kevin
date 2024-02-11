@@ -118,6 +118,10 @@ func _physics_process(delta):
 func _on_dangerzone_body_entered(body):
 	Kevin.death()
 	get_tree().change_scene_to_file("res://game/level_1/level_1.tscn")
+	
+func _on_dangerzone_level_2_body_entered(body):
+	Kevin.death()
+	get_tree().change_scene_to_file("res://game/level_2/level_2.tscn")
 
 func direction_input() -> int:
 	var direction = Input.get_axis("ui_left", "ui_right")
@@ -195,7 +199,7 @@ func _on_terminal_5_completed(terminal_number, is_correct):
 		$CanvasLayer/give_answares/answare_5.texture = load("res://assets/graphic components/hud/wrong.png")
 	
 func completed_answer():
-	var given_ans = Kevin.get_level1_answared_questions()
+	var given_ans = Kevin.get_answared_questions()
 	$CanvasLayer/given_ans.text = "Risposte Date: " + str(given_ans) + "/5"
 	$CanvasLayer/terminals/terminal_number.text = str(given_ans)
 	
@@ -228,4 +232,3 @@ func is_on_ladder() -> bool:
 		return true
 	
 	return false
-		
