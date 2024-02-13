@@ -54,3 +54,19 @@ func create_question(question):
 	var result = await db.insert_row("question", question)
 	
 	return result
+	
+func get_all_questions_qid():
+	var result = await db.query("SELECT qid FROM question;")
+	
+	if result:
+		if db.query_result != []:
+			return db.query_result
+		
+		return []
+		
+	return null
+
+func delete_question(qid):
+	var result = await db.query("DELETE FROM question WHERE qid = '" + qid + "';")
+	
+	return result
