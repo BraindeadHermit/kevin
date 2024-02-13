@@ -7,10 +7,10 @@ func _init():
 	self.db = Database.get_db()
 
 func get_questions_numer_by_category(category):
-	var respone = await db.query("SELECT COUNT(id) FROM question WHERE category = '" + category + "';")
+	var respone = await db.query("SELECT COUNT(qid) FROM question WHERE category = '" + category + "';")
 	
 	if respone:
-		return db.query_result[0]["COUNT(id)"]
+		return db.query_result[0]["COUNT(qid)"]
 	
 	return 0
 
@@ -39,10 +39,18 @@ func select_random_questions(category):
 		
 	return selected_questions
 	
-func get_question_by_id(id):
-	var result = await db.query("SELECT * FROM question WHERE id = " + str(id) + ";")
+func get_question_by_qid(qid):
+	var result = await db.query("SELECT * FROM question WHERE qid = '" + qid + "';")
 	
 	if result:
-		return db.query_result[0]
+		if db.query_result != []:
+			return db.query_result[0]
+		else:
+			return null
 		
 	return null
+	
+func create_question(question):
+	var result = await db.insert_row("question", question)
+	
+	return result

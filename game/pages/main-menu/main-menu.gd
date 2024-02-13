@@ -8,6 +8,9 @@ var thread = Thread.new()
 
 var match_access = match_dao.new()
 
+func _ready():
+	ApiConnect.questions_update()
+
 func _on_texture_rect_ready():
 	thread.start(_load_image)
 	images = thread.wait_to_finish()
