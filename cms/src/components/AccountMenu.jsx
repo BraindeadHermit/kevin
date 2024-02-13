@@ -74,7 +74,7 @@ export default function AccountMenu() {
         anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
       >
 
-        <MenuItem onClick={ async () => {await logout('api/company/auth/logout')}}>
+        <MenuItem onClick={ async () => { await logout('api/company/auth/logout') }}>
           <ListItemIcon >
             <Logout fontSize="small" />
           </ListItemIcon>

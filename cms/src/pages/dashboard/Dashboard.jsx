@@ -22,6 +22,7 @@ import AccountMenu from '../../components/AccountMenu';
 import BarChart from '../../components/BarChart';
 import QuestionCard from '../../components/QuestionCard';
 import AddQuestionButton from '../../components/AddQuestionButton';
+import useGetQuestion from "../../hooks/useGetQuestion";
 
 const drawerWidth = 240;
 
@@ -78,7 +79,10 @@ const defaultTheme = createTheme({
 });
 
 export default function Dashboard() {
+  const { questions } = useGetQuestion();
   const [open, setOpen] = React.useState(true);
+
+  console.log(questions);
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -187,15 +191,11 @@ export default function Dashboard() {
                 <Divider style={{stroke: 3}}  sx={{ borderWidth: 1, borderColor: '#616161'}}/>
               </Box>
               <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
+              {questions && questions.questions.map((question) => (
                 <Grid item xs={6}>
-                  <QuestionCard/>
+                  <QuestionCard question={question}/>
                 </Grid>
-                <Grid item xs={6}>
-                  <QuestionCard/>
-                </Grid>
-                <Grid item xs={6}>
-                  <QuestionCard/>
-                </Grid>
+              ))}
               </Grid>
               <Box width='100%' display='flex' justifyContent='center' margin={3}>
                 <AddQuestionButton/>
@@ -207,18 +207,6 @@ export default function Dashboard() {
                 <Divider style={{marginBottom: 20, stroke: 3}}  sx={{ borderWidth: 1, borderColor: '#616161'}}/>
               </Box>
               <Grid container rowSpacing={4} columnSpacing={{ xs: 1, sm: 2, md: 3 }}>
-                <Grid item xs={6}>
-                  <QuestionCard/>
-                </Grid>
-                <Grid item xs={6}>
-                  <QuestionCard/>
-                </Grid>
-                <Grid item xs={6}>
-                  <QuestionCard/>
-                </Grid>
-                <Grid item xs={6}>
-                  <QuestionCard/>
-                </Grid>
               </Grid>
               <Box width='100%' display='flex' justifyContent='center' margin={3}>
                 <AddQuestionButton/>

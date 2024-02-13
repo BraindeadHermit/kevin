@@ -19,7 +19,7 @@ export default function BarChart() {
             borderRadius: 8,
             axis: 'y',
             label: 'Risposte errate',
-            data: [65, 59],
+            data: [34, 22],
             fill: true, 
             backgroundColor: ['red'],
             borderWidth: 0,

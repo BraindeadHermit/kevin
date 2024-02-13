@@ -5,7 +5,7 @@ const AuthContext = createContext({});
 
 const useProvideAuth = () => {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
     isLogged ? navigate('/') : navigate('login')
