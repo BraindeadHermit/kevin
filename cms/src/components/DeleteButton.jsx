@@ -21,12 +21,10 @@ export default function DeleteButton(qid) {
     setOpen(false);
   };
 
-  const handleConfirm = () => {
-    async () => {
-      await deleteQuestion('api/company/questions/delete', {
-        qid: qid
-      });
-    }
+  const handleConfirm = async () => {
+    await deleteQuestion('api/company/questions/delete', {
+      qid: qid.qid
+    });
 
     setOpen(false)
   }

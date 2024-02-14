@@ -23,7 +23,7 @@ import BarChart from "../../components/BarChart";
 import QuestionCard from "../../components/QuestionCard";
 import AddQuestionButton from "../../components/AddQuestionButton";
 import useGetQuestion from "../../hooks/useGetQuestion";
-import { useEffect } from "react";
+import useTelematry from "../../hooks/useTelematry";
 
 const drawerWidth = 240;
 
@@ -81,7 +81,14 @@ const defaultTheme = createTheme({
 
 export default function Dashboard() {
   const { questions } = useGetQuestion();
-  const [open, setOpen] = React.useState(true);
+  const [open, setOpen] = React.useState(false);
+
+  console.log(questions);
+
+  const malwareQuestions = questions.filter(question => {return question.Category === "malware"} );
+  const ddosQuestions = questions.filter(question => {return question.Category === "ddos"});
+  
+  console.log(malwareQuestions, ddosQuestions);
 
   const toggleDrawer = () => {
     setOpen(!open);
@@ -145,8 +152,7 @@ export default function Dashboard() {
               selected={selectedIndex === 0}
               onClick={(event) => handleListItemClick(event, 0)}
               style={{
-                backgroundColor:
-                  selectedIndex === 0 ? "#009688" : "transparent",
+                backgroundColor: selectedIndex === 0 ? "#009688" : "transparent",
                 borderTopRightRadius: "24px",
                 borderBottomRightRadius: "24px",
                 marginRight: "15px",
@@ -166,8 +172,7 @@ export default function Dashboard() {
               selected={selectedIndex === 1}
               onClick={(event) => handleListItemClick(event, 1)}
               style={{
-                backgroundColor:
-                  selectedIndex === 1 ? "#009688" : "transparent",
+                backgroundColor: selectedIndex === 1 ? "#009688" : "transparent",
                 borderTopRightRadius: "24px",
                 borderBottomRightRadius: "24px",
                 marginRight: "15px",
@@ -238,9 +243,8 @@ export default function Dashboard() {
                 rowSpacing={4}
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
-                {questions &&
-                  questions.map((question) => (
-                    // eslint-disable-next-line react/jsx-key
+                {ddosQuestions &&
+                  ddosQuestions.map((question) => (
                     <Grid item xs={6}>
                       <QuestionCard question={question} />
                     </Grid>
@@ -269,7 +273,14 @@ export default function Dashboard() {
                 container
                 rowSpacing={4}
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
-              ></Grid>
+              >
+              {malwareQuestions &&
+                malwareQuestions.map((question) => (
+                  <Grid item xs={6}>
+                    <QuestionCard question={question} />
+                  </Grid>
+                ))}
+              </Grid>
               <Box
                 width="100%"
                 display="flex"

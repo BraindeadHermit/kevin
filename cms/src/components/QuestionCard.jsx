@@ -15,12 +15,13 @@ const Progress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 export default function QuestionCard(question) {
+
   return (
-    <Box
+    <Box 
       border={0.2}
       borderColor={"#616161"}
       sx={{ padding: 1.2, borderRadius: 8, width: "auto" }}
-      key={question.QID}
+      key={question.question.QID}
     >
       <Box
         display="flex"
@@ -33,29 +34,35 @@ export default function QuestionCard(question) {
             {question.question.Body}
           </Typography>
           <Typography color={"#616161"}>
-            risposte totali: {question.length}
+            risposte totali: {}
           </Typography>
         </Box>
         <Box>
-          <ModalEditQuestion />
-          <DeleteButton qid={question.QID} />
+          <ModalEditQuestion question={question}/>
+          <DeleteButton qid={question.question.QID} />
         </Box>
       </Box>
       <Divider variant="middle" sx={{ borderWidth: 1, margin: 1 }}></Divider>
-      <Box sx={{ display: "flex", flexDirection: "column" }}>
-        <Progress variant="determinate" value={35}></Progress>
-        <Box
-          sx={{
-            display: "flex",
-            flexDirection: "row",
-            padding: 1,
-            justifyContent: "space-between",
-          }}
-        >
-          <Box maxWidth={"40%"}>
-            {question &&
-              question.question["Options"].map((option) => (
-                // eslint-disable-next-line react/jsx-key
+      {question &&
+        question.question["Options"].map((option) => {
+          const randomValue = Math.floor(Math.random() * (20 + 1));
+
+        return (
+          <Box sx={{ display: "flex", flexDirection: "column" }}>
+            <Progress 
+              variant="determinate" 
+              value={randomValue} 
+              color={option[1] ? 'success' : 'error'}
+            />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                padding: 1,
+                justifyContent: "space-between",
+              }}
+            >
+              <Box maxWidth={"40%"}>
                 <Tooltip title={option} placement="bottom-start">
                   <Typography
                     noWrap={true}
@@ -63,14 +70,17 @@ export default function QuestionCard(question) {
                     fontWeight={900}
                     color={"#616161"}
                   >
-                    {option[0]}
+                    {option}
                   </Typography>
                 </Tooltip>
-              ))}
+              </Box>
+              <Typography variant="subtitle2" color={"#616161"}>
+                risposte: {randomValue}
+              </Typography>
+            </Box>
           </Box>
-          <Typography variant="subtitle2" color={"#616161"}></Typography>
-        </Box>
-      </Box>
+        );
+      })}
     </Box>
   );
 }

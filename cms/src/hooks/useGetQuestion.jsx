@@ -17,13 +17,10 @@ const useGetQuestion = () => {
         if (response.ok) {
           const { questions } = await response.json();
           setQuestions(questions);
-          console.log(questions);
         }
       })();
-
-      console.log("executed logged");
     }
-  }, []);
+  }, [isDeleted]);
 
   return { questions };
 };
