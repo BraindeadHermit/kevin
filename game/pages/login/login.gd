@@ -58,3 +58,4 @@ func _async_load_main():
 	
 func _exit_tree():
 	scene_load_thread.wait_to_finish()
+	

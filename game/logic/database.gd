@@ -52,7 +52,6 @@ func _async_create_db():
 		db.create_table("answare", __answare)
 		db.create_table("terminal", __terminal)
 		
-		self.create_questions()
 	else:
 		print("database already exist")
 		db.open_db()
@@ -93,15 +92,14 @@ func __tables_set_up():
 	__collectable["is_reached"] = {"data_type": "bool", "default": "false", "not_null": true}
 	
 	__question = Dictionary()
-	__question["id"] = {"data_type": "int", "primary_key": true, "auto_increment": true, "not_null": true}
+	__question["qid"] = {"data_type": "string", "primary_key": true, "auto_increment": false, "not_null": true}
 	__question["category"] = {"data_type": "string"}
-	__question["type"] = {"data_type": "string"}
 	__question["text"] = {"data_type": "string"}
 	__question["company_code"] = {"data_type": "int", "foreign_key": __user.company_code, "not_null": true}
 	
 	__answare = Dictionary()
 	__answare["id"] = {"data_type": "int", "primary_key": true, "auto_increment": true, "not_null": true}
-	__answare["question_id"] = {"data_type": "int", "foreign_key": __question.id, "not_null": true}
+	__answare["question_qid"] = {"data_type": "int", "foreign_key": __question.qid, "not_null": true}
 	__answare["text"] = {"data_type": "string"}
 	__answare["is_correct"] = {"data_type": "bool", "default": "false", "not_null": true}
 	
@@ -109,7 +107,7 @@ func __tables_set_up():
 	__terminal["id"] = {"data_type": "int", "primary_key": true, "auto_increment": true, "not_null": true}
 	__terminal["level_id"] = {"data_type": "int", "foreign_key": __level.id, "not_null": true}
 	__terminal["is_active"] = {"data_type": "bool", "default": "true", "not_null": true}
-	__terminal["question_id"] = {"data_type": "int", "foreign_key": __question.id, "not_null": true}
+	__terminal["question_qid"] = {"data_type": "string", "foreign_key": __question.qid, "not_null": true}
 	__terminal["is_given"] = {"data_type": "bool", "default": "false", "not_null": true}
 	__terminal["given_answer"] = {"data_type": "int", "default": "0", "not_null": true}
 
@@ -120,237 +118,3 @@ func _exit_tree():
 	
 func get_db():
 	return self.db
-
-func create_questions():
-	
-	var question1 = Dictionary()
-	question1["category"] = "malware"
-	question1["type"] = "rm"
-	question1["text"] = "domanda numero 1"
-	question1["company_code"] = "CODE_01"
-
-	var question2 = Dictionary()
-	question2["category"] = "malware"
-	question2["type"] = "rm"
-	question2["text"] = "domanda numero 2"
-	question2["company_code"] = "CODE_01"
-	
-	var question3 = Dictionary()
-	question3["category"] = "malware"
-	question3["type"] = "rm"
-	question3["text"] = "domanda numero 3"
-	question3["company_code"] = "CODE_01"
-	
-	var question4 = Dictionary()
-	question4["category"] = "malware"
-	question4["type"] = "rm"
-	question4["text"] = "domanda numero 4"
-	question4["company_code"] = "CODE_01"
-	
-	var question5 = Dictionary()
-	question5["category"] = "malware"
-	question5["type"] = "rm"
-	question5["text"] = "domanda numero 5"
-	question5["company_code"] = "CODE_01"
-	
-	var question6 = Dictionary()
-	question6["category"] = "malware"
-	question6["type"] = "rm"
-	question6["text"] = "domanda numero 6"
-	question6["company_code"] = "CODE_01"
-	
-	var question7 = Dictionary()
-	question7["category"] = "malware"
-	question7["type"] = "rm"
-	question7["text"] = "domanda numero 7"
-	question7["company_code"] = "CODE_01"
-	
-	"""RISPOTE DOMANDA 1"""
-	var answare1_question1 = Dictionary()
-	answare1_question1["question_id"] = 1
-	answare1_question1["text"] = "risposta 1 domanda 1"
-	answare1_question1["is_correct"] = false
-	
-	var answare2_question1 = Dictionary()
-	answare2_question1["question_id"] = 1
-	answare2_question1["text"] = "risposta 2 domanda 1"
-	answare2_question1["is_correct"] = false
-	
-	var answare3_question1 = Dictionary()
-	answare3_question1["question_id"] = 1
-	answare3_question1["text"] = "risposta 3 domanda 1"
-	answare3_question1["is_correct"] = true
-	
-	var answare4_question1 = Dictionary()
-	answare4_question1["question_id"] = 1
-	answare4_question1["text"] = "risposta 4 domanda 1"
-	answare4_question1["is_correct"] = false
-	
-	"""RISPOTE DOMANDA 2"""
-	var answare1_question2 = Dictionary()
-	answare1_question2["question_id"] = 2
-	answare1_question2["text"] = "risposta 1 domanda 2"
-	answare1_question2["is_correct"] = false
-	
-	var answare2_question2 = Dictionary()
-	answare2_question2["question_id"] = 2
-	answare2_question2["text"] = "risposta 2 domanda 2"
-	answare2_question2["is_correct"] = false
-	
-	var answare3_question2 = Dictionary()
-	answare3_question2["question_id"] = 2
-	answare3_question2["text"] = "risposta 3 domanda 2"
-	answare3_question2["is_correct"] = true
-	
-	var answare4_question2 = Dictionary()
-	answare4_question2["question_id"] = 2
-	answare4_question2["text"] = "risposta 4 domanda 2"
-	answare4_question2["is_correct"] = false
-	
-	"""RISPOTE DOMANDA 3"""
-	var answare1_question3 = Dictionary()
-	answare1_question3["question_id"] = 3
-	answare1_question3["text"] = "risposta 1 domanda 3"
-	answare1_question3["is_correct"] = false
-	
-	var answare2_question3 = Dictionary()
-	answare2_question3["question_id"] = 3
-	answare2_question3["text"] = "risposta 2 domanda 3"
-	answare2_question3["is_correct"] = false
-	
-	var answare3_question3 = Dictionary()
-	answare3_question3["question_id"] = 3
-	answare3_question3["text"] = "risposta 3 domanda 3"
-	answare3_question3["is_correct"] = true
-	
-	var answare4_question3 = Dictionary()
-	answare4_question3["question_id"] = 3
-	answare4_question3["text"] = "risposta 4 domanda 3"
-	answare4_question3["is_correct"] = false
-
-	"""RISPOTE DOMANDA 4"""
-	var answare1_question4 = Dictionary()
-	answare1_question4["question_id"] = 4
-	answare1_question4["text"] = "risposta 1 domanda 4"
-	answare1_question4["is_correct"] = false
-	
-	var answare2_question4 = Dictionary()
-	answare2_question4["question_id"] = 4
-	answare2_question4["text"] = "risposta 2 domanda 4"
-	answare2_question4["is_correct"] = false
-	
-	var answare3_question4 = Dictionary()
-	answare3_question4["question_id"] = 4
-	answare3_question4["text"] = "risposta 3 domanda 4"
-	answare3_question4["is_correct"] = true
-	
-	var answare4_question4 = Dictionary()
-	answare4_question4["question_id"] = 4
-	answare4_question4["text"] = "risposta 4 domanda 4"
-	answare4_question4["is_correct"] = false
-	
-	"""RISPOTE DOMANDA 5"""
-	var answare1_question5 = Dictionary()
-	answare1_question5["question_id"] = 5
-	answare1_question5["text"] = "risposta 1 domanda 5"
-	answare1_question5["is_correct"] = false
-	
-	var answare2_question5 = Dictionary()
-	answare2_question5["question_id"] = 5
-	answare2_question5["text"] = "risposta 2 domanda 5"
-	answare2_question5["is_correct"] = false
-	
-	var answare3_question5 = Dictionary()
-	answare3_question5["question_id"] = 5
-	answare3_question5["text"] = "risposta 3 domanda 5"
-	answare3_question5["is_correct"] = true
-	
-	var answare4_question5 = Dictionary()
-	answare4_question5["question_id"] = 5
-	answare4_question5["text"] = "risposta 4 domanda 5"
-	answare4_question5["is_correct"] = false
-	
-	"""RISPOTE DOMANDA 6"""
-	var answare1_question6 = Dictionary()
-	answare1_question6["question_id"] = 6
-	answare1_question6["text"] = "risposta 1 domanda 6"
-	answare1_question6["is_correct"] = false
-	
-	var answare2_question6 = Dictionary()
-	answare2_question6["question_id"] = 6
-	answare2_question6["text"] = "risposta 2 domanda 6"
-	answare2_question6["is_correct"] = false
-	
-	var answare3_question6 = Dictionary()
-	answare3_question6["question_id"] = 6
-	answare3_question6["text"] = "risposta 3 domanda 6"
-	answare3_question6["is_correct"] = true
-	
-	var answare4_question6 = Dictionary()
-	answare4_question6["question_id"] = 6
-	answare4_question6["text"] = "risposta 4 domanda 6"
-	answare4_question6["is_correct"] = false
-	
-	"""RISPOTE DOMANDA 7"""
-	var answare1_question7 = Dictionary()
-	answare1_question7["question_id"] = 7
-	answare1_question7["text"] = "risposta 1 domanda 7"
-	answare1_question7["is_correct"] = false
-	
-	var answare2_question7 = Dictionary()
-	answare2_question7["question_id"] = 7
-	answare2_question7["text"] = "risposta 2 domanda 7"
-	answare2_question7["is_correct"] = false
-	
-	var answare3_question7 = Dictionary()
-	answare3_question7["question_id"] = 7
-	answare3_question7["text"] = "risposta 3 domanda 7"
-	answare3_question7["is_correct"] = true
-	
-	var answare4_question7 = Dictionary()
-	answare4_question7["question_id"] = 7
-	answare4_question7["text"] = "risposta 4 domanda 7"
-	answare4_question7["is_correct"] = false
-	
-	db.insert_row("question", question1)
-	db.insert_row("question", question2)
-	db.insert_row("question", question3)
-	db.insert_row("question", question4)
-	db.insert_row("question", question5)
-	db.insert_row("question", question6)
-	db.insert_row("question", question7)
-	
-	db.insert_row("answare", answare1_question1)
-	db.insert_row("answare", answare2_question1)
-	db.insert_row("answare", answare3_question1)
-	db.insert_row("answare", answare4_question1)
-
-	db.insert_row("answare", answare1_question2)
-	db.insert_row("answare", answare2_question2)
-	db.insert_row("answare", answare3_question2)
-	db.insert_row("answare", answare4_question2)
-	
-	db.insert_row("answare", answare1_question3)
-	db.insert_row("answare", answare2_question3)
-	db.insert_row("answare", answare3_question3)
-	db.insert_row("answare", answare4_question3)
-	
-	db.insert_row("answare", answare1_question4)
-	db.insert_row("answare", answare2_question4)
-	db.insert_row("answare", answare3_question4)
-	db.insert_row("answare", answare4_question4)
-	
-	db.insert_row("answare", answare1_question5)
-	db.insert_row("answare", answare2_question5)
-	db.insert_row("answare", answare3_question5)
-	db.insert_row("answare", answare4_question5)
-	
-	db.insert_row("answare", answare1_question6)
-	db.insert_row("answare", answare2_question6)
-	db.insert_row("answare", answare3_question6)
-	db.insert_row("answare", answare4_question6)
-	
-	db.insert_row("answare", answare1_question7)
-	db.insert_row("answare", answare2_question7)
-	db.insert_row("answare", answare3_question7)
-	db.insert_row("answare", answare4_question7)

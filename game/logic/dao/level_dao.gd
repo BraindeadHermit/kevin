@@ -33,7 +33,7 @@ func create_new_level(game_id, level_name, topic):
 	var questions = await question_access.select_random_questions(topic)
 	
 	for i in questions.size():
-		await terminal_access.create_new_terminal(level_id, questions[i]["id"])
+		await terminal_access.create_new_terminal(level_id, questions[i]["qid"])
 	
 	await collectable_access.create_new_collectable(level_id, "add_life")
 	await collectable_access.create_new_collectable(level_id, "add_life")

@@ -6,10 +6,10 @@ var db
 func _init():
 	db = Database.get_db()
 
-func create_new_terminal(level_id: int, question_id: int):
+func create_new_terminal(level_id, question_qid):
 	var terminal = Dictionary()
 	terminal["level_id"] = level_id
-	terminal["question_id"] = question_id
+	terminal["question_qid"] = question_qid
 	
 	var result = await db.insert_row("terminal", terminal)
 	

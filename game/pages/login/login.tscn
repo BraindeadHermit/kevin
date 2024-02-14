@@ -170,6 +170,8 @@ size_flags_horizontal = 4
 text = "Sto effettuando l'accesso..."
 label_settings = SubResource("LabelSettings_x7bq1")
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
 [connection signal="pressed" from="HBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
 [connection signal="pressed" from="HBoxContainer/StartBtn" to="." method="_on_start_btn_pressed"]

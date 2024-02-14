@@ -55,8 +55,8 @@ func on_question_answered(answer_number):
 func _on_level_loaded(terminal_data):
 	self.data = terminal_data[terminal_number]
 	
-	question = await question_access.get_question_by_id(data["question_id"])
-	answers = await answer_access.get_answares_by_question_id(data["question_id"])
+	question = await question_access.get_question_by_qid(data["question_qid"])
+	answers = await answer_access.get_answares_by_question_qid(data["question_qid"])
 	
 	if data["is_given"]:
 		set_collision_mask_value(1, false)

@@ -24,6 +24,7 @@ run/name="kevin"
 Database="*res://logic/database.gd"
 Global="*res://logic/global.gd"
 Kevin="*res://logic/player.gd"
+ApiConnect="*res://logic/api_connect.gd"
 
 [display]
 
