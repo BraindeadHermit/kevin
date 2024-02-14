@@ -19,7 +19,7 @@ func questions_update():
 	
 	http_request.request_completed.connect(_on_request_completed.bind())
 	http_request.request(download_data_url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, JSON.stringify(download_data_body))
-
+	
 func _on_request_completed(result, response_code, headers, body):
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	
