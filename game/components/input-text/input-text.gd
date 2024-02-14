@@ -1,4 +1,4 @@
-extends TextureRect
+extends Control
 
 var text = ""
 

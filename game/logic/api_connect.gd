@@ -67,6 +67,5 @@ func _on_request_completed(result, response_code, headers, body):
 		if request_qids.find(qid["qid"]) == -1:
 			await question_access.delete_question(qid["qid"])
 			await answer_access.delete_answers_by_qid(qid["qid"])
-
 	
 	

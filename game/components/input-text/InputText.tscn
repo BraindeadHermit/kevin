@@ -1,10 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://jc5y7xy11h86"]
+[gd_scene load_steps=5 format=3 uid="uid://jc5y7xy11h86"]
 
-[ext_resource type="Texture2D" uid="uid://dklur2fwnvp7d" path="res://assets/graphic components/Login Page/input text/input-text.png" id="1_cibij"]
 [ext_resource type="Script" path="res://components/input-text/input-text.gd" id="2_3w2p1"]
 [ext_resource type="FontFile" uid="uid://dime1jlce70ux" path="res://assets/fonts/ubuntu/Ubuntu-Regular.ttf" id="2_nr6mt"]
 
-[node name="TextureRect" type="TextureRect"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_w118k"]
+bg_color = Color(0, 0, 0.658824, 1)
+corner_radius_top_left = 40
+corner_radius_top_right = 50
+corner_radius_bottom_right = 40
+corner_radius_bottom_left = 40
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_b6pbv"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -16,19 +25,35 @@ offset_right = 350.0
 offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 2
-texture = ExtResource("1_cibij")
 script = ExtResource("2_3w2p1")
 
-[node name="LineEdit" type="LineEdit" parent="."]
+[node name="Panel" type="Panel" parent="."]
+custom_minimum_size = Vector2(700, 75)
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_w118k")
+
+[node name="LineEdit" type="LineEdit" parent="."]
+custom_minimum_size = Vector2(700, 75)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -350.0
+offset_top = -37.5
+offset_right = 350.0
+offset_bottom = 37.5
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_fonts/font = ExtResource("2_nr6mt")
 theme_override_font_sizes/font_size = 26
+theme_override_styles/focus = SubResource("StyleBoxEmpty_b6pbv")
 clear_button_enabled = true
 flat = true
 
