@@ -1,32 +1,31 @@
 import { useState, useEffect } from "react";
 import useDeleteQuestion from "./useDeleteQuestion";
+import { useAuth } from "./useAuth";
 
 const useGetQuestion = () => {
-    const [questions, setQuestions] = useState(null);
-    const { isDeleted } = useDeleteQuestion();
+  const [questions, setQuestions] = useState();
+  const { isDeleted } = useDeleteQuestion();
+  const { isLogged } = useAuth();
 
-    useEffect(() => {
-        const getQuestion = async () => {
-            try {
-                const response = await fetch('api/company/questions', {
-                    method: 'POST'
-                });
+  useEffect(() => {
+    if (isLogged) {
+      (async () => {
+        const response = await fetch("api/company/questions", {
+          method: "POST",
+        });
 
-                if (!response.ok) {
-                    throw new Error(`${response.status}`);
-                }
+        if (response.ok) {
+          const { questions } = await response.json();
+          setQuestions(questions);
+          console.log(questions);
+        }
+      })();
 
-                const data = await response.json();
-                setQuestions(data);
-            } catch (error) {
-                console.error("Error fetching questions:", error);
-            }
-        };
+      console.log("executed logged");
+    }
+  }, []);
 
-        getQuestion();
-    }, []);
-    
-    return { questions };
+  return { questions };
 };
 
 export default useGetQuestion;
