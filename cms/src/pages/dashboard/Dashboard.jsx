@@ -87,12 +87,7 @@ export default function Dashboard() {
     getQuestionTotalResponse,
   } = useTelematry();
   const [open, setOpen] = React.useState(false);
-
-  //const malwareQuestions = questions.filter(question => {return question.Category === "malware"} );
-  //const ddosQuestions = questions.filter(question => {return question.Category === "ddos"});
-
-  //console.log(malwareQuestions, ddosQuestions);
-
+  
   const toggleDrawer = () => {
     setOpen(!open);
   };
@@ -250,23 +245,26 @@ export default function Dashboard() {
               >
                 {questions &&
                   questions.map((question) => {
-                    console.log(question);
-                    var total = getQuestionTotalResponse(question["QID"]);
-                    var trueResp = getTrueResponseQuestions(question["QID"]);
-                    var falseResp = getFalseResponseQuestions(question["QID"]);
-                    console.log(total);
+                    if(question["Category"] == "malware"){
+                      console.log(question);
+                      var total = getQuestionTotalResponse(question["QID"]);
+                      var trueResp = getTrueResponseQuestions(question["QID"]);
+                      var falseResp = getFalseResponseQuestions(question["QID"]);
+                      console.log(total);
 
-                    return (
-                      <Grid item xs={6}>
-                        <QuestionCard
-                          question={question}
-                          questionTotal={total}
-                          quesionTrue={trueResp}
-                          questionFalse={falseResp}
-                        />
-                      </Grid>
-                    );
-                  })}
+                      return (
+                        <Grid item xs={6}>
+                          <QuestionCard
+                            question={question}
+                            questionTotal={total}
+                            questionTrue={trueResp}
+                            questionFalse={falseResp}
+                          />
+                        </Grid>
+                      );
+                    }
+                  })
+                }
               </Grid>
               <Box
                 width="100%"
@@ -274,7 +272,7 @@ export default function Dashboard() {
                 justifyContent="center"
                 margin={3}
               >
-                <AddQuestionButton />
+                <AddQuestionButton category={"malware"}/>
               </Box>
             </Box>
             <Box>
@@ -293,11 +291,27 @@ export default function Dashboard() {
                 columnSpacing={{ xs: 1, sm: 2, md: 3 }}
               >
                 {questions &&
-                  questions.map((question) => (
-                    <Grid item xs={6}>
-                      <QuestionCard question={question} />
-                    </Grid>
-                  ))}
+                  questions.map((question) => {
+                    if(question["Category"] == "DDOS"){
+                      console.log(question);
+                      var total = getQuestionTotalResponse(question["QID"]);
+                      var trueResp = getTrueResponseQuestions(question["QID"]);
+                      var falseResp = getFalseResponseQuestions(question["QID"]);
+                      console.log(total);
+
+                      return (
+                        <Grid item xs={6}>
+                          <QuestionCard
+                            question={question}
+                            questionTotal={total}
+                            questionTrue={trueResp}
+                            questionFalse={falseResp}
+                          />
+                        </Grid>
+                      );
+                    }
+                  })
+                }
               </Grid>
               <Box
                 width="100%"
@@ -305,7 +319,7 @@ export default function Dashboard() {
                 justifyContent="center"
                 margin={3}
               >
-                <AddQuestionButton />
+                <AddQuestionButton category={"DDOS"} />
               </Box>
             </Box>
           </Container>

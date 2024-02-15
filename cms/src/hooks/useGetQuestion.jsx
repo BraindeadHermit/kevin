@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import useDeleteQuestion from "./useDeleteQuestion";
 import { useAuth } from "./useAuth";
 
 const useGetQuestion = () => {
   const [questions, setQuestions] = useState();
-  const { isDeleted } = useDeleteQuestion();
+  const [isDeleted, setIsDeleted] = useState(false);
+  const [isAdded, setIsAdded] = useState(false);
   const { isLogged } = useAuth();
 
   useEffect(() => {
@@ -20,9 +20,21 @@ const useGetQuestion = () => {
         }
       })();
     }
-  }, [isDeleted]);
+  }, []);
 
-  return { questions };
+  /*useEffect(() => {
+    if(isLogged){
+      setQuestions(questions)
+    }
+  }, [questions])*/
+    
+
+
+
+
+  return { 
+    questions
+  };
 };
 
 export default useGetQuestion;

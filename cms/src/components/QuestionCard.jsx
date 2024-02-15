@@ -42,7 +42,6 @@ export default function QuestionCard(props) {
       <Divider variant="middle" sx={{ borderWidth: 1, margin: 1 }}></Divider>
       {props.question &&
         props.question["Options"].map((option) => {
-          const randomValue = Math.floor(Math.random() * (20 + 1));
 
           return (
             // eslint-disable-next-line react/jsx-key
@@ -73,8 +72,7 @@ export default function QuestionCard(props) {
                   </Tooltip>
                 </Box>
                 <Typography variant="subtitle2" color={"#616161"}>
-                  risposte:{" "}
-                  {option[1] ? props.questionTrue : props.questionFalse}
+                  risposte: {option[1] ? props.questionTrue : props.questionFalse}
                 </Typography>
               </Box>
             </Box>

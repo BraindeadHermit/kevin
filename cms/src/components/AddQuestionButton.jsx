@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
+import useQuestionsOperations from '../hooks/useQuestionOperations';
 
-const FormDialog = () => {
+const FormDialog = ({category}) => {
   const [open, setOpen] = useState(false);
   const [question, setQuestion] = useState('');
-  const [answers, setAnswers] = useState(['', '', '', '']);
+  const [answers, setAnswers] = useState([['', false], ['', false], ['', false], ['', false]]);
   const [correctAnswer, setCorrectAnswer] = useState('');
+  const { insert } = useQuestionsOperations();
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -17,21 +19,31 @@ const FormDialog = () => {
 
   const handleInputChange = (index, event) => {
     const updatedAnswers = [...answers];
-    updatedAnswers[index] = event.target.value;
+    updatedAnswers[index][0] = event.target.value;
+
+    updatedAnswers.forEach(element => {
+      if (element[0] == correctAnswer)
+        element[1] = true;
+    })
+
     setAnswers(updatedAnswers);
   };
 
-  const handleRadioChange = (event) => {
-    setCorrectAnswer(event.target.value);
+  const handleRadioChange = (e) => {
+    setCorrectAnswer(e.value.value);
   };
 
-  const handleSubmit = () => {
-    // Invia i dati al tuo database qui
-    console.log('Domanda:', question);
-    console.log('Risposte:', answers);
-    console.log('Risposta corretta:', correctAnswer);
+  const handleSubmit = async () => {
 
-    // Chiudi il dialog
+    await insert('api/company/questions/add', {
+      body: question,
+      options: answers,
+      category: category,
+      inUse: true
+    });
+
+
+
     handleClose();
   };
 
@@ -71,7 +83,7 @@ const FormDialog = () => {
                       label={`Risposta ${index + 1}`}
                       type="text"
                       fullWidth
-                      value={answer}
+                      value={answer[0]}
                       variant='standard'
                       onChange={(e) => handleInputChange(index, e)}
                     />

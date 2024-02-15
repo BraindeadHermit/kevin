@@ -11,8 +11,6 @@ const useTelematry = () => {
     }
   }, [isLogged]);
 
-  useEffect(() => {}, [data]);
-
   const getTelemetry = async () => {
     const response = await fetch("api/company/telemetry", {
       method: "POST",
@@ -26,33 +24,49 @@ const useTelematry = () => {
 
   const getQuestionTotalResponse = (qid) => {
     var total = 0;
-    data.forEach((element) => {
-      if (element["QID"] == qid) {
-        total += 1;
-      }
-    });
+    if(data){
+      data.forEach((element) => {
+        if (element["QID"] == qid) {
+          total += 1;
+        }
+      });
+    }
 
     return total;
   };
 
   const getTrueResponseQuestions = (qid) => {
     var total = 0;
-    data.forEach((element) => {
-      if (element["QID"] == qid && element["Options"][0]) {
-        total += 1;
-      }
-    });
+    if(data){
+      data.forEach((element) => {
+        if(element["Options"] == []){
+          return 0
+        }
+
+        if (element["QID"] == qid && element["Options"][0]) {
+          total += 1;
+        }
+      });
+    }
 
     return total;
   };
 
   const getFalseResponseQuestions = (qid) => {
     var total = 0;
-    data.forEach((element) => {
-      if (element["QID"] == qid && !element["Options"][0]) {
-        total += 1;
-      }
-    });
+
+    if(data){
+      data.forEach((element) => {
+
+        if(element["Options"] == []){
+          return 0
+        }
+
+        if (element["QID"] == qid && !element["Options"][0]) {
+          total += 1;
+        }
+      });
+    }
 
     return total;
   };
