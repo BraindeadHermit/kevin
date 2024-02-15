@@ -2,40 +2,67 @@ import { useEffect, useState } from "react";
 import { useAuth } from "./useAuth";
 
 const useTelematry = () => {
-    const { isLogged } = useAuth();
-    const [data, setData] = useState();
-    const countAnswerMap = {};
+  const { isLogged } = useAuth();
+  const [data, setData] = useState();
 
-    useEffect(() => {
-        if (isLogged) {
-          (async () => {
-            const response = await fetch("api/company/telemetry", {
-              method: "POST",
-            });
-    
-            if (response.ok) {
-              const data = await response.json();
-            
-              console.log(data.telemetry);
+  useEffect(() => {
+    if (isLogged) {
+      getTelemetry();
+    }
+  }, [isLogged]);
 
-              data.telemetry.forEach(telemetry => {
-                const qid = telemetry.QID;
-                
-                let count = data.telemetry.filter((tel) => {
-                    return tel.QID === qid;
-                  }).length;
+  useEffect(() => {}, [data]);
 
-                countAnswerMap[qid] = count;
-              });
+  const getTelemetry = async () => {
+    const response = await fetch("api/company/telemetry", {
+      method: "POST",
+    });
 
-              console.log(countAnswerMap);
-              setData(data);
-            }
-          }) ();
-        }
-      }, []);
-    
-      return { data };
-    };
+    if (response.ok) {
+      const { telemetry } = await response.json();
+      setData(telemetry);
+    }
+  };
+
+  const getQuestionTotalResponse = (qid) => {
+    var total = 0;
+    data.forEach((element) => {
+      if (element["QID"] == qid) {
+        total += 1;
+      }
+    });
+
+    return total;
+  };
+
+  const getTrueResponseQuestions = (qid) => {
+    var total = 0;
+    data.forEach((element) => {
+      if (element["QID"] == qid && element["Options"][0]) {
+        total += 1;
+      }
+    });
+
+    return total;
+  };
+
+  const getFalseResponseQuestions = (qid) => {
+    var total = 0;
+    data.forEach((element) => {
+      if (element["QID"] == qid && !element["Options"][0]) {
+        total += 1;
+      }
+    });
+
+    return total;
+  };
+
+  return {
+    data,
+    getQuestionTotalResponse,
+    getFalseResponseQuestions,
+    getTrueResponseQuestions,
+  };
+};
 
 export default useTelematry;
