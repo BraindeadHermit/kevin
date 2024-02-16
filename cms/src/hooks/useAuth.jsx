@@ -5,11 +5,11 @@ const AuthContext = createContext({});
 
 const useProvideAuth = () => {
   const navigate = useNavigate();
-  const [isLogged, setIsLogged] = useState(true);
+  const [isLogged, setIsLogged] = useState(false);
 
   useEffect(() => {
-    isLogged ? navigate('/') : navigate('login')
-  }, [isLogged]) 
+    isLogged ? navigate("/") : navigate("login");
+  }, [isLogged]);
 
   const login = async (url, userData) => {
     const response = await fetch(url, {
@@ -32,8 +32,7 @@ const useProvideAuth = () => {
       method: "POST",
     });
 
-    if (!response.ok)
-      throw new Error(`${response.status}`);
+    if (!response.ok) throw new Error(`${response.status}`);
 
     setIsLogged(false);
   };
@@ -47,7 +46,7 @@ const useProvideAuth = () => {
 
 const ProvideAuth = ({ children }) => {
   const auth = useProvideAuth();
-  
+
   return <AuthContext.Provider value={auth}>{children}</AuthContext.Provider>;
 };
 

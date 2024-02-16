@@ -1,37 +1,56 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
+import useQuestionsOperations from '../hooks/useQuestionOperations';
+import Alert from '@mui/material/Alert';
+import { elements } from 'chart.js';
 
-const FormDialog = () => {
+const FormDialog = ({category}) => {
   const [open, setOpen] = useState(false);
   const [question, setQuestion] = useState('');
-  const [answers, setAnswers] = useState(['', '', '', '']);
+  const [answers, setAnswers] = useState([['', false], ['', false], ['', false], ['', false]]);
   const [correctAnswer, setCorrectAnswer] = useState('');
+  const [error, setError] = useState(null);
+  const { insert } = useQuestionsOperations();
 
   const handleClickOpen = () => {
+    setError(null);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setQuestion('');
+    setCorrectAnswer('');
+    setAnswers([['', false], ['', false], ['', false], ['', false]])
   };
 
   const handleInputChange = (index, event) => {
     const updatedAnswers = [...answers];
-    updatedAnswers[index] = event.target.value;
+    updatedAnswers[index][0] = event.target.value;
+    
     setAnswers(updatedAnswers);
   };
 
-  const handleRadioChange = (event) => {
-    setCorrectAnswer(event.target.value);
+  const handleRadioChange = (e) => {
+    setCorrectAnswer(e.target.value);
   };
 
-  const handleSubmit = () => {
-    // Invia i dati al tuo database qui
-    console.log('Domanda:', question);
-    console.log('Risposte:', answers);
-    console.log('Risposta corretta:', correctAnswer);
+  const handleSubmit = async () => {
 
-    // Chiudi il dialog
+      if (question.trim() === '' || answers.some(answer => answer[0].trim() === '') || correctAnswer === '') {
+        setError("Tutti i campi devono essere compilati");
+        return;
+      }
+
+      console.log(answers)
+
+      /*await insert('api/company/questions/add', {
+      body: question,
+      options: answers,
+      category: category,
+      inUse: true
+    });*/
+ 
     handleClose();
   };
 
@@ -71,7 +90,7 @@ const FormDialog = () => {
                       label={`Risposta ${index + 1}`}
                       type="text"
                       fullWidth
-                      value={answer}
+                      value={answer[0]}
                       variant='standard'
                       onChange={(e) => handleInputChange(index, e)}
                     />
@@ -81,6 +100,11 @@ const FormDialog = () => {
             </RadioGroup>
           </FormControl>
         </DialogContent>
+        {error && (
+        <Alert variant="outlined" severity="warning" onClose={() => {setError(null)}} sx={{margin: 2}}>
+          {error}
+        </Alert>
+        )}
         <DialogActions>
           <Button onClick={handleClose} sx={{color: 'red'}}>
             Annulla

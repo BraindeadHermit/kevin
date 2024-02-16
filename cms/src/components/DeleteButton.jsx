@@ -7,9 +7,11 @@ import DialogContentText from '@mui/material/DialogContentText';
 import IconButton from '@mui/material/IconButton';
 import DeleteIcon from '@mui/icons-material/Delete';
 import { Tooltip } from '@mui/material';
+import useQuestionsOperations from '../hooks/useQuestionOperations';
 
-export default function DeleteButton() {
+export default function DeleteButton(qid) {
   const [open, setOpen] = React.useState(false);
+  const { deleteQuestion } = useQuestionsOperations(); 
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -18,6 +20,14 @@ export default function DeleteButton() {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleConfirm = async () => {
+    await deleteQuestion('api/company/questions/delete', {
+      qid: qid.qid
+    });
+
+    setOpen(false)
+  }
 
   return (
     <React.Fragment>
@@ -38,8 +48,8 @@ export default function DeleteButton() {
           </DialogContentText>
         </DialogContent>
         <DialogActions>
-          <Button onClick={handleClose}>Si</Button>
-          <Button onClick={handleClose} autoFocus>No</Button>
+          <Button  onClick={handleConfirm}>Si</Button>
+          <Button  sx={{color: 'red'}} onClick={handleClose} autoFocus>No</Button>
         </DialogActions>
       </Dialog>
     </React.Fragment>
