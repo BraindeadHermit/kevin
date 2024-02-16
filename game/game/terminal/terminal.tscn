@@ -21,6 +21,7 @@ font_size = 48
 font_color = Color(0, 0, 0, 1)
 
 [node name="terminal" type="Area2D"]
+process_mode = 3
 collision_layer = 0
 script = ExtResource("1_iivxx")
 metadata/question = 0
@@ -110,7 +111,6 @@ grow_vertical = 0
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
-[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="question_answered" from="CanvasLayer/Panel/question" to="." method="_on_question_answered_resp_1"]
 [connection signal="question_answered" from="CanvasLayer/Panel/question2" to="." method="_on_question_answered_resp_2"]
 [connection signal="question_answered" from="CanvasLayer/Panel/question3" to="." method="_on_question_answered_resp_3"]

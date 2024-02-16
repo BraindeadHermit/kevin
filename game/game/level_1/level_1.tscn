@@ -1800,6 +1800,7 @@ position = Vector2(2574, 828)
 position = Vector2(2574, 828)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+process_mode = 3
 stream = ExtResource("17_k7m5r")
 autoplay = true
 
