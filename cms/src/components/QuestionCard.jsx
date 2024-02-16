@@ -39,12 +39,11 @@ export default function QuestionCard(props) {
           <DeleteButton qid={props.question.QID} />
         </Box>
       </Box>
-      <Divider variant="middle" sx={{ borderWidth: 1, margin: 1 }}></Divider>
+      <Divider variant="middle" sx={{ borderWidth: 1, margin: 1 }} />
       {props.question &&
         props.question["Options"].map((option) => {
 
           return (
-            // eslint-disable-next-line react/jsx-key
             <Box sx={{ display: "flex", flexDirection: "column" }}>
               <Progress
                 variant="determinate"

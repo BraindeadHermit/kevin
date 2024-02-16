@@ -11,7 +11,7 @@ import useQuestionsOperations from '../hooks/useQuestionOperations';
 
 export default function DeleteButton(qid) {
   const [open, setOpen] = React.useState(false);
-  const { deleteQuestion } = useQuestionsOperations 
+  const { deleteQuestion } = useQuestionsOperations(); 
 
   const handleClickOpen = () => {
     setOpen(true);

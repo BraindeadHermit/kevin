@@ -1,7 +1,9 @@
 import { Bar } from 'react-chartjs-2'
 import { Chart as ChartJS } from 'chart.js/auto'
+import { useState } from 'react';
 
 export default function BarChart() {
+
     return <Bar data={{
         labels: ['livello 1', 'livello 2'],
         datasets: [{

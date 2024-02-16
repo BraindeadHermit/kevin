@@ -1,49 +1,56 @@
 import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
 import useQuestionsOperations from '../hooks/useQuestionOperations';
+import Alert from '@mui/material/Alert';
+import { elements } from 'chart.js';
 
 const FormDialog = ({category}) => {
   const [open, setOpen] = useState(false);
   const [question, setQuestion] = useState('');
   const [answers, setAnswers] = useState([['', false], ['', false], ['', false], ['', false]]);
   const [correctAnswer, setCorrectAnswer] = useState('');
+  const [error, setError] = useState(null);
   const { insert } = useQuestionsOperations();
 
   const handleClickOpen = () => {
+    setError(null);
     setOpen(true);
   };
 
   const handleClose = () => {
     setOpen(false);
+    setQuestion('');
+    setCorrectAnswer('');
+    setAnswers([['', false], ['', false], ['', false], ['', false]])
   };
 
   const handleInputChange = (index, event) => {
     const updatedAnswers = [...answers];
     updatedAnswers[index][0] = event.target.value;
-
-    updatedAnswers.forEach(element => {
-      if (element[0] == correctAnswer)
-        element[1] = true;
-    })
-
+    
     setAnswers(updatedAnswers);
   };
 
   const handleRadioChange = (e) => {
-    setCorrectAnswer(e.value.value);
+    setCorrectAnswer(e.target.value);
   };
 
   const handleSubmit = async () => {
 
-    await insert('api/company/questions/add', {
+      if (question.trim() === '' || answers.some(answer => answer[0].trim() === '') || correctAnswer === '') {
+        setError("Tutti i campi devono essere compilati");
+        return;
+      }
+
+      console.log(answers)
+
+      /*await insert('api/company/questions/add', {
       body: question,
       options: answers,
       category: category,
       inUse: true
-    });
-
-
-
+    });*/
+ 
     handleClose();
   };
 
@@ -93,6 +100,11 @@ const FormDialog = ({category}) => {
             </RadioGroup>
           </FormControl>
         </DialogContent>
+        {error && (
+        <Alert variant="outlined" severity="warning" onClose={() => {setError(null)}} sx={{margin: 2}}>
+          {error}
+        </Alert>
+        )}
         <DialogActions>
           <Button onClick={handleClose} sx={{color: 'red'}}>
             Annulla

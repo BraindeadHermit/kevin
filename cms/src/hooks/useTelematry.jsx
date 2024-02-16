@@ -24,8 +24,10 @@ const useTelematry = () => {
 
   const getQuestionTotalResponse = (qid) => {
     var total = 0;
-    if(data){
+
+    if (data) {
       data.forEach((element) => {
+        
         if (element["QID"] == qid) {
           total += 1;
         }
@@ -37,9 +39,12 @@ const useTelematry = () => {
 
   const getTrueResponseQuestions = (qid) => {
     var total = 0;
-    if(data){
+    
+    if (data) {
+
       data.forEach((element) => {
-        if(element["Options"] == []){
+
+        if (element["Options"] == []) {
           return 0
         }
 
@@ -55,10 +60,10 @@ const useTelematry = () => {
   const getFalseResponseQuestions = (qid) => {
     var total = 0;
 
-    if(data){
+    if (data) {
       data.forEach((element) => {
 
-        if(element["Options"] == []){
+        if (element["Options"] == []) {
           return 0
         }
 

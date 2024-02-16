@@ -80,8 +80,10 @@ const defaultTheme = createTheme({
 });
 
 export default function Dashboard() {
+  const [selectedIndex, setSelectedIndex] = React.useState(1);
   const { questions } = useGetQuestion();
   const {
+    data,
     getFalseResponseQuestions,
     getTrueResponseQuestions,
     getQuestionTotalResponse,
@@ -91,8 +93,6 @@ export default function Dashboard() {
   const toggleDrawer = () => {
     setOpen(!open);
   };
-
-  const [selectedIndex, setSelectedIndex] = React.useState(1);
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
@@ -150,8 +150,7 @@ export default function Dashboard() {
               selected={selectedIndex === 0}
               onClick={(event) => handleListItemClick(event, 0)}
               style={{
-                backgroundColor:
-                  selectedIndex === 0 ? "#009688" : "transparent",
+                backgroundColor: selectedIndex === 0 ? "#009688" : "transparent",
                 borderTopRightRadius: "24px",
                 borderBottomRightRadius: "24px",
                 marginRight: "15px",
@@ -171,8 +170,7 @@ export default function Dashboard() {
               selected={selectedIndex === 1}
               onClick={(event) => handleListItemClick(event, 1)}
               style={{
-                backgroundColor:
-                  selectedIndex === 1 ? "#009688" : "transparent",
+                backgroundColor: selectedIndex === 1 ? "#009688" : "transparent",
                 borderTopRightRadius: "24px",
                 borderBottomRightRadius: "24px",
                 marginRight: "15px",
@@ -189,11 +187,10 @@ export default function Dashboard() {
               />
             </ListItemButton>
             <ListItemButton
-              selected={selectedIndex === 2}
+              selected={ selectedIndex === 2 }
               onClick={(event) => handleListItemClick(event, 2)}
               style={{
-                backgroundColor:
-                  selectedIndex === 2 ? "#009688" : "transparent",
+                backgroundColor: selectedIndex === 2 ? "#009688" : "transparent",
                 borderTopRightRadius: "24px",
                 borderBottomRightRadius: "24px",
                 marginRight: "15px",
@@ -226,7 +223,7 @@ export default function Dashboard() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Box style={{ margin: "auto", width: "80%", height: "40vh" }}>
-              <BarChart />
+              <BarChart data={data} />
             </Box>
             <Box>
               <Box sx={{ marginBottom: 5, marginTop: 2 }}>
@@ -245,12 +242,11 @@ export default function Dashboard() {
               >
                 {questions &&
                   questions.map((question) => {
-                    if(question["Category"] == "malware"){
-                      console.log(question);
+                    if (question["Category"] == "malware") {
+
                       var total = getQuestionTotalResponse(question["QID"]);
                       var trueResp = getTrueResponseQuestions(question["QID"]);
                       var falseResp = getFalseResponseQuestions(question["QID"]);
-                      console.log(total);
 
                       return (
                         <Grid item xs={6}>
@@ -292,12 +288,11 @@ export default function Dashboard() {
               >
                 {questions &&
                   questions.map((question) => {
-                    if(question["Category"] == "DDOS"){
-                      console.log(question);
+                    if (question["Category"] == "DDOS") {
+
                       var total = getQuestionTotalResponse(question["QID"]);
                       var trueResp = getTrueResponseQuestions(question["QID"]);
                       var falseResp = getFalseResponseQuestions(question["QID"]);
-                      console.log(total);
 
                       return (
                         <Grid item xs={6}>

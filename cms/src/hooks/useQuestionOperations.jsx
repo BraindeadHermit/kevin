@@ -1,4 +1,5 @@
 const useQuestionsOperations = () => {
+
 const deleteQuestion = async (url, qid) => {  
     try {
         const response = await fetch(url, {
@@ -12,7 +13,6 @@ const deleteQuestion = async (url, qid) => {
         if (!response.ok)
             throw new Error(`${response.status}`);
 
-        setIsDeleted(true);
     } catch (error) {
         console.error("Error fetching questions:", error);
     } 
@@ -32,12 +32,12 @@ const insert = async (url, data) => {
       if (!response.ok)
           throw new Error(`${response.status}`);
 
-      setIsAdded(true);
   } catch (error) {
       console.error("Error fetching questions:", error);
   } 
 
 }
+
 return {
     deleteQuestion,
     insert
