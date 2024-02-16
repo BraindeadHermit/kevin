@@ -48,12 +48,15 @@ func on_question_answered(answer_number):
 	"""code for save the answare"""
 	Kevin.add_question()
 	
+	var answer_array := [false, false, false, false]
+	answer_array[answer_number] = true
+	
 	var submit_body = {
 		"publicKey": "testKey",
 		"company": Global.get_company_code(),
 		"qid": self.data["question_qid"],
 		"platform": "PC",
-		"options": [answers[answer_number]["is_correct"] == 1]
+		"options": answer_array
 	}
 	await terminal_access.set_is_given(data["id"])
 	await terminal_access.set_given_answer(data["id"], answer_number)
