@@ -47,6 +47,7 @@ func _on_question_answered_resp_4():
 func on_question_answered(answer_number):
 	"""code for save the answare"""
 	Kevin.add_question()
+	$AnimatedSprite2D.visible = false
 	
 	var answer_array := [false, false, false, false]
 	answer_array[answer_number] = true
