@@ -28,7 +28,7 @@ func _on_body_entered(body):
 		$CanvasLayer.visible = true
 	
 	set_collision_mask_value(1, false)
-	body.is_answering()
+	get_tree().paused = true
 
 
 func _on_question_answered_resp_1():
@@ -59,6 +59,7 @@ func on_question_answered(answer_number):
 	await terminal_access.set_given_answer(data["id"], answer_number)
 	await $HTTPRequest.request("https://tspr.ovh/api/answer", ["Content-Type: application/json"], HTTPClient.METHOD_POST, JSON.stringify(submit_body))
 	$CanvasLayer.visible = false
+	get_tree().paused = false
 	completed.emit(terminal_number, answers[answer_number]["is_correct"])
 
 func _on_level_loaded(terminal_data):
@@ -88,7 +89,3 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 	if json["status"] != "200":
 		# error code in case of request error
 		print("request error")
-
-
-func _on_body_exited(body):
-	body.answering_exited()
