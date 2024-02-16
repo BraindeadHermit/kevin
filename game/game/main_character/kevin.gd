@@ -232,3 +232,9 @@ func is_on_ladder() -> bool:
 		return true
 	
 	return false
+	
+func is_answering():
+	set_collision_layer_value(1, false)
+	
+func answering_exited():
+	set_collision_layer_value(1, true)

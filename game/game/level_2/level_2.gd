@@ -20,7 +20,7 @@ func _ready():
 	print(level_id)
 	
 	if level_id == -1:
-		level_id = await level_access.create_new_level(Global.get_current_match_id(), "livello 2", "malware")
+		level_id = await level_access.create_new_level(Global.get_current_match_id(), "livello 2", "DDOS")
 	
 	var ans_questions = await level_access.get_answered_questions_number(level_id)
 	

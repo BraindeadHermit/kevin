@@ -48,3 +48,7 @@ func _on_next_level_access_body_exited(body):
 	if $level_blocked.visible == true:
 		$level_blocked.hide()
 
+
+
+func _on_audio_stream_player_2d_finished():
+	$AudioStreamPlayer2D.play()

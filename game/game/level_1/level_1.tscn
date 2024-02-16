@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://4ytrq8x6mm2n"]
+[gd_scene load_steps=25 format=3 uid="uid://4ytrq8x6mm2n"]
 
 [ext_resource type="Texture2D" uid="uid://diwy28h4ilswd" path="res://assets/levels/level_1/Environment/Layers/back2.png" id="1_2gvn6"]
 [ext_resource type="Texture2D" uid="uid://d3yr5du01u4xe" path="res://assets/levels/level_1/Environment/Layers/back.png" id="1_kmmw5"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://v2dow6lyyyll" path="res://game/add_life_collectable/add_life.tscn" id="13_obrtg"]
 [ext_resource type="PackedScene" uid="uid://c8khcrr3ahyao" path="res://game/slime_enemy/slime.tscn" id="15_scamb"]
 [ext_resource type="PackedScene" uid="uid://jb88463vepbu" path="res://game/cannot_pass_level/level_blocked.tscn" id="16_cpw0h"]
+[ext_resource type="AudioStream" uid="uid://cgw1baeve0ydk" path="res://assets/audio/level_1_soundtrack.mp3" id="17_k7m5r"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jx4ui"]
 texture = ExtResource("4_7infc")
@@ -1682,10 +1683,6 @@ metadata/question = 3
 position = Vector2(4776, 301)
 metadata/question = 4
 
-[node name="kevin" parent="." instance=ExtResource("12_h6ws0")]
-position = Vector2(477, 1004)
-collision_mask = 30
-
 [node name="next_level_access" type="Area2D" parent="."]
 position = Vector2(9989, -160)
 collision_layer = 0
@@ -1695,6 +1692,10 @@ metadata/_edit_group_ = true
 position = Vector2(-15, 2)
 shape = SubResource("RectangleShape2D_qc2dq")
 
+[node name="kevin" parent="." instance=ExtResource("12_h6ws0")]
+position = Vector2(477, 1004)
+collision_mask = 30
+
 [node name="slime2" parent="." instance=ExtResource("15_scamb")]
 position = Vector2(901, 1018)
 
@@ -1703,6 +1704,104 @@ position = Vector2(670, 1004)
 direction = 1
 
 [node name="level_blocked" parent="." instance=ExtResource("16_cpw0h")]
+
+[node name="slime4" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(1297, 1019)
+
+[node name="slime5" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(1864, 890)
+
+[node name="slime6" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(2437, 911)
+
+[node name="slime9" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(3261, 1022)
+
+[node name="slime10" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(3767, 892)
+
+[node name="slime11" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(3553, 892)
+
+[node name="slime12" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(4293, 1022)
+
+[node name="slime13" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(4632, 1019)
+
+[node name="slime14" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(5086, 923)
+
+[node name="slime15" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(5957, 925)
+direction = 1
+
+[node name="slime16" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(6178, 918)
+
+[node name="slime17" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(6574, 758)
+
+[node name="slime18" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(7975, 759)
+
+[node name="slime19" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(8942, 758)
+
+[node name="slime20" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(9393, 696)
+
+[node name="slime21" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(9061, 632)
+
+[node name="slime22" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(8702, 588)
+
+[node name="slime23" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(7670, 477)
+
+[node name="slime24" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(7135, 471)
+
+[node name="slime25" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(6651, 464)
+
+[node name="slime26" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(5480, 252)
+
+[node name="slime27" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(5064, 300)
+
+[node name="slime28" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(6259, 136)
+
+[node name="slime29" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(7067, 75)
+
+[node name="slime30" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(7546, 197)
+
+[node name="slime31" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(7992, 36)
+
+[node name="slime32" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(8664, -139)
+
+[node name="slime33" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(9240, -142)
+
+[node name="slime7" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(9568, -134)
+
+[node name="slime8" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(2574, 828)
+
+[node name="slime3" parent="." instance=ExtResource("15_scamb")]
+position = Vector2(2574, 828)
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("17_k7m5r")
+autoplay = true
 
 [connection signal="collectables_setup" from="." to="add_life" method="_on_level_1_collectables_setup"]
 [connection signal="collectables_setup" from="." to="add_life2" method="_on_level_1_collectables_setup"]
@@ -1721,3 +1820,4 @@ direction = 1
 [connection signal="completed" from="terminal5" to="kevin" method="_on_terminal_5_completed"]
 [connection signal="body_entered" from="next_level_access" to="." method="_on_area_2d_body_entered"]
 [connection signal="body_exited" from="next_level_access" to="." method="_on_next_level_access_body_exited"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
