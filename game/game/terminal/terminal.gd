@@ -28,6 +28,7 @@ func _on_body_entered(body):
 		$CanvasLayer.visible = true
 	
 	set_collision_mask_value(1, false)
+	body.is_answering()
 
 
 func _on_question_answered_resp_1():
@@ -47,8 +48,16 @@ func on_question_answered(answer_number):
 	"""code for save the answare"""
 	Kevin.add_question()
 	
+	var submit_body = {
+		"publicKey": "testKey",
+		"company": Global.get_company_code(),
+		"qid": self.data["question_qid"],
+		"platform": "PC",
+		"options": [answers[answer_number]["is_correct"] == 1]
+	}
 	await terminal_access.set_is_given(data["id"])
 	await terminal_access.set_given_answer(data["id"], answer_number)
+	await $HTTPRequest.request("https://tspr.ovh/api/answer", ["Content-Type: application/json"], HTTPClient.METHOD_POST, JSON.stringify(submit_body))
 	$CanvasLayer.visible = false
 	completed.emit(terminal_number, answers[answer_number]["is_correct"])
 
@@ -62,7 +71,7 @@ func _on_level_loaded(terminal_data):
 		set_collision_mask_value(1, false)
 		var ans_num = data["given_answer"]
 		completed.emit(ans_num, answers[ans_num]["is_correct"])
-		
+	
 	$CanvasLayer/Panel/Label.text = question["text"]
 	
 	$CanvasLayer/Panel/question/Label.text = answers[0]["text"]
@@ -70,3 +79,16 @@ func _on_level_loaded(terminal_data):
 	$CanvasLayer/Panel/question3/Label.text = answers[2]["text"]
 	$CanvasLayer/Panel/question4/Label.text = answers[3]["text"]
 
+
+
+func _on_http_request_request_completed(result, response_code, headers, body):
+	var json = JSON.parse_string(body.get_string_from_utf8())
+	
+	print(json)
+	if json["status"] != "200":
+		# error code in case of request error
+		print("request error")
+
+
+func _on_body_exited(body):
+	body.answering_exited()

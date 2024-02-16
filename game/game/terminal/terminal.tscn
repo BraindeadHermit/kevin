@@ -42,13 +42,14 @@ offset_bottom = 909.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_r4u82")
 
 [node name="Label" type="Label" parent="CanvasLayer/Panel"]
-layout_mode = 0
-offset_left = 47.0
-offset_top = 34.0
-offset_right = 1535.0
-offset_bottom = 196.0
+layout_mode = 1
+offset_left = 60.0
+offset_top = 44.0
+offset_right = 1507.0
+offset_bottom = 102.0
 text = "Domanda 1"
 label_settings = SubResource("LabelSettings_av0so")
+autowrap_mode = 2
 
 [node name="question" parent="CanvasLayer/Panel" instance=ExtResource("3_l6d8m")]
 layout_mode = 1
@@ -106,8 +107,12 @@ offset_bottom = -13.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
 [connection signal="question_answered" from="CanvasLayer/Panel/question" to="." method="_on_question_answered_resp_1"]
 [connection signal="question_answered" from="CanvasLayer/Panel/question2" to="." method="_on_question_answered_resp_2"]
 [connection signal="question_answered" from="CanvasLayer/Panel/question3" to="." method="_on_question_answered_resp_3"]
 [connection signal="question_answered" from="CanvasLayer/Panel/question4" to="." method="_on_question_answered_resp_4"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
