@@ -10,7 +10,7 @@ export default function BarChart(props) {
     const trueQuestionsLv1 = () => {
         var total = 0;
 
-        level1.forEach(element => {
+        level1 && level1.forEach(element => {
             total += props.trueQuestions(element.QID)
         });
 
@@ -20,7 +20,7 @@ export default function BarChart(props) {
     const falseQuestionLv1 = () => {
         var total = 0;
 
-        level1.forEach(element => {
+        level1 && level1.forEach(element => {
             total += props.falseQuestions(element.QID)
         })
 
@@ -30,7 +30,7 @@ export default function BarChart(props) {
     const trueQuestionsLv2 = () => {
         var total = 0;
 
-        level2.forEach(element => {
+        level2 && level2.forEach(element => {
             total += props.trueQuestions(element.QID)
         });
 
@@ -40,7 +40,7 @@ export default function BarChart(props) {
     const falseQuestionLv2 = () => {
         var total = 0;
 
-        level2.forEach(element => {
+        level2 && level2.forEach(element => {
             total += props.falseQuestions(element.QID)
         })
 
