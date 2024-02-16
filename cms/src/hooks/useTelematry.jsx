@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { useAuth } from "./useAuth";
+import { elements } from "chart.js";
 
 const useTelematry = () => {
   const { isLogged } = useAuth();

@@ -1,8 +1,51 @@
 import { Bar } from 'react-chartjs-2'
 import { Chart as ChartJS } from 'chart.js/auto'
-import { useState } from 'react';
 
-export default function BarChart() {
+export default function BarChart(props) {
+    const level1 = props.questions && props.questions.filter(item => { return item.Category === 'malware' });
+    const level2 = props.questions && props.questions.filter(item => { return item.Category === 'DDOS' });
+
+    console.log(level1, level2);
+
+    const trueQuestionsLv1 = () => {
+        var total = 0;
+
+        level1.forEach(element => {
+            total += props.trueQuestions(element.QID)
+        });
+
+        return total;
+    }
+
+    const falseQuestionLv1 = () => {
+        var total = 0;
+
+        level1.forEach(element => {
+            total += props.falseQuestions(element.QID)
+        })
+
+        return total;
+    }
+
+    const trueQuestionsLv2 = () => {
+        var total = 0;
+
+        level2.forEach(element => {
+            total += props.trueQuestions(element.QID)
+        });
+
+        return total;
+    }
+
+    const falseQuestionLv2 = () => {
+        var total = 0;
+
+        level2.forEach(element => {
+            total += props.falseQuestions(element.QID)
+        })
+
+        return total;
+    }
 
     return <Bar data={{
         labels: ['livello 1', 'livello 2'],
@@ -11,7 +54,7 @@ export default function BarChart() {
             borderRadius: 8,
             axis: 'y',
             label: 'Risposte esatte',
-            data: [65, 59],
+            data: [trueQuestionsLv1(), falseQuestionLv1()],
             fill: true, 
             backgroundColor: ['green'],
             borderWidth: 0,
@@ -21,7 +64,7 @@ export default function BarChart() {
             borderRadius: 8,
             axis: 'y',
             label: 'Risposte errate',
-            data: [34, 22],
+            data: [trueQuestionsLv2(), falseQuestionLv2()],
             fill: true, 
             backgroundColor: ['red'],
             borderWidth: 0,

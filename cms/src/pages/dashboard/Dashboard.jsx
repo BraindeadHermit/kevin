@@ -223,7 +223,11 @@ export default function Dashboard() {
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
             <Box style={{ margin: "auto", width: "80%", height: "40vh" }}>
-              <BarChart data={data} />
+              <BarChart 
+              questions={questions}
+              trueQuestions={getTrueResponseQuestions}
+              falseQuestions={getFalseResponseQuestions}
+              />
             </Box>
             <Box>
               <Box sx={{ marginBottom: 5, marginTop: 2 }}>
