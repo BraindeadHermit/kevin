@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://d4jls52h7t63t" path="res://assets/img/city.png" id="2_cfma4"]
 [ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="3_nsw1t"]
 [ext_resource type="FontFile" uid="uid://d16fe7j0t7esm" path="res://assets/fonts/Orbitron/Orbitron-Bold.ttf" id="4_ulaua"]
-[ext_resource type="AudioStream" uid="uid://bg7smvikndhds" path="res://assets/audio/battle-of-the-dragons-8037.mp3" id="5_1bs2j"]
+[ext_resource type="AudioStream" uid="uid://cu56jrgabkies" path="res://assets/audio/LEVEL_1.mp3" id="6_kfebs"]
 [ext_resource type="Texture2D" uid="uid://boidwyeukws80" path="res://assets/img/kevin.png" id="6_lwfwj"]
 [ext_resource type="Texture2D" uid="uid://bdgvi3sucxldl" path="res://assets/img/shade.png" id="7_f4tlj"]
 [ext_resource type="Texture2D" uid="uid://jr78x5snkxy5" path="res://assets/img/main_sfx/kevin_logo.svg" id="8_ole7o"]
@@ -484,7 +484,8 @@ libraries = {
 }
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("5_1bs2j")
+stream = ExtResource("6_kfebs")
+volume_db = 10.4
 autoplay = true
 mix_target = 1
 

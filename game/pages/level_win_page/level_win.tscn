@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://kyprfs8b318e"]
+[gd_scene load_steps=19 format=3 uid="uid://kyprfs8b318e"]
 
 [ext_resource type="Texture2D" uid="uid://bdgvi3sucxldl" path="res://assets/img/shade.png" id="1_3psvk"]
 [ext_resource type="Script" path="res://pages/level_win_page/level_win.gd" id="1_heqyg"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="4_e0yrf"]
 [ext_resource type="Texture2D" uid="uid://jr78x5snkxy5" path="res://assets/img/main_sfx/kevin_logo.svg" id="5_8cwcn"]
 [ext_resource type="VideoStream" path="res://assets/video/level_win.ogv" id="7_6xlj3"]
+[ext_resource type="AudioStream" uid="uid://bd7gy4erv4r0o" path="res://assets/audio/level_win.mp3" id="8_8tg48"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_msnd7"]
 font = ExtResource("2_n5s54")
@@ -338,6 +339,10 @@ autoplay = "fade_in"
 libraries = {
 "": SubResource("AnimationLibrary_r3gh0")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_8tg48")
+volume_db = 10.805
 
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_next_level_pressed"]

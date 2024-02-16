@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dhuhmwjpokq6"]
+[gd_scene load_steps=17 format=3 uid="uid://dhuhmwjpokq6"]
 
 [ext_resource type="FontFile" uid="uid://d16fe7j0t7esm" path="res://assets/fonts/Orbitron/Orbitron-Bold.ttf" id="1_pgsra"]
 [ext_resource type="Script" path="res://pages/game_win/game_win.gd" id="1_uk2oa"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="3_nnns6"]
 [ext_resource type="Texture2D" uid="uid://bdgvi3sucxldl" path="res://assets/img/shade.png" id="4_hc22w"]
 [ext_resource type="Texture2D" uid="uid://jr78x5snkxy5" path="res://assets/img/main_sfx/kevin_logo.svg" id="5_ckfv5"]
+[ext_resource type="AudioStream" uid="uid://chfp35wc2by4k" path="res://assets/audio/game_win.wav" id="8_wawan"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_uraum"]
 font = ExtResource("1_pgsra")
@@ -255,9 +256,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = 18.5
+offset_left = -267.0
 offset_top = 99.0
-offset_right = 552.5
+offset_right = 267.0
 offset_bottom = 161.0
 grow_horizontal = 2
 text = "System Restored"
@@ -272,10 +273,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = 61.0
-offset_top = 139.0
-offset_right = 510.0
-offset_bottom = 188.0
+offset_left = -224.5
+offset_top = 30.0
+offset_right = 224.5
+offset_bottom = 79.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Minaccia Neutralizzata"
@@ -286,6 +287,9 @@ autoplay = "fade_in"
 libraries = {
 "": SubResource("AnimationLibrary_s1gpl")
 }
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_wawan")
 
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]

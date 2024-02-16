@@ -201,8 +201,8 @@ autoplay = true
 expand = true
 
 [node name="Shade" type="Sprite2D" parent="."]
-position = Vector2(964, 545)
-scale = Vector2(1, 0.996296)
+position = Vector2(965.5, 545)
+scale = Vector2(1.00156, 0.996296)
 texture = ExtResource("2_uxpw0")
 
 [node name="Label" type="Label" parent="."]
