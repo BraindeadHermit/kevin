@@ -58,6 +58,15 @@ func _exit_tree():
 
 
 func _on_http_request_request_completed(result, response_code, headers, body):
+	print(result)
+	print(response_code)
+	print(body)
+	if (response_code == 0):
+		$Panel2.visible = true
+		spinner.visible = false
+		spinner_text.visible = false
+		return
+		
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	
 	if json["status"] == "400":
@@ -71,3 +80,7 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 		self._async_load_main()
 		
 		
+
+
+func _on_texture_button_pressed():
+	$Panel2.visible = false
