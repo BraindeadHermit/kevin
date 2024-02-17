@@ -6,6 +6,7 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { alpha, createTheme, ThemeProvider } from "@mui/material/styles";
 import { useAuth } from "../../hooks/useAuth";
+import React, { useState } from 'react';
 
 const defaultTheme = createTheme({
   palette: {
@@ -47,6 +48,7 @@ const defaultTheme = createTheme({
 });
 
 const LogIn = () => {
+  const [error, setError] = useState(null);
   const { login } = useAuth();
 
   return (
@@ -72,15 +74,22 @@ const LogIn = () => {
             onSubmit={ async (e) => {
               e.preventDefault();
               const data = new FormData(e.currentTarget);
-              await login("/api/company/auth/login", {
-                login: data.get("login"),
-                password: data.get("password"),
-              });
+              try {
+                await login("/api/company/auth/login", {
+                  login: data.get("login"),
+                  password: data.get("password"),
+                });
+          
+                setError(null);
+              } catch (error) {
+                setError('Credenziali non valide.');
+              }
             }}
             noValidate
             sx={{ mt: 1 }}
           >
             <TextField
+              onChange={() => setError(null)}
               margin="normal"
               color="secondary"
               required
@@ -92,6 +101,7 @@ const LogIn = () => {
               autoFocus
             />
             <TextField
+              onChange={() => setError(null)}
               margin="normal"
               color="secondary"
               required
@@ -102,6 +112,11 @@ const LogIn = () => {
               id="password"
               autoComplete="current-password"
             />
+            {error && (
+            <Typography sx={{mt: 1}}>
+              {error}
+            </Typography>
+            )}
             <Button
               color="primary"
               type="submit"

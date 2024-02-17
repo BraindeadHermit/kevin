@@ -14,6 +14,7 @@ const Progress = styled(LinearProgress)(({ theme }) => ({
 }));
 
 export default function QuestionCard(props) {
+
   return (
     <Box
       border={0.2}
