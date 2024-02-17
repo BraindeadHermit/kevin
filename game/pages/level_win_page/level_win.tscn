@@ -308,9 +308,9 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -267.0
+offset_left = 18.5
 offset_top = 75.0
-offset_right = 267.0
+offset_right = 552.5
 offset_bottom = 137.0
 grow_horizontal = 2
 text = "System Restored"
@@ -325,10 +325,10 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -224.5
-offset_top = 6.0
-offset_right = 224.5
-offset_bottom = 55.0
+offset_left = 61.0
+offset_top = 115.0
+offset_right = 510.0
+offset_bottom = 164.0
 grow_horizontal = 2
 grow_vertical = 0
 text = "Minaccia Neutralizzata"
@@ -342,8 +342,10 @@ libraries = {
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("8_8tg48")
-volume_db = 10.805
+volume_db = 13.578
+autoplay = true
 
 [connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_next_level_pressed"]
 [connection signal="pressed" from="TextureButton2" to="." method="_on_home_pressed"]
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]

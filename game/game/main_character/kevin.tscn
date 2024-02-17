@@ -1,4 +1,4 @@
-[gd_scene load_steps=58 format=3 uid="uid://crme7c848bua7"]
+[gd_scene load_steps=60 format=3 uid="uid://crme7c848bua7"]
 
 [ext_resource type="Script" path="res://game/main_character/kevin.gd" id="1_ctal3"]
 [ext_resource type="Texture2D" uid="uid://bxnljkusab7vt" path="res://assets/levels/level_1/Characters/Player/sprites/Player-duck/player-duck1.png" id="2_hlxyv"]
@@ -38,6 +38,8 @@
 [ext_resource type="Texture2D" uid="uid://bt3vjyfv30j3a" path="res://assets/graphic components/hud/no_answered.png" id="35_vxgig"]
 [ext_resource type="FontFile" uid="uid://kokeirhurbxw" path="res://assets/fonts/ubuntu/Ubuntu-Bold.ttf" id="36_kkvnt"]
 [ext_resource type="Texture2D" uid="uid://dbrumuay3yi68" path="res://assets/levels/level_1/Props/Sprites/console.png" id="37_lodhx"]
+[ext_resource type="AudioStream" uid="uid://bp302lceqj28u" path="res://assets/audio/sfx/Retro Jump 01.wav" id="39_ciisp"]
+[ext_resource type="AudioStream" uid="uid://bdab5ob1glsyl" path="res://assets/audio/sfx/Retro Negative Short 23.wav" id="40_epktu"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fv4np"]
 radius = 7.0
@@ -707,6 +709,12 @@ grow_vertical = 2
 text = "0"
 label_settings = SubResource("LabelSettings_jthwe")
 horizontal_alignment = 1
+
+[node name="jump_audio" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("39_ciisp")
+
+[node name="fall" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("40_epktu")
 
 [connection signal="body_entered" from="ladder_detector" to="." method="_on_ladder_entered"]
 [connection signal="body_exited" from="ladder_detector" to="." method="_on_ladder_exited"]

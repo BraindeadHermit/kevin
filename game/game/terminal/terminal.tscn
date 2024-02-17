@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cisdb2ci5px5i"]
+[gd_scene load_steps=19 format=3 uid="uid://cisdb2ci5px5i"]
 
 [ext_resource type="Texture2D" uid="uid://dbrumuay3yi68" path="res://assets/levels/level_1/Props/Sprites/console.png" id="1_0vey0"]
 [ext_resource type="Script" path="res://game/terminal/terminal.gd" id="1_iivxx"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://71tj6p33sel4" path="res://assets/select/UI_Flat_Select_02a2.png" id="8_tqrgf"]
 [ext_resource type="Texture2D" uid="uid://buuq18nr7g21l" path="res://assets/select/UI_Flat_Select_02a3.png" id="9_8y3mk"]
 [ext_resource type="Texture2D" uid="uid://bl07mp42mde7g" path="res://assets/select/UI_Flat_Select_02a4.png" id="10_2igjr"]
+[ext_resource type="AudioStream" uid="uid://c2b1velr3smxo" path="res://assets/audio/sfx/Retro Event UI 13.wav" id="13_1x12r"]
+[ext_resource type="AudioStream" uid="uid://dh46n0u1q5xpl" path="res://assets/audio/sfx/Retro Event StereoUP 02.wav" id="13_aq45a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qwtki"]
 size = Vector2(29, 29)
@@ -156,6 +158,12 @@ grow_horizontal = 2
 grow_vertical = 0
 
 [node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="pick_response" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_aq45a")
+
+[node name="opened_terminal" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_1x12r")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="question_answered" from="CanvasLayer/Panel/question" to="." method="_on_question_answered_resp_1"]

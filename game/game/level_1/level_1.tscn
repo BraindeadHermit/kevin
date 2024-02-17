@@ -1805,7 +1805,7 @@ position = Vector2(-4, 7)
 stream = ExtResource("17_v8cx2")
 volume_db = 19.949
 autoplay = true
-max_distance = 10000.0
+max_distance = 30000.0
 area_mask = 2
 
 [connection signal="collectables_setup" from="." to="add_life" method="_on_level_1_collectables_setup"]

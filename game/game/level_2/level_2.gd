@@ -45,3 +45,7 @@ func _on_win_zone_body_entered(body):
 	else:
 		$level_blocked.show()
 		print("Non hai risposto a tutte le domande")
+
+
+func _on_audio_stream_player_2d_finished():
+	$AudioStreamPlayer2D.play()
