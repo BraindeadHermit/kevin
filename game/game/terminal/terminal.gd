@@ -28,6 +28,7 @@ func _on_body_entered(body):
 		$CanvasLayer.visible = true
 	
 	set_collision_mask_value(1, false)
+	$opened_terminal.play()
 	get_tree().paused = true
 
 
@@ -48,6 +49,7 @@ func on_question_answered(answer_number):
 	"""code for save the answare"""
 	Kevin.add_question()
 	$AnimatedSprite2D.visible = false
+	$pick_response.play()
 	
 	var answer_array := [false, false, false, false]
 	answer_array[answer_number] = true
@@ -75,6 +77,7 @@ func _on_level_loaded(terminal_data):
 	if data["is_given"]:
 		set_collision_mask_value(1, false)
 		var ans_num = data["given_answer"]
+		$AnimatedSprite2D.visible = false
 		completed.emit(ans_num, answers[ans_num]["is_correct"])
 	
 	$CanvasLayer/Panel/Label.text = question["text"]

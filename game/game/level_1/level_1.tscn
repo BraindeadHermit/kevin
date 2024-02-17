@@ -16,7 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://v2dow6lyyyll" path="res://game/add_life_collectable/add_life.tscn" id="13_obrtg"]
 [ext_resource type="PackedScene" uid="uid://c8khcrr3ahyao" path="res://game/slime_enemy/slime.tscn" id="15_scamb"]
 [ext_resource type="PackedScene" uid="uid://jb88463vepbu" path="res://game/cannot_pass_level/level_blocked.tscn" id="16_cpw0h"]
-[ext_resource type="AudioStream" uid="uid://cgw1baeve0ydk" path="res://assets/audio/level_1_soundtrack.mp3" id="17_k7m5r"]
+[ext_resource type="AudioStream" uid="uid://cu56jrgabkies" path="res://assets/audio/LEVEL_1.mp3" id="17_v8cx2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_jx4ui"]
 texture = ExtResource("4_7infc")
@@ -1801,8 +1801,12 @@ position = Vector2(2574, 828)
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 process_mode = 3
-stream = ExtResource("17_k7m5r")
+position = Vector2(-4, 7)
+stream = ExtResource("17_v8cx2")
+volume_db = 19.949
 autoplay = true
+max_distance = 30000.0
+area_mask = 2
 
 [connection signal="collectables_setup" from="." to="add_life" method="_on_level_1_collectables_setup"]
 [connection signal="collectables_setup" from="." to="add_life2" method="_on_level_1_collectables_setup"]

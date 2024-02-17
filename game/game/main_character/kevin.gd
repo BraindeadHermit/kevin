@@ -73,6 +73,7 @@ func _physics_process(delta):
 			if Input.is_action_just_pressed("ui_accept"):
 				velocity.y = JUMP_VELOCITY
 				anim.play("jump")
+				$jump_audio.play()
 				
 			move_and_slide()
 		States.LADDERS:
@@ -117,10 +118,14 @@ func _physics_process(delta):
 
 func _on_dangerzone_body_entered(body):
 	Kevin.death()
+	$fall.play()
+	await $fall.finished
 	get_tree().change_scene_to_file("res://game/level_1/level_1.tscn")
 	
 func _on_dangerzone_level_2_body_entered(body):
 	Kevin.death()
+	$fall.play()
+	await $fall.finished
 	get_tree().change_scene_to_file("res://game/level_2/level_2.tscn")
 
 func direction_input() -> int:
@@ -206,11 +211,11 @@ func completed_answer():
 func hurt(enemy_position):
 	Kevin.death()
 	self.life_visual_setup()
-	velocity.y = JUMP_VELOCITY * 0.5
+	velocity.y = JUMP_VELOCITY * 0.7
 	if enemy_position > position.x:
-		velocity.x = -1000
+		position = lerp(position, Vector2(position.x - 150, position.y), 0.3)
 	elif enemy_position < position.x:
-		velocity.x = 1000
+		position = lerp(position, Vector2(position.x + 150, position.y), 0.3)
 		
 	Input.action_release("ui_accept")
 	Input.action_release("ui_left")
