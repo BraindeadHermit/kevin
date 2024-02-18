@@ -7,6 +7,14 @@ const useProvideAuth = () => {
   const navigate = useNavigate();
   const [isLogged, setIsLogged] = useState(false);
 
+  const isCookiePresent = () => {
+    return document.cookie.split().some((cookie) => {
+      return cookie.trim().startsWith(`KevinCookie=`);
+    });
+  }
+
+  console.log(isCookiePresent());
+
   useEffect(() => {
     isLogged ? navigate("/") : navigate("login");
   }, [isLogged]);

@@ -24,6 +24,7 @@ import QuestionCard from "../../components/QuestionCard";
 import AddQuestionButton from "../../components/AddQuestionButton";
 import useGetQuestion from "../../hooks/useGetQuestion";
 import useTelematry from "../../hooks/useTelematry";
+import { useRef } from 'react';
 
 const drawerWidth = 240;
 
@@ -81,6 +82,9 @@ const defaultTheme = createTheme({
 
 export default function Dashboard() {
   const [selectedIndex, setSelectedIndex] = React.useState(1);
+  const dashboardRef = useRef(null);
+  const questionsRef = useRef(null); 
+  const livello2Ref = useRef(null);
   const { questions } = useGetQuestion();
   const {
     data,
@@ -96,6 +100,14 @@ export default function Dashboard() {
 
   const handleListItemClick = (event, index) => {
     setSelectedIndex(index);
+
+    if (index === 0) {
+      dashboardRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (index === 1) {
+      questionsRef.current.scrollIntoView({ behavior: 'smooth' });
+    } else if (index === 2) {
+      livello2Ref.current.scrollIntoView({ behavior: 'smooth' });
+    }
   };
 
   return (
@@ -222,6 +234,7 @@ export default function Dashboard() {
         >
           <Toolbar />
           <Container maxWidth="lg" sx={{ mt: 4, mb: 4 }}>
+          <div ref={dashboardRef}/>
             <Box style={{ margin: "auto", width: "80%", height: "40vh" }}>
               <BarChart 
               questions={questions}
@@ -230,6 +243,7 @@ export default function Dashboard() {
               />
             </Box>
             <Box>
+            <div ref={questionsRef}/>
               <Box sx={{ marginBottom: 5, marginTop: 2 }}>
                 <Typography variant="h6" fontWeight={900}>
                   LIVELLO 1
@@ -276,6 +290,7 @@ export default function Dashboard() {
               </Box>
             </Box>
             <Box>
+            <div ref={livello2Ref}/>
               <Box sx={{ marginBottom: 5, marginTop: 2 }}>
                 <Typography variant="h6" fontWeight={900}>
                   LIVELLO 2
