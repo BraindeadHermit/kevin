@@ -21,6 +21,9 @@ func questions_update():
 	http_request.request(download_data_url, ["Content-Type: application/json"], HTTPClient.METHOD_POST, JSON.stringify(download_data_body))
 	
 func _on_request_completed(result, response_code, headers, body):
+	if response_code == 0:
+		return
+	
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	
 	if json["questions"] == []:
