@@ -31,6 +31,9 @@ func _physics_process(delta):
 			if velocity.y > 0:
 				anim.play("fall")
 			
+			if Input.is_action_just_pressed("ui_shoot"):
+				shot(false)
+			
 			var direction = direction_input()
 			
 			velocity.x = direction * SPEED
@@ -213,9 +216,9 @@ func hurt(enemy_position):
 	self.life_visual_setup()
 	velocity.y = JUMP_VELOCITY * 0.7
 	if enemy_position > position.x:
-		position = lerp(position, Vector2(position.x - 150, position.y), 0.3)
+		velocity.x = velocity.x - 150
 	elif enemy_position < position.x:
-		position = lerp(position, Vector2(position.x + 150, position.y), 0.3)
+		velocity.x = velocity.x + 150
 		
 	Input.action_release("ui_accept")
 	Input.action_release("ui_left")
