@@ -25,7 +25,6 @@ func _on_request_completed(result, response_code, headers, body):
 		return
 	
 	var json = JSON.parse_string(body.get_string_from_utf8())
-	
 	if json["questions"] == []:
 		return
 	

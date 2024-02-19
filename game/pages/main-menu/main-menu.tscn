@@ -1,7 +1,6 @@
-[gd_scene load_steps=30 format=3 uid="uid://dc48463ktmjwx"]
+[gd_scene load_steps=27 format=3 uid="uid://dc48463ktmjwx"]
 
 [ext_resource type="Script" path="res://pages/main-menu/main-menu.gd" id="1_5585w"]
-[ext_resource type="Texture2D" uid="uid://d4jls52h7t63t" path="res://assets/img/city.png" id="2_cfma4"]
 [ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="3_nsw1t"]
 [ext_resource type="FontFile" uid="uid://d16fe7j0t7esm" path="res://assets/fonts/Orbitron/Orbitron-Bold.ttf" id="4_ulaua"]
 [ext_resource type="AudioStream" uid="uid://ftb4yx1qold5" path="res://assets/audio/MAIN.wav" id="6_5jebx"]
@@ -14,48 +13,11 @@
 [ext_resource type="Texture2D" uid="uid://cq0d5vyiyvw38" path="res://assets/img/main_sfx/LINE_3.svg" id="11_r0thm"]
 [ext_resource type="Texture2D" uid="uid://btjs3486mbg4j" path="res://assets/img/main_sfx/LINE_4.svg" id="12_71kfr"]
 [ext_resource type="PackedScene" uid="uid://b5uuoqyjg4i0u" path="res://spinner.tscn" id="14_2un3i"]
+[ext_resource type="VideoStream" path="res://assets/video/intro.ogv" id="15_kill2"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_80ur6"]
 font = ExtResource("4_ulaua")
 font_size = 70
-
-[sub_resource type="Animation" id="Animation_ujg3k"]
-length = 0.001
-
-[sub_resource type="Animation" id="Animation_k61rk"]
-resource_name = "background_fade"
-length = 14.0
-loop_mode = 2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("TextureRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 13.3, 13.6),
-"transitions": PackedFloat32Array(1, 1, 1),
-"update": 0,
-"values": [Vector2(0, -140), Vector2(-100, -140), Vector2(0, -140)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("TextureRect:self_modulate")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.5, 2.1, 11.5, 12.9),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_1u5dt"]
-_data = {
-"RESET": SubResource("Animation_ujg3k"),
-"background_fade": SubResource("Animation_k61rk")
-}
 
 [sub_resource type="Animation" id="Animation_20hqj"]
 length = 0.001
@@ -387,14 +349,16 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="TextureRect" type="TextureRect" parent="."]
-self_modulate = Color(1, 1, 1, 0)
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
 layout_mode = 1
-offset_top = -140.0
-offset_right = 3840.0
-offset_bottom = 2020.0
-scale = Vector2(0.6, 0.6)
-texture = ExtResource("2_cfma4")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("15_kill2")
+autoplay = true
+expand = true
 
 [node name="TextureRect2" type="TextureRect" parent="."]
 layout_mode = 1
@@ -408,6 +372,7 @@ grow_vertical = 2
 texture = ExtResource("7_f4tlj")
 
 [node name="Label" type="Label" parent="."]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 offset_left = 208.0
 offset_top = 157.0
@@ -464,12 +429,6 @@ offset_bottom = 609.0
 size_flags_horizontal = 0
 size_flags_vertical = 6
 metadata/button_text = "esci"
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-autoplay = "background_fade"
-libraries = {
-"": SubResource("AnimationLibrary_1u5dt")
-}
 
 [node name="MainMenuAnim" type="AnimationPlayer" parent="."]
 autoplay = "main_menu"
@@ -603,7 +562,7 @@ offset_bottom = -22.0
 scale = Vector2(0.5, 0.5)
 
 [connection signal="ready" from="." to="." method="_on_ready"]
-[connection signal="ready" from="TextureRect" to="." method="_on_texture_rect_ready"]
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
 [connection signal="ready" from="Label" to="." method="_on_label_ready"]
 [connection signal="pressed" from="play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="quit" to="." method="_on_quit_pressed"]

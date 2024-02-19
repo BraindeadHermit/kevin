@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://cq71jo2u7htc"]
+[gd_scene load_steps=75 format=3 uid="uid://cq71jo2u7htc"]
 
 [ext_resource type="Texture2D" uid="uid://c4yieawp1pmt3" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/background/skyline-a.png" id="1_diwfe"]
 [ext_resource type="Texture2D" uid="uid://cujfdjgf6p425" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/background/Rectangle 191.png" id="1_ponlp"]
@@ -39,6 +39,7 @@
 [ext_resource type="PackedScene" uid="uid://cisdb2ci5px5i" path="res://game/terminal/terminal.tscn" id="36_od7jx"]
 [ext_resource type="PackedScene" uid="uid://jb88463vepbu" path="res://game/cannot_pass_level/level_blocked.tscn" id="38_ylole"]
 [ext_resource type="AudioStream" uid="uid://dron1s1m8fw0m" path="res://assets/audio/level_2.mp3" id="39_pdi5e"]
+[ext_resource type="PackedScene" uid="uid://c8khcrr3ahyao" path="res://game/slime_enemy/slime.tscn" id="40_ityxv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_epvhu"]
 texture = ExtResource("4_js3mm")
@@ -1237,7 +1238,7 @@ texture = ExtResource("4_js3mm")
 physics_layer_0/collision_layer = 64
 sources/0 = SubResource("TileSetAtlasSource_2xh3w")
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_gupyy"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_mibc4"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1255,7 +1256,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ptc6c"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_edkgm"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1276,7 +1277,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7ane0"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_jr70l"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1297,7 +1298,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_oh5hy"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0q6o1"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1318,7 +1319,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vhv4b"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_212hy"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1339,7 +1340,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_m1sv2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2ucaj"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1360,7 +1361,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_3lf81"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_3fgmt"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1381,7 +1382,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dbya5"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_tbxt1"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1402,7 +1403,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_v2560"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_i7l7e"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1423,7 +1424,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_b045s"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_eft1w"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1444,7 +1445,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_g5h8v"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_64nhc"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1465,7 +1466,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cbun5"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_2qgqv"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1483,7 +1484,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_rihcy"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_up1qq"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1504,7 +1505,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_xhm4n"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_m0dm1"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1525,7 +1526,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_4apmi"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_ksjl8"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1546,7 +1547,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_r37pf"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_v83jl"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1567,7 +1568,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7wc63"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_vxio3"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1588,7 +1589,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_kvxon"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_xnnr4"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1609,7 +1610,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_520vm"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_5h2sv"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1630,7 +1631,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_28rb2"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_bmlvb"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1651,7 +1652,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_wxqbk"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_sikv5"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1672,7 +1673,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_yh5mk"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8lfyc"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1690,7 +1691,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_n3bo6"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_0cf46"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1711,7 +1712,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_m0xdt"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_8648g"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1732,7 +1733,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_cywdq"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_qk8vs"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1753,7 +1754,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_itdee"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_u208t"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -1774,7 +1775,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_s4k5b"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_xee3f"]
 resource_local_to_scene = true
 animations = [{
 "frames": [{
@@ -2361,35 +2362,35 @@ position = Vector2(653, 814)
 
 [node name="banner_sushi" parent="." instance=ExtResource("20_i78xy")]
 position = Vector2(1328, 871)
-sprite_frames = SubResource("SpriteFrames_gupyy")
+sprite_frames = SubResource("SpriteFrames_mibc4")
 
 [node name="monitorface2" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(226, 983)
-sprite_frames = SubResource("SpriteFrames_ptc6c")
+sprite_frames = SubResource("SpriteFrames_edkgm")
 
 [node name="monitorface3" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(283, 982)
-sprite_frames = SubResource("SpriteFrames_7ane0")
+sprite_frames = SubResource("SpriteFrames_jr70l")
 
 [node name="monitorface4" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(350, 982)
-sprite_frames = SubResource("SpriteFrames_oh5hy")
+sprite_frames = SubResource("SpriteFrames_0q6o1")
 
 [node name="monitorface" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(149, 1223)
-sprite_frames = SubResource("SpriteFrames_vhv4b")
+sprite_frames = SubResource("SpriteFrames_212hy")
 
 [node name="monitorface5" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(208, 1223)
-sprite_frames = SubResource("SpriteFrames_m1sv2")
+sprite_frames = SubResource("SpriteFrames_2ucaj")
 
 [node name="monitorface6" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(261, 1223)
-sprite_frames = SubResource("SpriteFrames_3lf81")
+sprite_frames = SubResource("SpriteFrames_3fgmt")
 
 [node name="banner_side" parent="." instance=ExtResource("29_fcwnw")]
 position = Vector2(659, 1016)
-sprite_frames = SubResource("SpriteFrames_dbya5")
+sprite_frames = SubResource("SpriteFrames_tbxt1")
 
 [node name="banner_neon2" parent="." instance=ExtResource("16_se3ej")]
 position = Vector2(1730, 784)
@@ -2414,11 +2415,11 @@ texture = ExtResource("7_763fc")
 
 [node name="monitorface7" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(2055, 1205)
-sprite_frames = SubResource("SpriteFrames_v2560")
+sprite_frames = SubResource("SpriteFrames_i7l7e")
 
 [node name="monitorface8" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(2152, 1207)
-sprite_frames = SubResource("SpriteFrames_b045s")
+sprite_frames = SubResource("SpriteFrames_eft1w")
 
 [node name="banner_scroll3" parent="." instance=ExtResource("17_jl6qv")]
 position = Vector2(2897, 1107)
@@ -2428,11 +2429,11 @@ position = Vector2(3104, 950)
 
 [node name="banner_side2" parent="." instance=ExtResource("29_fcwnw")]
 position = Vector2(2896, 660)
-sprite_frames = SubResource("SpriteFrames_g5h8v")
+sprite_frames = SubResource("SpriteFrames_64nhc")
 
 [node name="banner_sushi2" parent="." instance=ExtResource("20_i78xy")]
 position = Vector2(3105, 519)
-sprite_frames = SubResource("SpriteFrames_cbun5")
+sprite_frames = SubResource("SpriteFrames_2qgqv")
 
 [node name="banner_neon3" parent="." instance=ExtResource("16_se3ej")]
 position = Vector2(3105, 725)
@@ -2458,19 +2459,19 @@ position = Vector2(3569, 811)
 
 [node name="monitorface9" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(3266, 823)
-sprite_frames = SubResource("SpriteFrames_rihcy")
+sprite_frames = SubResource("SpriteFrames_up1qq")
 
 [node name="monitorface10" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(3310, 823)
-sprite_frames = SubResource("SpriteFrames_xhm4n")
+sprite_frames = SubResource("SpriteFrames_m0dm1")
 
 [node name="monitorface11" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(3353, 823)
-sprite_frames = SubResource("SpriteFrames_4apmi")
+sprite_frames = SubResource("SpriteFrames_ksjl8")
 
 [node name="monitorface12" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(3078, 662)
-sprite_frames = SubResource("SpriteFrames_r37pf")
+sprite_frames = SubResource("SpriteFrames_v83jl")
 
 [node name="banner_neon4" parent="." instance=ExtResource("16_se3ej")]
 position = Vector2(3232, 1051)
@@ -2481,19 +2482,19 @@ texture = ExtResource("15_hhk0j")
 
 [node name="monitorface13" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(3855, 1125)
-sprite_frames = SubResource("SpriteFrames_7wc63")
+sprite_frames = SubResource("SpriteFrames_vxio3")
 
 [node name="monitorface14" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(3903, 1127)
-sprite_frames = SubResource("SpriteFrames_kvxon")
+sprite_frames = SubResource("SpriteFrames_xnnr4")
 
 [node name="monitorface15" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(3950, 1124)
-sprite_frames = SubResource("SpriteFrames_520vm")
+sprite_frames = SubResource("SpriteFrames_5h2sv")
 
 [node name="monitorface16" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(4464, 1127)
-sprite_frames = SubResource("SpriteFrames_28rb2")
+sprite_frames = SubResource("SpriteFrames_bmlvb")
 
 [node name="Banner-small5" type="Sprite2D" parent="."]
 position = Vector2(4515, 1227)
@@ -2507,31 +2508,31 @@ position = Vector2(4604, 1126)
 
 [node name="banner_side3" parent="." instance=ExtResource("29_fcwnw")]
 position = Vector2(4607, 915)
-sprite_frames = SubResource("SpriteFrames_wxqbk")
+sprite_frames = SubResource("SpriteFrames_sikv5")
 
 [node name="banner_sushi3" parent="." instance=ExtResource("20_i78xy")]
 position = Vector2(5265, 1167)
-sprite_frames = SubResource("SpriteFrames_yh5mk")
+sprite_frames = SubResource("SpriteFrames_8lfyc")
 
 [node name="monitorface17" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(4681, 1206)
-sprite_frames = SubResource("SpriteFrames_n3bo6")
+sprite_frames = SubResource("SpriteFrames_0cf46")
 
 [node name="monitorface18" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(4729, 1206)
-sprite_frames = SubResource("SpriteFrames_m0xdt")
+sprite_frames = SubResource("SpriteFrames_8648g")
 
 [node name="monitorface19" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(4784, 1206)
-sprite_frames = SubResource("SpriteFrames_cywdq")
+sprite_frames = SubResource("SpriteFrames_qk8vs")
 
 [node name="monitorface20" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(5139, 967)
-sprite_frames = SubResource("SpriteFrames_itdee")
+sprite_frames = SubResource("SpriteFrames_u208t")
 
 [node name="monitorface21" parent="." instance=ExtResource("24_yno1f")]
 position = Vector2(5000, 884)
-sprite_frames = SubResource("SpriteFrames_s4k5b")
+sprite_frames = SubResource("SpriteFrames_xee3f")
 
 [node name="Hotel-sign3" type="Sprite2D" parent="."]
 position = Vector2(4763, 701)
@@ -2587,6 +2588,90 @@ stream = ExtResource("39_pdi5e")
 volume_db = 10.805
 autoplay = true
 max_distance = 30000.0
+
+[node name="slime4" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(337, 1113)
+
+[node name="slime3" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(172, 869)
+
+[node name="slime2" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(195, 728)
+
+[node name="slime5" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(278, 1191)
+
+[node name="slime6" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(1608, 954)
+
+[node name="slime7" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(1609, 857)
+
+[node name="slime8" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(2329, 1178)
+
+[node name="slime9" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(2641, 1185)
+
+[node name="slime10" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(2125, 1162)
+
+[node name="slime11" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(3045, 1195)
+
+[node name="slime12" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(2919, 1038)
+
+[node name="slime13" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(2967, 877)
+
+[node name="slime14" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(2983, 797)
+
+[node name="slime15" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(3076, 634)
+
+[node name="slime16" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(2952, 455)
+
+[node name="slime17" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(3410, 555)
+
+[node name="slime18" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(3498, 876)
+
+[node name="slime19" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(3341, 956)
+
+[node name="slime20" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(3285, 1190)
+
+[node name="slime21" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(3824, 1093)
+
+[node name="slime22" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(4163, 1100)
+
+[node name="slime23" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(5003, 1180)
+
+[node name="slime24" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(4775, 1173)
+
+[node name="slime25" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(5114, 1017)
+
+[node name="slime26" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(4912, 859)
+
+[node name="slime27" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(4712, 774)
+
+[node name="slime28" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(5008, 698)
+
+[node name="slime" parent="." instance=ExtResource("40_ityxv")]
+position = Vector2(4819, 698)
 
 [connection signal="loaded" from="." to="terminal" method="_on_level_loaded"]
 [connection signal="loaded" from="." to="terminal2" method="_on_level_loaded"]

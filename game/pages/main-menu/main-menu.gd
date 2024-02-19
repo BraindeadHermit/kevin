@@ -1,7 +1,5 @@
 extends Control
 
-var images_url = ["res://assets/img/hack.png", "res://assets/img/cyber1.jpg", "res://assets/img/cyber2.jpg", "res://assets/img/cyber3.jpg"]
-var images = []
 @onready var texture_rect = get_node("TextureRect")
 @onready var description = get_node("description")
 var thread = Thread.new()
@@ -36,23 +34,6 @@ func _ready():
 				await to_send_access.delete_to_send(question["qid"])
 	
 
-func _on_texture_rect_ready():
-	thread.start(_load_image)
-	images = thread.wait_to_finish()
-	
-	if not thread.is_alive():
-		var rng = RandomNumberGenerator.new()
-		while true:
-			var rand = rng.randi_range(0, 3)
-			$TextureRect.texture = images[rand]
-			await get_tree().create_timer(13).timeout
-			$TextureRect.texture = null
-			await get_tree().create_timer(1).timeout
-
-func _load_image():
-	var img = [load(images_url[0]), load(images_url[1]), load(images_url[2]), load(images_url[3])]
-	return img
-
 func _on_quit_pressed():
 	get_tree().quit()
 
@@ -69,3 +50,7 @@ func _on_http_request_request_completed(result, response_code, headers, body):
 	print(_current_qid)
 	if response_code == 200:
 		await to_send_access.delete_to_send(_current_qid)
+
+
+func _on_video_stream_player_finished():
+	$VideoStreamPlayer.play()
