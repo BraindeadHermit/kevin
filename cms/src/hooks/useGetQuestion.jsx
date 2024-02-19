@@ -11,6 +11,7 @@ const useGetQuestion = () => {
       (async () => {
         const response = await fetch("https://tspr.ovh/api/company/questions", {
           method: "POST",
+          credentials: "include",
         });
 
         if (response.ok) {
