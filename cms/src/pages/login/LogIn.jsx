@@ -75,7 +75,7 @@ const LogIn = () => {
               e.preventDefault();
               const data = new FormData(e.currentTarget);
               try {
-                await login("/api/company/auth/login", {
+                await login("https://tspr.ovh/api/company/auth/login", {
                   login: data.get("login"),
                   password: data.get("password"),
                 });
