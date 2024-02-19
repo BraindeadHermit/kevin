@@ -5,8 +5,6 @@ export default function BarChart(props) {
     const level1 = props.questions && props.questions.filter(item => { return item.Category === 'malware' });
     const level2 = props.questions && props.questions.filter(item => { return item.Category === 'DDOS' });
 
-    console.log(level1, level2);
-
     const trueQuestionsLv1 = () => {
         var total = 0;
 

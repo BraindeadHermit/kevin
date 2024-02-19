@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle, TextField, Radio, RadioGroup, FormControlLabel, FormControl, FormLabel } from '@mui/material';
 import useQuestionsOperations from '../hooks/useQuestionOperations';
 import Alert from '@mui/material/Alert';
-import { elements } from 'chart.js';
 
 const FormDialog = ({category}) => {
   const [open, setOpen] = useState(false);
@@ -35,21 +34,25 @@ const FormDialog = ({category}) => {
     setCorrectAnswer(e.target.value);
   };
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (index) => {
 
-      if (question.trim() === '' || answers.some(answer => answer[0].trim() === '') || correctAnswer === '') {
+      if (question.trim() === '' || answers.some(answer => answer[0].trim() === '')) {
         setError("Tutti i campi devono essere compilati");
+        return;
+      } else if (correctAnswer === '') {
+        setError("Seleziona la risposta corretta");
         return;
       }
 
-      console.log(answers)
+      index = correctAnswer;
+      answers[index][1] = true;
 
-      /*await insert('api/company/questions/add', {
+      await insert('api/company/questions/add', {
       body: question,
       options: answers,
       category: category,
       inUse: true
-    });*/
+    });
  
     handleClose();
   };
