@@ -1,0 +1,217 @@
+[gd_scene load_steps=16 format=3 uid="uid://b7efk72xf0kpk"]
+
+[ext_resource type="Script" path="res://pages/login/login.gd" id="1_718aj"]
+[ext_resource type="Texture2D" uid="uid://btllgb4iqst7h" path="res://assets/img/login_bg.jpg" id="2_oqwun"]
+[ext_resource type="FontFile" uid="uid://dime1jlce70ux" path="res://assets/fonts/ubuntu/Ubuntu-Regular.ttf" id="3_ryhma"]
+[ext_resource type="PackedScene" uid="uid://jc5y7xy11h86" path="res://components/input-text/InputText.tscn" id="4_26inv"]
+[ext_resource type="PackedScene" uid="uid://d00j8l2kr3pi4" path="res://components/button/button.tscn" id="4_vnwth"]
+[ext_resource type="FontFile" uid="uid://d16fe7j0t7esm" path="res://assets/fonts/Orbitron/Orbitron-Bold.ttf" id="7_8h4cc"]
+[ext_resource type="PackedScene" uid="uid://becmidtnpiwbm" path="res://components/spinner/spinner.tscn" id="7_yckfq"]
+[ext_resource type="FontFile" uid="uid://c8iep7283gdgg" path="res://assets/fonts/Orbitron/Orbitron-Regular.ttf" id="8_677h7"]
+[ext_resource type="Texture2D" uid="uid://bfcv0il4druov" path="res://assets/graphic components/spinner/spinner-background.png" id="8_p1qpd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_x7bq1"]
+font = ExtResource("3_ryhma")
+font_size = 20
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4d27"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+shadow_size = 15
+
+[sub_resource type="LabelSettings" id="LabelSettings_qyopi"]
+font = ExtResource("7_8h4cc")
+font_size = 46
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_evaqn"]
+font = ExtResource("8_677h7")
+font_size = 26
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_5ywkt"]
+font = ExtResource("8_677h7")
+font_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_rfnji"]
+font = ExtResource("8_677h7")
+font_color = Color(0.913725, 0, 0, 1)
+outline_color = Color(0.952941, 0, 0, 1)
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_vertical = 4
+script = ExtResource("1_718aj")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_oqwun")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -281.0
+offset_top = -108.0
+offset_right = -35.0
+offset_bottom = -30.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="spinner" parent="VBoxContainer" instance=ExtResource("7_yckfq")]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_under = ExtResource("8_p1qpd")
+
+[node name="spinner_text" type="Label" parent="VBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Sto effettuando l'accesso..."
+label_settings = SubResource("LabelSettings_x7bq1")
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 40.0
+offset_top = 40.0
+offset_right = 837.0
+offset_bottom = 1153.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_r4d27")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 35.0
+offset_top = 81.0
+offset_right = 764.0
+offset_bottom = 143.0
+size_flags_vertical = 0
+text = "KEVIN - THE HACK BUSTER"
+label_settings = SubResource("LabelSettings_qyopi")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 20.0
+offset_top = 354.0
+offset_right = 777.0
+offset_bottom = 391.0
+size_flags_vertical = 2
+text = "Username:"
+label_settings = SubResource("LabelSettings_evaqn")
+
+[node name="UsernameLineEdit" parent="Panel" instance=ExtResource("4_26inv")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 18.0
+offset_top = 429.0
+offset_right = 777.0
+offset_bottom = 429.0
+size_flags_vertical = 4
+
+[node name="Label3" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 21.0
+offset_top = 474.0
+offset_right = 774.0
+offset_bottom = 522.0
+size_flags_vertical = 8
+text = "Il nome utente inserito verrà utilizzato solo durante questa sessione, 
+alla chiusura del gioco verrà eliminato"
+label_settings = SubResource("LabelSettings_5ywkt")
+
+[node name="error_label_username" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 21.0
+offset_top = 522.5
+offset_right = 957.0
+offset_bottom = 546.5
+text = "Errore! Il nome utente non può essere vuoto"
+label_settings = SubResource("LabelSettings_rfnji")
+
+[node name="Label4" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 21.0
+offset_top = 588.0
+offset_right = 774.0
+offset_bottom = 625.0
+size_flags_vertical = 2
+text = "Company Code:"
+label_settings = SubResource("LabelSettings_evaqn")
+
+[node name="CompanyCodeLineEdit" parent="Panel" instance=ExtResource("4_26inv")]
+layout_mode = 2
+anchors_preset = 0
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 21.0
+offset_top = 663.0
+offset_right = 773.0
+offset_bottom = 663.0
+
+[node name="error_label" type="Label" parent="Panel"]
+layout_mode = 2
+offset_left = 21.0
+offset_top = 700.0
+offset_right = 771.0
+offset_bottom = 724.0
+text = "Errore! Il codice inserito è inesistente"
+label_settings = SubResource("LabelSettings_rfnji")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -332.5
+offset_top = -239.0
+offset_right = 1017.5
+offset_bottom = -73.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.5, 0.5)
+size_flags_horizontal = 4
+size_flags_vertical = 8
+alignment = 1
+
+[node name="QuitBtn" parent="Panel/HBoxContainer" instance=ExtResource("4_vnwth")]
+layout_mode = 2
+metadata/button_text = "Quit"
+
+[node name="StartBtn" parent="Panel/HBoxContainer" instance=ExtResource("4_vnwth")]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0
+metadata/button_text = "Start"
+
+[connection signal="tree_exiting" from="." to="." method="_on_tree_exiting"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]
+[connection signal="pressed" from="Panel/HBoxContainer/QuitBtn" to="." method="_on_quit_btn_pressed"]
+[connection signal="pressed" from="Panel/HBoxContainer/StartBtn" to="." method="_on_start_btn_pressed"]

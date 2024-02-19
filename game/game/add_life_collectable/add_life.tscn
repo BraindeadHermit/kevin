@@ -1,0 +1,129 @@
+[gd_scene load_steps=15 format=3 uid="uid://v2dow6lyyyll"]
+
+[ext_resource type="Script" path="res://game/add_life_collectable/add_life.gd" id="1_rbeud"]
+[ext_resource type="Texture2D" uid="uid://cxqd2ssr41043" path="res://assets/HearTile/Cuore1.png" id="2_dqp77"]
+[ext_resource type="Texture2D" uid="uid://5uqemh0o3xvk" path="res://assets/HearTile/Cuore2.png" id="3_qhhi1"]
+[ext_resource type="Texture2D" uid="uid://dx8lw8l56q1oc" path="res://assets/HearTile/Cuore3.png" id="4_y35hi"]
+[ext_resource type="Texture2D" uid="uid://2vkwrq6isuh2" path="res://assets/HearTile/Cuore4.png" id="5_ao60b"]
+[ext_resource type="Texture2D" uid="uid://cocyx4cu706gw" path="res://assets/HearTile/Cuore5.png" id="6_l8cr4"]
+[ext_resource type="Texture2D" uid="uid://c0ye4wsvu64yp" path="res://assets/HearTile/Cuore6.png" id="7_fflr3"]
+[ext_resource type="Texture2D" uid="uid://syrssm06nlg" path="res://assets/HearTile/Cuore7.png" id="8_burxo"]
+[ext_resource type="Texture2D" uid="uid://ciniceiri286l" path="res://assets/HearTile/Cuore8.png" id="9_wengw"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b0ctb"]
+radius = 7.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_75lpt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_dqp77")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_qhhi1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_y35hi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ao60b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_l8cr4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_fflr3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_burxo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wengw")
+}],
+"loop": true,
+"name": &"shine",
+"speed": 15.0
+}]
+
+[sub_resource type="Animation" id="Animation_0ftyw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_qurof"]
+resource_name = "bounce"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -45), Vector2(0, -19)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.4, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lowp4"]
+_data = {
+"RESET": SubResource("Animation_0ftyw"),
+"bounce": SubResource("Animation_qurof")
+}
+
+[node name="add_life" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_rbeud")
+metadata/colelctable_number = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b0ctb")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_75lpt")
+animation = &"shine"
+autoplay = "shine"
+frame_progress = 0.202473
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_lowp4")
+}
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_animation_player_animation_finished"]

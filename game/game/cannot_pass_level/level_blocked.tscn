@@ -1,0 +1,140 @@
+[gd_scene load_steps=11 format=3 uid="uid://jb88463vepbu"]
+
+[ext_resource type="Script" path="res://game/cannot_pass_level/level_blocked.gd" id="1_nkhdf"]
+[ext_resource type="FontFile" uid="uid://d16fe7j0t7esm" path="res://assets/fonts/Orbitron/Orbitron-Bold.ttf" id="1_r8b23"]
+[ext_resource type="FontFile" uid="uid://c8iep7283gdgg" path="res://assets/fonts/Orbitron/Orbitron-Regular.ttf" id="2_4ngk1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_233gg"]
+content_margin_left = 20.0
+content_margin_top = 20.0
+content_margin_right = 20.0
+content_margin_bottom = 20.0
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_4qtlc"]
+font = ExtResource("1_r8b23")
+font_size = 79
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uqubi"]
+font = ExtResource("2_4ngk1")
+font_size = 41
+font_color = Color(1, 0, 0, 1)
+
+[sub_resource type="Animation" id="Animation_cw0hq"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7sewh"]
+resource_name = "get_invisible"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_r8x07"]
+resource_name = "get_visible"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_4lqub"]
+_data = {
+"RESET": SubResource("Animation_cw0hq"),
+"get_invisible": SubResource("Animation_7sewh"),
+"get_visible": SubResource("Animation_r8x07")
+}
+
+[node name="level_blocked" type="CanvasLayer"]
+visible = false
+script = ExtResource("1_nkhdf")
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -464.0
+offset_top = -329.0
+offset_right = 464.0
+offset_bottom = -123.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_233gg")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -430.0
+offset_top = 6.0
+offset_right = 430.0
+offset_bottom = 109.0
+grow_horizontal = 2
+text = "ACCESSO NEGATO"
+label_settings = SubResource("LabelSettings_4qtlc")
+
+[node name="Label2" type="Label" parent="Panel"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -376.0
+offset_top = -110.0
+offset_right = 376.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Rispondi prima a tutte le domande 
+nel livello"
+label_settings = SubResource("LabelSettings_uqubi")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_4lqub")
+}
+
+[connection signal="visibility_changed" from="Panel" to="." method="_on_panel_visibility_changed"]

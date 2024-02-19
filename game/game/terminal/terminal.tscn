@@ -1,0 +1,173 @@
+[gd_scene load_steps=19 format=3 uid="uid://cisdb2ci5px5i"]
+
+[ext_resource type="Texture2D" uid="uid://dbrumuay3yi68" path="res://assets/levels/level_1/Props/Sprites/console.png" id="1_0vey0"]
+[ext_resource type="Script" path="res://game/terminal/terminal.gd" id="1_iivxx"]
+[ext_resource type="FontFile" uid="uid://dime1jlce70ux" path="res://assets/fonts/ubuntu/Ubuntu-Regular.ttf" id="3_dkx6w"]
+[ext_resource type="PackedScene" uid="uid://cydrx7fkx08lv" path="res://game/terminal/question/question.tscn" id="3_l6d8m"]
+[ext_resource type="Texture2D" uid="uid://c7vtqxneeltpj" path="res://assets/select/UI_Flat_Select_01a1.png" id="3_w4dne"]
+[ext_resource type="Texture2D" uid="uid://xppt2756r2v5" path="res://assets/select/UI_Flat_Select_01a2.png" id="4_dctwj"]
+[ext_resource type="Texture2D" uid="uid://b2e4d5eihacs1" path="res://assets/select/UI_Flat_Select_01a3.png" id="5_lxjai"]
+[ext_resource type="Texture2D" uid="uid://b88forhoj6aue" path="res://assets/select/UI_Flat_Select_01a4.png" id="6_rpa4v"]
+[ext_resource type="Texture2D" uid="uid://dvi36r1qfjg0b" path="res://assets/select/UI_Flat_Select_02a1.png" id="7_o5tmy"]
+[ext_resource type="Texture2D" uid="uid://71tj6p33sel4" path="res://assets/select/UI_Flat_Select_02a2.png" id="8_tqrgf"]
+[ext_resource type="Texture2D" uid="uid://buuq18nr7g21l" path="res://assets/select/UI_Flat_Select_02a3.png" id="9_8y3mk"]
+[ext_resource type="Texture2D" uid="uid://bl07mp42mde7g" path="res://assets/select/UI_Flat_Select_02a4.png" id="10_2igjr"]
+[ext_resource type="AudioStream" uid="uid://c2b1velr3smxo" path="res://assets/audio/sfx/Retro Event UI 13.wav" id="13_1x12r"]
+[ext_resource type="AudioStream" uid="uid://dh46n0u1q5xpl" path="res://assets/audio/sfx/Retro Event StereoUP 02.wav" id="13_aq45a"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qwtki"]
+size = Vector2(29, 29)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_03m3e"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_w4dne")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dctwj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_lxjai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_rpa4v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_o5tmy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_tqrgf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_8y3mk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_2igjr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r4u82"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 50
+corner_radius_top_right = 50
+corner_radius_bottom_right = 50
+corner_radius_bottom_left = 50
+
+[sub_resource type="LabelSettings" id="LabelSettings_av0so"]
+font = ExtResource("3_dkx6w")
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+
+[node name="terminal" type="Area2D"]
+process_mode = 3
+collision_layer = 0
+script = ExtResource("1_iivxx")
+metadata/question = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1.5, 3.5)
+shape = SubResource("RectangleShape2D_qwtki")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_0vey0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -2)
+scale = Vector2(0.9375, 0.9375)
+sprite_frames = SubResource("SpriteFrames_03m3e")
+autoplay = "default"
+frame_progress = 0.606124
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_left = 170.0
+offset_top = 122.0
+offset_right = 1747.0
+offset_bottom = 909.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_r4u82")
+
+[node name="Label" type="Label" parent="CanvasLayer/Panel"]
+layout_mode = 1
+offset_left = 60.0
+offset_top = 44.0
+offset_right = 1507.0
+offset_bottom = 102.0
+text = "Domanda 1"
+label_settings = SubResource("LabelSettings_av0so")
+autowrap_mode = 2
+
+[node name="question" parent="CanvasLayer/Panel" instance=ExtResource("3_l6d8m")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -737.0
+offset_top = -178.5
+offset_right = 737.0
+offset_bottom = -51.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="question2" parent="CanvasLayer/Panel" instance=ExtResource("3_l6d8m")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -737.0
+offset_top = -33.5
+offset_right = 737.0
+offset_bottom = 93.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="question3" parent="CanvasLayer/Panel" instance=ExtResource("3_l6d8m")]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -737.0
+offset_top = 110.5
+offset_right = 737.0
+offset_bottom = 237.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="question4" parent="CanvasLayer/Panel" instance=ExtResource("3_l6d8m")]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -737.0
+offset_top = -140.0
+offset_right = 737.0
+offset_bottom = -13.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="HTTPRequest" type="HTTPRequest" parent="."]
+
+[node name="pick_response" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_aq45a")
+
+[node name="opened_terminal" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("13_1x12r")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="question_answered" from="CanvasLayer/Panel/question" to="." method="_on_question_answered_resp_1"]
+[connection signal="question_answered" from="CanvasLayer/Panel/question2" to="." method="_on_question_answered_resp_2"]
+[connection signal="question_answered" from="CanvasLayer/Panel/question3" to="." method="_on_question_answered_resp_3"]
+[connection signal="question_answered" from="CanvasLayer/Panel/question4" to="." method="_on_question_answered_resp_4"]
+[connection signal="request_completed" from="HTTPRequest" to="." method="_on_http_request_request_completed"]

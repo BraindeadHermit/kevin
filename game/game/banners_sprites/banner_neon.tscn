@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://chu8u2xtlkwsv"]
+
+[ext_resource type="Texture2D" uid="uid://bu0q3wcevj2jk" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-neon/banner-neon-1.png" id="1_uwjpe"]
+[ext_resource type="Texture2D" uid="uid://dgmgxqj2trifn" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-neon/banner-neon-2.png" id="2_1xxoo"]
+[ext_resource type="Texture2D" uid="uid://c2viocda7uwac" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-neon/banner-neon-3.png" id="3_vi20h"]
+[ext_resource type="Texture2D" uid="uid://lp5wyrtwdr2o" path="res://assets/levels/level_2/warped city files/ENVIRONMENT/props/banner-neon/banner-neon-4.png" id="4_wx8cq"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7f26f"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_uwjpe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_1xxoo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vi20h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wx8cq")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="banner_neon" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_7f26f")
+autoplay = "default"
+frame_progress = 0.98967

@@ -1,0 +1,112 @@
+[gd_scene load_steps=16 format=3 uid="uid://c8khcrr3ahyao"]
+
+[ext_resource type="Script" path="res://game/slime_enemy/slime.gd" id="1_dfk5a"]
+[ext_resource type="Texture2D" uid="uid://cxko5636pteja" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime1.png" id="1_rdwbq"]
+[ext_resource type="Texture2D" uid="uid://eqod2tlwvkgb" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime2.png" id="2_1ttbo"]
+[ext_resource type="Texture2D" uid="uid://c82jp50anujpw" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime3.png" id="3_paeeu"]
+[ext_resource type="Texture2D" uid="uid://c61pmovk8wb4n" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime4.png" id="4_lw6la"]
+[ext_resource type="Texture2D" uid="uid://c2cqjsjwila0d" path="res://assets/levels/level_1/Characters/Enemies/sprites/Slime/slime5.png" id="5_2r6oy"]
+[ext_resource type="Texture2D" uid="uid://74jagj4hxvsy" path="res://assets/levels/level_1/Fx/Sprites/Explosion/explosion1.png" id="7_aicyx"]
+[ext_resource type="Texture2D" uid="uid://cafif022wtx2y" path="res://assets/levels/level_1/Fx/Sprites/Explosion/explosion2.png" id="8_u7yij"]
+[ext_resource type="Texture2D" uid="uid://dnofeu518cd65" path="res://assets/levels/level_1/Fx/Sprites/Explosion/explosion3.png" id="9_wjpvf"]
+[ext_resource type="Texture2D" uid="uid://cid67v8qhpsow" path="res://assets/levels/level_1/Fx/Sprites/Explosion/explosion4.png" id="10_u54do"]
+[ext_resource type="AudioStream" uid="uid://b4vk1p14g0dap" path="res://assets/audio/sfx/explosion/Retro Explosion Short 01.wav" id="11_k2cur"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ldihb"]
+animations = [{
+"frames": [{
+"duration": 0.9,
+"texture": ExtResource("1_rdwbq")
+}, {
+"duration": 0.9,
+"texture": ExtResource("2_1ttbo")
+}, {
+"duration": 0.9,
+"texture": ExtResource("3_paeeu")
+}, {
+"duration": 0.9,
+"texture": ExtResource("4_lw6la")
+}, {
+"duration": 0.9,
+"texture": ExtResource("5_2r6oy")
+}],
+"loop": true,
+"name": &"crawl",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_aicyx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_u7yij")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_wjpvf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_u54do")
+}],
+"loop": false,
+"name": &"die",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k37r1"]
+radius = 6.08276
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ucopb"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ktkxr"]
+size = Vector2(284, 70)
+
+[node name="slime" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 3
+script = ExtResource("1_dfk5a")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ldihb")
+animation = &"die"
+autoplay = "crawl"
+frame = 3
+frame_progress = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 10)
+shape = SubResource("CircleShape2D_k37r1")
+
+[node name="floor_detector" type="RayCast2D" parent="."]
+target_position = Vector2(0, 25)
+collision_mask = 2
+
+[node name="player_hurt" type="Area2D" parent="."]
+position = Vector2(1, 6)
+collision_layer = 0
+collision_mask = 33
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_hurt"]
+position = Vector2(-1, 0)
+shape = SubResource("CircleShape2D_ucopb")
+
+[node name="player_detector" type="Area2D" parent="."]
+collision_layer = 0
+metadata/_edit_group_ = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detector"]
+position = Vector2(0, -2)
+shape = SubResource("RectangleShape2D_ktkxr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.05
+one_shot = true
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("11_k2cur")
+
+[connection signal="body_entered" from="player_hurt" to="." method="_on_player_detector_body_entered"]
+[connection signal="body_entered" from="player_detector" to="." method="_on_player_detected"]
+[connection signal="body_exited" from="player_detector" to="." method="_on_player_not_detected"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

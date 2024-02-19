@@ -1,0 +1,332 @@
+[gd_scene load_steps=18 format=3 uid="uid://c2vnfu4m85lgg"]
+
+[ext_resource type="VideoStream" path="res://assets/video/Hacker-Typer.ogv" id="1_g7slf"]
+[ext_resource type="Script" path="res://pages/game_over/game_over.gd" id="1_kr2hd"]
+[ext_resource type="FontFile" uid="uid://d16fe7j0t7esm" path="res://assets/fonts/Orbitron/Orbitron-Bold.ttf" id="1_vwqqf"]
+[ext_resource type="AudioStream" uid="uid://s2wovskil62l" path="res://assets/audio/game_over_sound.mp3" id="2_3pb20"]
+[ext_resource type="Texture2D" uid="uid://bdgvi3sucxldl" path="res://assets/img/shade.png" id="2_uxpw0"]
+[ext_resource type="PackedScene" uid="uid://cvgyg8352vxmi" path="res://components/main-menu-button/main-menu-button.tscn" id="2_w5sbe"]
+[ext_resource type="FontFile" uid="uid://c8iep7283gdgg" path="res://assets/fonts/Orbitron/Orbitron-Regular.ttf" id="5_betlr"]
+[ext_resource type="Texture2D" uid="uid://jr78x5snkxy5" path="res://assets/img/main_sfx/kevin_logo.svg" id="8_hgycv"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_15f7s"]
+font = ExtResource("1_vwqqf")
+font_size = 56
+
+[sub_resource type="Animation" id="Animation_xg5kq"]
+resource_name = "LOST"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Label3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Label3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(20, 80), Vector2(20, 80), Vector2(20, 62)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/Label2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(79, 40), Vector2(79, 40), Vector2(79, 4.5)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel/Label2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_yegp5"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Panel/Label3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Panel/Label3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1147, 638)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Panel/Label2:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1077, 579)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Panel/Label2:modulate")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Panel:modulate")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_43k8s"]
+_data = {
+"LOST": SubResource("Animation_xg5kq"),
+"RESET": SubResource("Animation_yegp5")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_7tqhk"]
+font = ExtResource("5_betlr")
+font_size = 24
+
+[sub_resource type="LabelSettings" id="LabelSettings_vipir"]
+font = ExtResource("1_vwqqf")
+font_size = 32
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1l3v"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.0156863, 0.792157, 0, 1)
+corner_radius_top_left = 20
+corner_radius_top_right = 20
+corner_radius_bottom_right = 20
+corner_radius_bottom_left = 20
+
+[sub_resource type="LabelSettings" id="LabelSettings_p6i83"]
+font = ExtResource("5_betlr")
+font_size = 32
+font_color = Color(0.0156863, 0.792157, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_vjta2"]
+font = ExtResource("1_vwqqf")
+font_size = 48
+font_color = Color(0.0156863, 0.792157, 0, 1)
+
+[node name="game_over" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_kr2hd")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_3pb20")
+autoplay = true
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_g7slf")
+autoplay = true
+expand = true
+
+[node name="Shade" type="Sprite2D" parent="."]
+position = Vector2(965.5, 545)
+scale = Vector2(1.00156, 0.996296)
+texture = ExtResource("2_uxpw0")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 1
+offset_left = 135.0
+offset_top = 90.0
+offset_right = 530.0
+offset_bottom = 164.0
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_15f7s")
+
+[node name="riprova" parent="." instance=ExtResource("2_w5sbe")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 46.0
+offset_top = -222.5
+offset_right = 446.0
+offset_bottom = -147.5
+grow_horizontal = 1
+metadata/button_text = "RIPROVA"
+
+[node name="home page" parent="." instance=ExtResource("2_w5sbe")]
+layout_mode = 1
+anchors_preset = 4
+anchor_left = 0.0
+anchor_right = 0.0
+offset_left = 46.0
+offset_top = -128.5
+offset_right = 446.0
+offset_bottom = -53.5
+grow_horizontal = 1
+metadata/button_text = "home"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "LOST"
+libraries = {
+"": SubResource("AnimationLibrary_43k8s")
+}
+
+[node name="KevinLogo" type="Sprite2D" parent="."]
+position = Vector2(75, 127)
+scale = Vector2(0.307, 0.307)
+texture = ExtResource("8_hgycv")
+
+[node name="Label4" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 148.0
+offset_top = -135.0
+offset_right = 1189.0
+offset_bottom = -33.0
+grow_vertical = 0
+text = "cliccando sul tasto home verrai riportato al menu iniziale.
+I progressi fatti verrano salvati, e potrai riprendere la partita successivamente.
+Ricordati di accedere al gioco con lo stesso nome utente!"
+label_settings = SubResource("LabelSettings_7tqhk")
+
+[node name="Label5" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 148.0
+offset_top = -185.0
+offset_right = 394.0
+offset_bottom = -141.0
+grow_vertical = 0
+text = "ATTENZIONE!"
+label_settings = SubResource("LabelSettings_vipir")
+uppercase = true
+
+[node name="Panel" type="Panel" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -847.0
+offset_top = -55.5
+offset_right = -167.0
+offset_bottom = 55.5
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_c1l3v")
+
+[node name="Label3" type="Label" parent="Panel"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 1147.0
+offset_top = 638.0
+offset_right = 1787.0
+offset_bottom = 682.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "La minaccia ha preso il sopravvento"
+label_settings = SubResource("LabelSettings_p6i83")
+
+[node name="Label2" type="Label" parent="Panel"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = 1077.0
+offset_top = 579.0
+offset_right = 1600.0
+offset_bottom = 643.0
+grow_horizontal = 2
+text = "access granted"
+label_settings = SubResource("LabelSettings_vjta2")
+uppercase = true
+
+[connection signal="finished" from="AudioStreamPlayer2D" to="." method="_on_audio_stream_player_2d_finished"]
+[connection signal="finished" from="VideoStreamPlayer" to="." method="_on_video_stream_player_finished"]
+[connection signal="pressed" from="riprova" to="." method="_on_riprova_pressed"]
+[connection signal="pressed" from="home page" to="." method="_on_home_page_pressed"]
