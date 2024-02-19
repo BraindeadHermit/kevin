@@ -15,6 +15,7 @@ const useTelematry = () => {
   const getTelemetry = async () => {
     const response = await fetch("https://tspr.ovh/api/company/telemetry", {
       method: "POST",
+      credentials: "include",
     });
 
     if (response.ok) {
