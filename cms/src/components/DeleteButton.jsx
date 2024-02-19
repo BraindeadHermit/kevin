@@ -22,7 +22,7 @@ export default function DeleteButton(qid) {
   };
 
   const handleConfirm = async () => {
-    await deleteQuestion('api/company/questions/delete', {
+    await deleteQuestion('https://tspr.ovh/api/company/questions/delete', {
       qid: qid.qid
     });
 
