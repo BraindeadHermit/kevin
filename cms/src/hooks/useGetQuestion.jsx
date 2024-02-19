@@ -9,7 +9,7 @@ const useGetQuestion = () => {
 
     if (isLogged) {
       (async () => {
-        const response = await fetch("api/company/questions", {
+        const response = await fetch("https://tspr.ovh/api/company/questions", {
           method: "POST",
         });
 
