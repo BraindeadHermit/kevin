@@ -13,7 +13,7 @@ const useTelematry = () => {
   }, [isLogged]);
 
   const getTelemetry = async () => {
-    const response = await fetch("api/company/telemetry", {
+    const response = await fetch("https://tspr.ovh/api/company/telemetry", {
       method: "POST",
     });
 
