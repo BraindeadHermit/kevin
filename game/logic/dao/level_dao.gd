@@ -67,3 +67,16 @@ func is_level_completed(level_name, match_id):
 		return db.query_result[0]["is_completed"]
 		
 	return null
+	
+func delete_level_by_match_id(level_name, match_id):
+	var result = await db.query("SELECT id FROM level WHERE name = '" + level_name + "' AND game_id = " + str(match_id) + ";")
+	var level_id
+	if result:
+		print(db.query_result)
+		level_id = db.query_result[0]["id"]
+	
+	await db.query("DELETE FROM level WHERE id = " + str(level_id) + ";")
+	await terminal_access.delate_terminal_by_level_id(level_id)
+	await collectable_access.delete_collectable_by_level_id(level_id)
+	
+	return result

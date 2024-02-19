@@ -31,3 +31,8 @@ func set_given_answer(terminal_id, given_answer):
 	var result = await db.query("UPDATE terminal SET given_answer = " + str(given_answer) + " WHERE id = " + str(terminal_id) + ";")
 	
 	return result
+	
+func delate_terminal_by_level_id(level_id):
+	var result = await db.query("DELETE FROM terminal WHERE level_id = " + str(level_id) + ";")
+	
+	return result

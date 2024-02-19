@@ -15,6 +15,7 @@ var __collectable: Dictionary
 var __question: Dictionary
 var __answare: Dictionary
 var __terminal: Dictionary
+var __to_send: Dictionary
 
 
 
@@ -51,6 +52,7 @@ func _async_create_db():
 		db.create_table("question", __question)
 		db.create_table("answare", __answare)
 		db.create_table("terminal", __terminal)
+		db.create_table("to_send", __to_send)
 		
 	else:
 		print("database already exist")
@@ -110,6 +112,16 @@ func __tables_set_up():
 	__terminal["question_qid"] = {"data_type": "string", "foreign_key": __question.qid, "not_null": true}
 	__terminal["is_given"] = {"data_type": "bool", "default": "false", "not_null": true}
 	__terminal["given_answer"] = {"data_type": "int", "default": "0", "not_null": true}
+	
+	__to_send = Dictionary()
+	__to_send["qid"] = {"data_type": "string", "primary_key": true, "auto_increment": false, "not_null": true}
+	__to_send["company"] = {"data_type": "string"}
+	__to_send["platform"] = {"data_type": "string"}
+	__to_send["option_1"] = {"data_type": "bool", "default": "false", "not_null": true}
+	__to_send["option_2"] = {"data_type": "bool", "default": "false", "not_null": true}
+	__to_send["option_3"] = {"data_type": "bool", "default": "false", "not_null": true}
+	__to_send["option_4"] = {"data_type": "bool", "default": "false", "not_null": true}
+	
 
 func _exit_tree():
 	self.load_db.wait_to_finish()

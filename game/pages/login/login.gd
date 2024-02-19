@@ -58,9 +58,6 @@ func _exit_tree():
 
 
 func _on_http_request_request_completed(result, response_code, headers, body):
-	print(result)
-	print(response_code)
-	print(body)
 	if (response_code == 0):
 		$Panel2.visible = true
 		spinner.visible = false

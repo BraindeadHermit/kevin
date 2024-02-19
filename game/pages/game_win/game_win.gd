@@ -1,8 +1,9 @@
 extends Control
 
+var match_access = match_dao.new()
 
 func _ready():
-	pass
+	match_access.delete_match_by_id(Global.get_current_match_id())
 
 
 func _on_video_stream_player_finished():

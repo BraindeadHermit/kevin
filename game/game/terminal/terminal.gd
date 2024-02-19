@@ -6,16 +6,19 @@ var data: Dictionary
 var question_access
 var answer_access
 var terminal_access
+var to_send_access
 
 var terminal_number
 
 var question
 var answers
+var submit_body
 
 func _init():
 	question_access = questions_dao.new()
 	answer_access = answare_dao.new()
 	terminal_access = terminal_dao.new()
+	to_send_access = to_send_dao.new()
 	
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -54,7 +57,7 @@ func on_question_answered(answer_number):
 	var answer_array := [false, false, false, false]
 	answer_array[answer_number] = true
 	
-	var submit_body = {
+	submit_body = {
 		"publicKey": "testKey",
 		"company": Global.get_company_code(),
 		"qid": self.data["question_qid"],
@@ -90,6 +93,11 @@ func _on_level_loaded(terminal_data):
 
 
 func _on_http_request_request_completed(result, response_code, headers, body):
+	
+	if response_code == 0:
+		await to_send_access.create_to_send(submit_body)
+		return
+	
 	var json = JSON.parse_string(body.get_string_from_utf8())
 	
 	print(json)

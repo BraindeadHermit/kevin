@@ -5,6 +5,7 @@ var db = Database.get_db()
 
 var user_access = user_dao.new()
 var player_access = player_dao.new()
+var level_access = level_dao.new()
 
 func create_new_match(username, company_code):
 	
@@ -29,3 +30,12 @@ func get_last_game_id(user_id):
 		return db.query_result[0]["id"]
 		
 	return null
+	
+func delete_match_by_id(id):
+	var result = await db.query("DELETE FROM game WHERE id = " + str(id) + ";")
+	
+	await level_access.delete_level_by_match_id("livello 1", id)
+	await level_access.delete_level_by_match_id("livello 2", id)
+	
+	
+	return result
